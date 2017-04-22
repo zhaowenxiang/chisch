@@ -1,0 +1,11 @@
+django-crontab
+yapf
+django-simple-serializer==2.0.5
+simplejson
+django==1.8.16
+MySQL-python
+six
+aliyun-python-sdk-core
+aliyun-python-sdk-sts
+oss2
+
