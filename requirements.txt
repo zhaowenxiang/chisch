@@ -7,4 +7,4 @@ six
 aliyun-python-sdk-core
 aliyun-python-sdk-sts
 oss2
-
+uWSGI
