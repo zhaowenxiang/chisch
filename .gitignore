@@ -40,7 +40,6 @@ cover
 AUTHORS
 ChangeLog
 *.sqlite
-*~
 
 # Vagrant
 .vagrant
