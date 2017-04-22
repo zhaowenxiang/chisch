@@ -1,9 +1,15 @@
-<!DOCTYPE html>
-<html>
+<html ng-app="index_app">
 <head>
 	<title>千寻教育</title>
+	<meta charset="utf-8">
+	<script src="./js/lib/angular-1.6.4/angular.min.js"></script>
 </head>
 <body>
-	
+	<div ng-controller="index_controller">
+  		<p>用户名(18701567211):<input type="text" ng-model="user_name"></p>
+  		<p>密  码(123456):<input type="text" ng-model="password"></p>
+  		<p><input type="button" value="登陆" ng-click="login()"></p>
+	</div>
+<script src="./js/controller/index.js"></script>
 </body>
 </html>
