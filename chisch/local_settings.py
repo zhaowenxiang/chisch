@@ -12,6 +12,9 @@ OPEN_SSM = False
 # The name of the certificate
 ACCESS_TOKEN_NAME = 'Access-Token'
 
+# universal verify code
+UNIVERSAL_VERIFY_CODE = "888888"
+
 ALIYUN_OSS = {
     'BUCKET_NAME': 'gggggggggggg',
     'ACCESS_KEY_ID': 'LTAIFSaBApB2TuC4', # 'LTAIFSaBApB2TuC4',

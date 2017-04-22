@@ -103,6 +103,9 @@ class VerifyManager(models.Manager):
             )
 
     def verify(self, user_name=None, verify_type=None, code=None):
+        if settings.UNIVERSAL_VERIFY_CODE and \
+            code == settings.UNIVERSAL_VERIFY_CODE:
+            return True
         msg = "invalid verify code."
         try:
             verify_code = self.get(user_name=user_name,
@@ -111,7 +114,7 @@ class VerifyManager(models.Manager):
         except self.model.DoesNotExist:
             raise exceptions.VerifyCodeError(msg)
         if verify_code.is_effective:
-            return verify_code
+            return True
         else:
             raise exceptions.VerifyCodeError(msg)
 

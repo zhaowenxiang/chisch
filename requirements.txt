@@ -1,5 +1,4 @@
 django-crontab
-yapf
 django-simple-serializer==2.0.5
 simplejson
 django==1.8.16
