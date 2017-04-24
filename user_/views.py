@@ -34,7 +34,7 @@ class UserDetailView(DetailView):
         :param kwargs:
         :return:
         """
-        user_name = kwargs.get('user_name', None)
+        user_name = args[0]
         new_password = kwargs.get('new_password', None)
         old_password = kwargs.get('old_password', None)
         verify_code = kwargs.get('verify_code', None)
