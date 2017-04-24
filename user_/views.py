@@ -26,7 +26,6 @@ class UserDetailView(DetailView):
         result = _s(user, **user.serializer_rule())
         return RetWrapper.wrap_and_return(result)
 
-    @login_required
     @transaction.atomic
     def change_password(self, request, *args, **kwargs):
         """

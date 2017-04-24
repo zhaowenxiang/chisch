@@ -1,6 +1,8 @@
 一、后端环境搭建步骤如下（如果想在本地运行后端代码）：
 
 1、安装mysql或者mariadb并启动mysql数据库,
+   创建数据库
+   CREATE DATABASE `chisch` CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';  
 2、修改settings文件，配置数据库
 3、安装python-pip
 4、pip install -r requirements.txt -i https://pypi.doubanio.com/simple

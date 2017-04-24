@@ -16,10 +16,10 @@ ACCESS_TOKEN_NAME = 'Access-Token'
 UNIVERSAL_VERIFY_CODE = "888888"
 
 ALIYUN_OSS = {
-    'BUCKET_NAME': 'gggggggggggg',
-    'ACCESS_KEY_ID': 'LTAIFSaBApB2TuC4', # 'LTAIFSaBApB2TuC4',
-    'ACCESS_KEY_SECRET': '0qMu5s3yHEBrxb2klSyZKnHmOPb0HZ', #'',0qMu5s3yHEBrxb2klSyZKnHmOPb0HZ
-    'ENDPOINT': 'https://1709927201743129.mns.cn-hangzhou.aliyuncs.com/',
+    'BUCKET_NAME': 'chisch',
+    'ACCESS_KEY_ID': 'LTAInczWIrr8Xjdb', #'LTAIFSaBApB2TuC4',
+    'ACCESS_KEY_SECRET': 'oDV6sIMkJsDCb24PgQNAoLWACefYae', #'0qMu5s3yHEBrxb2klSyZKnHmOPb0HZ',
+    'ENDPOINT': 'http://oss-cn-shenzheng.aliyuncs.com',
     'ROLE_ARN': 'acs:ram::1709927201743129:role/aliyunosstokengeneratorrole'
 }
 
