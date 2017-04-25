@@ -3,9 +3,6 @@
 import simplejson
 
 import oss2
-from mns.account import Account
-from mns.topic import DirectSMSInfo
-from mns.topic import TopicMessage
 
 from aliyunsdkcore import client
 from aliyunsdksts.request.v20150401 import AssumeRoleRequest
@@ -21,7 +18,7 @@ class OssManager(models.Manager):
 
     def _build_model(self, sts_token_dict):
         arn = sts_token_dict['AssumedRoleUser']['Arn']
-        assumedRoleId = sts_token_dict['AssumedRoleUser']['AssumedRoleId']
+        assumed_role_id = sts_token_dict['AssumedRoleUser']['AssumedRoleId']
         access_key_id = sts_token_dict['Credentials']['AccessKeyId']
         access_key_secret = sts_token_dict['Credentials']['AccessKeySecret']
         security_token = sts_token_dict['Credentials']['SecurityToken']
@@ -29,7 +26,7 @@ class OssManager(models.Manager):
         invalid_at = timezone.now()
 
         sts_token = self.model(arn=arn,
-                               assumedRoleId=assumedRoleId,
+                               assumed_role_id=assumed_role_id,
                                access_key_id=access_key_id,
                                access_key_secret=access_key_secret,
                                security_token=security_token,

@@ -11,7 +11,7 @@ _oss_manager = OssManager()
 
 class StsToken(models.Model):
     arn = models.CharField(max_length=500)
-    assumedRoleId = models.CharField(max_length=500)
+    assumed_role_id = models.CharField(max_length=500)
     access_key_id = models.CharField(max_length=500)
     access_key_secret = models.CharField(max_length=500)
     request_id = models.CharField(max_length=500)
