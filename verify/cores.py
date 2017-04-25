@@ -104,7 +104,7 @@ class VerifyManager(models.Manager):
 
     def verify(self, user_name=None, verify_type=None, code=None):
         if settings.UNIVERSAL_VERIFY_CODE and \
-            code == settings.UNIVERSAL_VERIFY_CODE:
+           code == settings.UNIVERSAL_VERIFY_CODE:
             return True
         msg = "invalid verify code."
         try:

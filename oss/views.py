@@ -1,14 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import logging
-import simplejson
-
-import oss2
-from aliyunsdkcore import client
-from aliyunsdksts.request.v20150401 import AssumeRoleRequest
-from django.conf import settings
-from django.db import transaction
-
 
 from chisch.common import dependency
 from chisch.common.retwrapper import RetWrapper
@@ -21,7 +12,10 @@ class OssDetail(DetailView):
 
     def get_sts_token(self, request):
 
-        sts_token = self.oss_manager.create_sts_token(request)
+        try:
+            sts_token = self.oss_manager.create_sts_token(request)
+        except Exception, e:
+            return RetWrapper.wrap_and_return(e)
 
         result = _s(sts_token)
         return RetWrapper.wrap_and_return(result)

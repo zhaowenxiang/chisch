@@ -17,10 +17,12 @@ UNIVERSAL_VERIFY_CODE = "888888"
 
 ALIYUN_OSS = {
     'BUCKET_NAME': 'chisch',
-    'ACCESS_KEY_ID': 'LTAInczWIrr8Xjdb', #'LTAIFSaBApB2TuC4',
-    'ACCESS_KEY_SECRET': 'oDV6sIMkJsDCb24PgQNAoLWACefYae', #'0qMu5s3yHEBrxb2klSyZKnHmOPb0HZ',
-    'ENDPOINT': 'http://oss-cn-shenzheng.aliyuncs.com',
-    'ROLE_ARN': 'acs:ram::1709927201743129:role/aliyunosstokengeneratorrole'
+    'ACCESS_KEY_ID': 'LTAInczWIrr8Xjdb',
+    'ACCESS_KEY_SECRET': 'oDV6sIMkJsDCb24PgQNAoLWACefYae',
+    'ENDPOINT': 'https://oss-cn-shenzhen.aliyuncs.com',
+    'ROLE_ARN': 'acs:ram::1709927201743129:role/aliyunosstokengeneratorrole',
+    'TokenExpireTime': '900',
+    'REGION': 'cn-shenzhen',
 }
 
 MNS = {

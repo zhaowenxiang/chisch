@@ -22,6 +22,7 @@ class UserDetailView(DetailView):
 
     @login_required
     def get(self, request, *args, **kwargs):
+        # TODO
         user = self.user_manager.get(id=request.user.id)
         result = _s(user, **user.serializer_rule())
         return RetWrapper.wrap_and_return(result)
