@@ -21,8 +21,12 @@ ALIYUN_OSS = {
     'ACCESS_KEY_SECRET': 'oDV6sIMkJsDCb24PgQNAoLWACefYae',
     'ENDPOINT': 'https://oss-cn-shenzhen.aliyuncs.com',
     'ROLE_ARN': 'acs:ram::1709927201743129:role/aliyunosstokengeneratorrole',
-    'TokenExpireTime': '900',
+    'TokenExpireTime': 60 * 60,
     'REGION': 'cn-shenzhen',
+    'FILE_PATH':[
+        {'purpose': 'upload_avatar', 'path': '/image/user/avatar/'},
+        {'purpose': 'upload_video', 'path': '/image/user/video/'}
+    ]
 }
 
 MNS = {
