@@ -66,6 +66,12 @@ class UserDetailView(DetailView):
         result = _s(user, **user.serializer_rule())
         return RetWrapper.wrap_and_return(result)
 
+    @login_required
+    @transaction.atomic
+    def upload_avatar(self, request, *args, **kwargs):
+        pass
+
+
 
 @dependency.requires('user_manager', 'verification_manager')
 class UserListView(ListView):
