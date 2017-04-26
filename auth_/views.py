@@ -47,11 +47,6 @@ class AuthView(ListView):
         password = kwargs.get('password', None)
         verify_code = kwargs.get('verify_code', None)
         agent_idfa = kwargs.get('agent_idfa', None)
-        if user_name == '18701567211':
-            a = 0
-            while True:
-                a += 1
-                continue
         try:
             user = self.user_manager.auth(user_name,
                                           password=password,
