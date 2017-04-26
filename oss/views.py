@@ -13,9 +13,11 @@ class OssDetail(DetailView):
     def get_sts_token(self, request, *args, **kwargs):
 
         purpose = kwargs['purpose']
+        attached_object_id = kwargs['attached_object_id']
 
         try:
-            sts_token = self.oss_manager.get_sts_token(purpose)
+            sts_token = self.oss_manager.get_sts_token(purpose,
+                                                       attached_object_id)
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
 

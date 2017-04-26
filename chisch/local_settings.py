@@ -23,10 +23,24 @@ ALIYUN_OSS = {
     'ROLE_ARN': 'acs:ram::1709927201743129:role/aliyunosstokengeneratorrole',
     'TokenExpireTime': 60 * 60,
     'REGION': 'cn-shenzhen',
-    'FILE_PATH':[
-        {'purpose': 'upload_avatar', 'path': '/image/user/avatar/'},
-        {'purpose': 'upload_video', 'path': '/image/user/video/'}
-    ]
+    'ROLE_SESSION_NAME': 'chisch',
+    'OBJECT_KEYS_SUB_ELEMENT': {
+        'upload_user_avatar': {
+            'path': '/image/user/avatar/',
+            'key_suffix': '.png',
+            'number': 'one',
+        },
+        'upload_dynamic': {
+            'path': '/image/user/dynamic/',
+            'key_suffix': '.png',
+            'number': 'multiple',
+        },
+        'upload_video_cover': {
+            'path': '/image/user/avatar/',
+            'key_suffix': '.mp4',
+            'number': 'multiple',
+        },
+    }
 }
 
 MNS = {
