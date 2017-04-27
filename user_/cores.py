@@ -119,3 +119,6 @@ class UserManager(BaseUserManager):
                 setattr(user, key, value)
         self.filter(id=user.id).update(**kwargs)
         return user
+
+    def upload_avatar(self, user_id, request):
+        return request.user

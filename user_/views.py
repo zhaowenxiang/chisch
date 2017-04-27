@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 
+import cgi
 import logging
+import struct
+
+from gp.fileupload import Storage
+from gp.fileupload import purge_files
 
 from django.db import transaction
 
@@ -66,13 +71,78 @@ class UserDetailView(DetailView):
         result = _s(user, **user.serializer_rule())
         return RetWrapper.wrap_and_return(result)
 
-    @login_required
     @transaction.atomic
     def upload_avatar(self, request, *args, **kwargs):
-        pass
-
+        a, = struct.unpack('i', request.body)
+        b = 10
+        #
+        # fields = cgi.FieldStorage(fp=request.environ['wsgi.input'],
+        #                           environ=request.environ,
+        #                           keep_blank_values=1)
+        # image_str = kwargs['image']
+        # import base64
+        # with open('/root/a.png', 'wb') as fout:
+        #     fout.write(base64.b64decode(image_str))
+        # try:
+        #     user = self.user_manager.upload_avatar()
+        # except Exception, e:
+        #     return RetWrapper.wrap_and_return(e)
+        # return RetWrapper.wrap_and_return(user)
 
 
 @dependency.requires('user_manager', 'verification_manager')
 class UserListView(ListView):
     pass
+
+
+def _to_unicode(s, encoding='utf-8'):
+    return s.decode('utf-8')
+
+
+class MultipartFile(object):
+    def __init__(self, storage):
+        self.filename = _to_unicode(storage.filename)
+        self.file = storage.file
+
+
+class Request(object):
+    def __init__(self, environ):
+        self._environ = environ
+
+    def _parse_input(self):
+        def _convert(item):
+            if isinstance(item, list):
+                return [_to_unicode(i.value) for i in item]
+            if item.filename:
+                return MultipartFile(item)
+            return _to_unicode(item.value)
+
+        fs = cgi.FieldStorage(fp=self._environ['wsgi.input'],
+                              environ=self._environ, keep_blank_values=True)
+        inputs = {}
+        for key in fs:
+            inputs[key] = _convert(fs[key])  # key的value可以是一个list
+        return inputs
+
+    def _get_raw_input(self):
+        if not hasattr(self, '_raw_input'):
+            self._raw_input = self._parse_input()
+        return self._raw_input
+
+    def __getitem__(self, key):
+        r = self._get_raw_input()[key]
+        if isinstance(r, list):
+            return r[0]
+        return r
+
+    def get(self, key, default=None):
+        r = self._get_raw_input().get(key, default)
+        if isinstance(r, list):
+            return r[0]
+        return r
+
+    def gets(self, key):
+        r = self._get_raw_input()[key]
+        if isinstance(r, list):
+            return r[:]
+        return [r]
