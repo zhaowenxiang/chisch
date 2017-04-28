@@ -8,3 +8,4 @@ aliyun-python-sdk-core
 aliyun-python-sdk-sts
 oss2
 uWSGI
+opencv-python==3.2.0.7
