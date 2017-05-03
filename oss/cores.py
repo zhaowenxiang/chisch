@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# import oss2
+import oss2
 # import simplejson
 #
 # from aliyunsdkcore import client
@@ -291,32 +291,41 @@ class OssManager(object):
         :param f: The file
         :return: status
         """
-        # POST请求表单域，注意大小写
-        policy = build_encode_policy(120,
-                                     [
-                                         ['eq', '$bucket', self.bucket_name],
-                                         ['content-length-range', 0, 104857600]
-                                     ])
-        field_dict = {
-            'OSSAccessKeyId': self.access_key_id,
-            # Policy包括超时时间(单位秒)和限制条件condition
-            'policy': policy,
-            'Signature': build_signature(self.access_key_secret, policy),
-            'Content-Disposition': 'attachment;filename=' + key,
-            'key': key,
-            'content-type': 'image/png',
-            'content': f['value'],
-        }
-        body = build_post_body(field_dict, self.boundary)
-        headers = build_post_headers(len(body), self.boundary)
+        auth = oss2.Auth(self.access_key_id, self.access_key_secret)
+        bucket = oss2.Bucket(auth, self.endpoint, self.bucket_name)
         try:
-            resp = requests.post(build_post_url(self.endpoint,
-                                                self.bucket_name),
-                                 data=body,
-                                 headers=headers)
+            resp = bucket.put_object(key, f['value'])
+            res = bucket.put_object_acl(key, oss2.OBJECT_ACL_PUBLIC_READ)
         except Exception, e:
             raise e
         return resp
+
+        # POST请求表单域，注意大小写
+        # policy = build_encode_policy(120,
+        #                              [
+        #                                  ['eq', '$bucket', self.bucket_name],
+        #                                  ['content-length-range', 0, 10485760]
+        #                              ])
+        # field_dict = {
+        #     'OSSAccessKeyId': self.access_key_id,
+        #     # Policy包括超时时间(单位秒)和限制条件condition
+        #     'policy': policy,
+        #     'Signature': build_signature(self.access_key_secret, policy),
+        #     'Content-Disposition': 'attachment;filename=' + key,
+        #     'key': key,
+        #     'content-type': 'image/png',
+        #     'content': f['value'],
+        # }
+        # body = build_post_body(field_dict, self.boundary)
+        # headers = build_post_headers(len(body), self.boundary)
+        # try:
+        #     resp = requests.post(build_post_url(self.endpoint,
+        #                                         self.bucket_name),
+        #                          data=body,
+        #                          headers=headers)
+        # except Exception, e:
+        #     raise e
+        # return resp
 
 # # 确认请求结果
 # assert resp.status_code == 200

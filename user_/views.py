@@ -85,7 +85,7 @@ class UserDetailView(DetailView):
             resp = self.oss_manager.single_object_direct_upload(key, files[0])
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
-        if str(resp.status_code).startswith('20'):
+        if str(resp.status).startswith('20'):
             aliyun_oss = settings.ALIYUN_OSS
             backup_name = aliyun_oss['BUCKET_NAME']
             endpoint = aliyun_oss['ENDPOINT']
