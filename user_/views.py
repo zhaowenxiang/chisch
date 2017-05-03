@@ -2,6 +2,7 @@
 
 import logging
 
+from django.conf import settings
 from django.db import transaction
 
 from chisch.common import upload_file_analysis as ufa
@@ -19,7 +20,10 @@ from chisch.common.constents import (
 logger = logging.getLogger('django')
 
 
-@dependency.requires('user_manager', 'verify_manager', 'auth_manager')
+@dependency.requires('user_manager',
+                     'verify_manager',
+                     'auth_manager',
+                     'oss_manager')
 class UserDetailView(DetailView):
 
     @login_required
@@ -68,16 +72,31 @@ class UserDetailView(DetailView):
         result = _s(user, **user.serializer_rule())
         return RetWrapper.wrap_and_return(result)
 
+    @login_required
     @transaction.atomic
-    def upload_avatar(self, request, *args, **kwargs):
-        content_type = request.content_type
-        arguments, files = ufa.parse_body_arguments(content_type=content_type,
-                                                    body=request.body)
-        for fi in files:
-            with open('/root/image/' + fi['name'], 'w') as f:
-                f.write(fi['value'])
-                f.close()
-        print args, files
+    def upload_user_avatar(self, request, *args, **kwargs):
+        user = request.user
+        arguments, files = ufa.parse_multipart_form_data(body=request.body)
+        from oss.cores import get_object_key
+        key = get_object_key(request.GET.get('action'),
+                             user.id,
+                             files[0]['file_type'])
+        try:
+            resp = self.oss_manager.single_object_direct_upload(key, files[0])
+        except Exception, e:
+            return RetWrapper.wrap_and_return(e)
+        if str(resp.status_code).startswith('20'):
+            aliyun_oss = settings.ALIYUN_OSS
+            backup_name = aliyun_oss['BUCKET_NAME']
+            endpoint = aliyun_oss['ENDPOINT']
+            user.avatar_url = endpoint.replace('://',
+                                               '://' + backup_name + '.') + key
+            user.save()
+        else:
+            return RetWrapper.wrap_and_return(message='server error',
+                                              http_status=500)
+        result = _s(user, **user.serializer_rule())
+        return RetWrapper.wrap_and_return(result)
 
 
 @dependency.requires('user_manager', 'verification_manager')

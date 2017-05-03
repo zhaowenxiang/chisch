@@ -111,21 +111,16 @@ import os
 import crcmod
 import requests
 
+from chisch.common import dependency
 from django.conf import settings
+
+# from django.conf import settings
 
 # 以下代码展示了PostObject的用法。PostObject不依赖于OSS Python SDK。
 
 # POST表单域的详细说明请参RFC2388 https://tools.ietf.org/html/rfc2388
 # PostObject的官网 https://help.aliyun.com/document_detail/31988.html
 # PostObject错误及排查 https://yq.aliyun.com/articles/58524
-
-# 首先初始化AccessKeyId、AccessKeySecret、Endpoint等信息。
-# 通过环境变量获取，或者把诸如“<你的AccessKeyId>”替换成真实的AccessKeyId等。
-ALIYUN_OSS = settings.ALIYUN_OSS
-access_key_id = ALIYUN_OSS.get('ACCESS_KEY_ID')
-access_key_secret = ALIYUN_OSS.get('ACCESS_KEY_SECRET')
-bucket_name = ALIYUN_OSS.get('BUCKET_NAME')
-endpoint = ALIYUN_OSS.get('ENDPOINT')
 
 
 def calculate_crc64(data):
@@ -263,51 +258,69 @@ def build_post_headers(body_len, boundary, headers=None):
     return headers
 
 
-# POST请求表单域，注意大小写
-field_dict = {}
-# object名称
-field_dict['key'] = 'post.txt'
-# access key id
-field_dict['OSSAccessKeyId'] = access_key_id
-# Policy包括超时时间(单位秒)和限制条件condition
-field_dict['policy'] = build_encode_policy(120,
-                                           [['eq', '$bucket', bucket_name],
-                                            ['content-length-range', 0,
-                                             104857600]])
-# 请求签名
-field_dict['Signature'] = build_signature(access_key_secret,
-                                          field_dict['policy'])
-# 临时用户Token，当使用临时用户密钥时Token必填；非临时用户填空或不填
-field_dict['x-oss-security-token'] = ''
-# Content-Disposition
-field_dict['Content-Disposition'] = 'attachment;filename=download.txt'
-# 用户自定义meta
-field_dict['x-oss-meta-uuid'] = 'uuid-xxx'
-# callback，没有回调需求不填该域
-field_dict['callback'] = bulid_callback('http://oss-demo.aliyuncs.com:23450',
-                                        'filename=${object}&size=${size}&mimeType=${mimeType}',
-                                        'application/x-www-form-urlencoded')
-# callback中的自定义变量，没有回调不填该域
-field_dict['x:var1'] = 'callback-var1-val'
-# 上传文件内容
-field_dict['content'] = 'a' * 64
-# 上传文件类型
-field_dict['content-type'] = 'text/plain'
+def get_object_key(action, attachment_id, file_suffix):
+    aliyun_oss = settings.ALIYUN_OSS
+    key_sub_elements = aliyun_oss['OBJECT_KEYS_SUB_ELEMENTS'][action]
+    if key_sub_elements.get('only_one', False):
+        key = key_sub_elements['path'] + str(attachment_id) + file_suffix
+        return key
+    else:
+        pass
 
-# 表单域的边界字符串，一般为随机字符串
-boundary = '9431149156168'
 
-# 发送POST请求
-body = build_post_body(field_dict, boundary)
-headers = build_post_headers(len(body), boundary)
+@dependency.provider('oss_manager')
+class OssManager(object):
 
-resp = requests.post(build_post_url(endpoint, bucket_name),
-                     data=body,
-                     headers=headers)
+    def __init__(self):
+        # 首先初始化AccessKeyId、AccessKeySecret、Endpoint等信息。
+        # 通过环境变量获取，或者把诸如“<你的AccessKeyId>”替换成真实的AccessKeyId等。
+        ALIYUN_OSS = settings.ALIYUN_OSS
+        self.access_key_id = ALIYUN_OSS.get('ACCESS_KEY_ID')
+        self.access_key_secret = ALIYUN_OSS.get('ACCESS_KEY_SECRET')
+        self.bucket_name = ALIYUN_OSS.get('BUCKET_NAME')
+        self.endpoint = ALIYUN_OSS.get('ENDPOINT')
+        self.boundary = ALIYUN_OSS.get('BOUNDARY')
 
-# 确认请求结果
-assert resp.status_code == 200
-assert resp.content == '{"Status":"OK"}'
-assert resp.headers['x-oss-hash-crc64ecma'] == str(
-    calculate_crc64(field_dict['content']))
+
+    def get_object_url(self):
+        pass
+
+    def single_object_direct_upload(self, key, f):
+        """
+        :param key: Object name for cloud storage
+        :param f: The file
+        :return: status
+        """
+        # POST请求表单域，注意大小写
+        policy = build_encode_policy(120,
+                                     [
+                                         ['eq', '$bucket', self.bucket_name],
+                                         ['content-length-range', 0, 104857600]
+                                     ])
+        field_dict = {
+            'OSSAccessKeyId': self.access_key_id,
+            # Policy包括超时时间(单位秒)和限制条件condition
+            'policy': policy,
+            'Signature': build_signature(self.access_key_secret, policy),
+            'Content-Disposition': 'attachment;filename=' + key,
+            'key': key,
+            'content-type': 'image/png',
+            'content': f['value'],
+        }
+        body = build_post_body(field_dict, self.boundary)
+        headers = build_post_headers(len(body), self.boundary)
+        try:
+            resp = requests.post(build_post_url(self.endpoint,
+                                                self.bucket_name),
+                                 data=body,
+                                 headers=headers)
+        except Exception, e:
+            raise e
+        return resp
+
+# # 确认请求结果
+# assert resp.status_code == 200
+# assert resp.content == '{"Status":"OK"}'
+# assert resp.headers['x-oss-hash-crc64ecma'] == str(
+#     calculate_crc64(field_dict['content']))
 

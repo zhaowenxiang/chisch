@@ -20,6 +20,7 @@ class User(BaseModel, AbstractBaseUser):
     email = models.EmailField(max_length=254,
                               null=True,
                               unique=True)
+    avatar_url = models.CharField(max_length=255, null=True)
     sex = models.CharField(max_length=1, null=True)
     date_of_birth = models.CharField(max_length=10, null=True)
     education = models.SmallIntegerField(null=True)

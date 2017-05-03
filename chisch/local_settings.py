@@ -17,28 +17,27 @@ UNIVERSAL_VERIFY_CODE = "888888"
 
 ALIYUN_OSS = {
     'BUCKET_NAME': 'chisch',
-    'ACCESS_KEY_ID': 'LTAInczWIrr8Xjdb',
-    'ACCESS_KEY_SECRET': 'oDV6sIMkJsDCb24PgQNAoLWACefYae',
-    'ENDPOINT': 'https://oss-cn-shenzhen.aliyuncs.com',
+    'ACCESS_KEY_ID': 'LTAIFSaBApB2TuC4',
+    'ACCESS_KEY_SECRET': '0qMu5s3yHEBrxb2klSyZKnHmOPb0HZ',
+    'ENDPOINT': 'https://oss-cn-shenzhen.aliyuncs.com/',
     'ROLE_ARN': 'acs:ram::1709927201743129:role/aliyunosstokengeneratorrole',
     'TokenExpireTime': 60 * 60,
     'REGION': 'cn-shenzhen',
     'ROLE_SESSION_NAME': 'chisch',
-    'OBJECT_KEYS_SUB_ELEMENT': {
+    'BOUNDARY': '-'*10 + 'chisch' + '-'*10,
+    'OBJECT_KEYS_SUB_ELEMENTS': {
         'upload_user_avatar': {
-            'path': '/image/user/avatar/',
-            'key_suffix': '.png',
-            'number': 'one',
+            'path': 'image/user/avatar/',
+            'only_one': True,
         },
         'upload_dynamic': {
-            'path': '/image/user/dynamic/',
-            'key_suffix': '.png',
-            'number': 'multiple',
+            'path': 'image/user/dynamic/',
+            'only_one': False,
         },
         'upload_video_cover': {
-            'path': '/image/user/avatar/',
-            'key_suffix': '.mp4',
-            'number': 'multiple',
+            'path': 'image/user/avatar/',
+            'file_suffix': '.mp4',
+            'only_one': False,
         },
     }
 }

@@ -1,25 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
-def parse_body_arguments(content_type, body):
-    if content_type != "multipart/form-data":
-        return {}, {}
-    if 'Content-Disposition' in body:
-        return parse_multipart_form_data(data=body)
-    else:
-        return parse_single_form_data(data=body)
-
-
-def parse_single_form_data(data=""):
-    arguments = []
-    files = [data]
-    return arguments, files
-
-
-def parse_multipart_form_data(data=""):
+def parse_multipart_form_data(body=""):
     """Parses a ``multipart/form-data`` body.
 
-    The ``boundary`` and ``data`` parameters are both byte strings.
+    The ``boundary`` and ``body`` parameters are both byte strings.
     The dictionaries given in the arguments and files parameters
     will be updated with the contents of the body.
     """
@@ -28,18 +13,18 @@ def parse_multipart_form_data(data=""):
     # xmpp).  I think we're also supposed to handle backslash-escapes
     # here but I'll save that until we see a client that uses them
     # in the wild.
-    boundary_eoh = data.find("\r\n")
-    boundary = data[:boundary_eoh]
+    boundary_eoh = body.find("\r\n")
+    boundary = body[:boundary_eoh]
 
     arguments = []
     files = []
 
     if boundary.startswith(b'"') and boundary.endswith(b'"'):
         boundary = boundary[1:-1]
-    final_boundary_index = data.rfind(boundary + b"--")
+    final_boundary_index = body.rfind(boundary + b"--")
     if final_boundary_index == -1:
         return
-    parts = data[:final_boundary_index].split(
+    parts = body[:final_boundary_index].split(
         boundary + b"\r\n")
     for part in parts:
         if not part:
@@ -127,5 +112,5 @@ def _parse_file_type(line):
             ctype_list.append(line[point])
             point += 1
             continue
-    return ''.join(ctype_list)
-
+    file_type = ''.join(ctype_list)
+    return '.' + file_type.split('/')[1]
