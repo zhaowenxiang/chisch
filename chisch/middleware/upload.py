@@ -8,10 +8,11 @@ from chisch.common.upload_file_analysis import parse_multipart_form_data
 class UploadMiddleware(object):
 
     def process_request(self, request):
-        if request.content_type != 'multipart/form-data':
+        if request.META['CONTENT_TYPE'] != 'multipart/form-data':
             pass
         else:
             arguments, files = parse_multipart_form_data(request._body)
+            self.files = files
             body = {
                 'action': None,
                 'params': {
@@ -28,8 +29,9 @@ class UploadMiddleware(object):
                 body['params']['files'].append(f)
 
     def process_response(self, request, response):
-        for f in request.body['params']['files']:
-            os.remove(f['path'])
+        if hasattr(self, 'files'):
+            for f in self.files:
+                os.remove(f['path'])
         return response
 
 

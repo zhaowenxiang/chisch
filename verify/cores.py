@@ -16,9 +16,10 @@ from chisch.common.constents import (
     VERIFY_UPPER_LIMIT_BY_USER_NAME,
     VERIFY_UPPER_LIMIT_BY_IP,
     VERIFY_CODE_EFFECTIVE_TIME,
-    VERIFY_TYPE_REGISTER,
-    VERIFY_TYPE_LOGIN,
-    VERIFY_TYPE_CHANGE_PASSWORD,
+    VERIFY_TYPE_REGISTER as VTR,
+    VERIFY_TYPE_LOGIN as VTL,
+    VERIFY_TYPE_CHANGE_PASSWORD as VTCP,
+    VERIFY_TYPE_CHANGE_MOBILE_NUMBER as VTCMN,
     VERIFY_TYPE_OPERATE_MAP,
     VERIFY_STATISTIC_WAY_USER_NAME,
     VERIFY_STATISTIC_WAY_IP
@@ -87,10 +88,9 @@ class VerifyManager(models.Manager):
         :return:(True or False, message)
         """
         is_registered = self.user_manager.is_registered(user_name)
-        if is_registered and verify_type == VERIFY_TYPE_REGISTER:
+        if is_registered and verify_type == VTR:
             return False, "The user has registered."
-        if not is_registered and verify_type in [VERIFY_TYPE_LOGIN,
-                                                 VERIFY_TYPE_CHANGE_PASSWORD]:
+        if not is_registered and verify_type in [VTL, VTCP, VTCMN]:
             return False, "The user has not registered."
 
         if not settings.OPEN_MRP:

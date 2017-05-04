@@ -13,6 +13,7 @@ from chisch.common.views import ListView, DetailView
 from chisch.common.serializer import s as _s
 from chisch.common.constents import (
     VERIFY_TYPE_CHANGE_PASSWORD as VTCP,
+    VERIFY_TYPE_CHANGE_MOBILE_NUMBER as VTCMN,
 )
 
 
@@ -65,6 +66,42 @@ class UserDetailView(DetailView):
 
     @login_required
     @transaction.atomic
+    def change_mobile_number(self, request, *args, **kwargs):
+        """
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+        user_name = args[0]
+        mobile_number = kwargs['mobile_number']
+        verify_code = kwargs['verify_code']
+        agent_idfa = kwargs['agent_idfa']
+        password = kwargs['password']
+        try:
+            self.verify_manager.verify(user_name=user_name,
+                                       verify_type=VTCMN,
+                                       code=verify_code)
+        except Exception, e:
+            return RetWrapper.wrap_and_return(e)
+        try:
+            user = self.user_manager.auth(user_name,
+                                          password=password,
+                                          verify_type=VTCP)
+        except Exception, e:
+            return RetWrapper.wrap_and_return(e)
+
+        user.mobile_number = mobile_number
+        user.save()
+        self.auth_manager.login(request,
+                                user,
+                                agent_idfa=agent_idfa,
+                                flush_all_token=True)
+        result = _s(user, **user.serializer_rule())
+        return RetWrapper.wrap_and_return(result)
+
+    @login_required
+    @transaction.atomic
     def update(self, request, *args, **kwargs):
 
         user = self.user_manager.update(request.user, **kwargs)
@@ -78,9 +115,7 @@ class UserDetailView(DetailView):
         user = request.user
         action = sys._getframe().f_code.co_name
         f = kwargs['files'][0]
-        key = get_object_key(action,
-                             user.id,
-                             f['type'])
+        key = get_object_key(action, user.id, f['type'])
         permission = oss2.OBJECT_ACL_PUBLIC_READ
         try:
             avatar_url = self.oss_manager.single_object_upload(key, f,

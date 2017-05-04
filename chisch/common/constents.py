@@ -5,14 +5,17 @@ USER_STATUS_ACTIVE = 1                          # 用户正常状态
 
 VERIFY_CODE_LENGTH = 6                          # 验证码长度
 
-VERIFY_TYPE_LOGIN = 1                           # 验证类型：登陆
-VERIFY_TYPE_REGISTER = 2                        # 验证类型：注册
-VERIFY_TYPE_CHANGE_PASSWORD = 3                 # 验证类型：修改密码
+VERIFY_TYPE_LOGIN = 1                           # 验证类型:登陆
+VERIFY_TYPE_REGISTER = 2                        # 验证类型:注册
+VERIFY_TYPE_CHANGE_PASSWORD = 3                 # 验证类型:修改密码
+VERIFY_TYPE_CHANGE_MOBILE_NUMBER = 4            # 验证类型: 修改手机号
+
 
 VERIFY_TYPE_OPERATE_MAP = {
     VERIFY_TYPE_LOGIN: '登陆',
     VERIFY_TYPE_REGISTER: '注册',
-    VERIFY_TYPE_CHANGE_PASSWORD: '修改密码'
+    VERIFY_TYPE_CHANGE_PASSWORD: '修改密码',
+    VERIFY_TYPE_CHANGE_MOBILE_NUMBER: '修改手机号',
 }
 
 VERIFY_CODE_EFFECTIVE_TIME = 600                 # 验证码有效期10分钟
