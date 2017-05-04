@@ -42,6 +42,10 @@ ALIYUN_OSS = {
     }
 }
 
+# SMALL_OBJECT_UPPER_LIMIT = 1024 * 1024 * 10       # 小文件的定义规则为大小不超过10M
+OBJECT_LOCAL_TRANSFER_DIR = '/tmp/chisch/transfer/'   # 本地转存路径
+OBJECT_PREFERRED_SIZE = 1024 * 1024 * 2       # 分片大小,2M
+
 MNS = {
     'ACCESS_KEY_ID': 'LTAIFSaBApB2TuC4',
     'ACCESS_KEY_SECRET': '0qMu5s3yHEBrxb2klSyZKnHmOPb0HZ',

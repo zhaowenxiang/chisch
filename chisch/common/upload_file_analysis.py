@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+import uuid
+
+from django.conf import settings
+
 
 def parse_multipart_form_data(body=""):
     """Parses a ``multipart/form-data`` body.
@@ -43,15 +47,19 @@ def parse_multipart_form_data(body=""):
             continue
         name = disp_params["name"]
         if disp_params.get("filename"):
+            file_path = settings.OBJECT_LOCAL_TRANSFER_DIR + str(uuid.uuid1())
+            with open(file_path, 'wb') as f:
+                f.write(value)
+
             file_type = _parse_file_type(part)
 
-            file = {
+            f = {
                 'name': name,
-                'file_name': disp_params.get("filename"),
-                'file_type': file_type,
-                'value': value,
+                'name': disp_params.get("filename"),
+                'type': file_type,
+                'path': file_path,
             }
-            files.append(file)
+            files.append(f)
         else:
             argument = {
                 'name': name,

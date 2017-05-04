@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import cgi
 import simplejson
 
 from django.views import generic
@@ -17,15 +16,13 @@ class BaseView(object):
         # request method isn't on the approved list.
         if request.method.lower() in self.http_method_names:
             if request.method in ['POST', 'PUT']:
-                if request.GET.get('action'):
-                    handler = getattr(self,
-                                      request.GET.get('action'),
-                                      self.http_method_not_allowed)
+                if isinstance(request.body, dict):
+                    data = request.body
                 else:
                     data = simplejson.loads(request.body)
-                    action = data.pop('action')
-                    kwargs.update(data.get('params', {}))
-                    handler = getattr(self, action, self.http_method_not_allowed)
+                action = data.pop('action')
+                kwargs.update(data.get('params', {}))
+                handler = getattr(self, action, self.http_method_not_allowed)
             elif request.method == 'GET':
                 action = request.GET.get('action', request.method.lower())
                 handler = getattr(self, action, self.http_method_not_allowed)

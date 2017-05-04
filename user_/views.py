@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import sys
 
-from django.conf import settings
+import oss2
 from django.db import transaction
-
-from chisch.common import upload_file_analysis as ufa
 
 from chisch.common.retwrapper import RetWrapper
 from chisch.common import dependency
@@ -75,26 +74,27 @@ class UserDetailView(DetailView):
     @login_required
     @transaction.atomic
     def upload_user_avatar(self, request, *args, **kwargs):
-        user = request.user
-        arguments, files = ufa.parse_multipart_form_data(body=request.body)
         from oss.cores import get_object_key
-        key = get_object_key(request.GET.get('action'),
+        user = request.user
+        action = sys._getframe().f_code.co_name
+        f = kwargs['files'][0]
+        key = get_object_key(action,
                              user.id,
-                             files[0]['file_type'])
+                             f['type'])
+        permission = oss2.OBJECT_ACL_PUBLIC_READ
         try:
-            resp = self.oss_manager.single_object_direct_upload(key, files[0])
+            avatar_url = self.oss_manager.single_object_upload(key, f,
+                                                               permission)
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
-        if str(resp.status).startswith('20'):
-            aliyun_oss = settings.ALIYUN_OSS
-            backup_name = aliyun_oss['BUCKET_NAME']
-            endpoint = aliyun_oss['ENDPOINT']
-            user.avatar_url = endpoint.replace('://',
-                                               '://' + backup_name + '.') + key
-            user.save()
+        if user.avatar_url:
+            pass
         else:
-            return RetWrapper.wrap_and_return(message='server error',
-                                              http_status=500)
+            user.avatar_url = avatar_url
+            try:
+                user.save()
+            except Exception, e:
+                return RetWrapper.wrap_and_return(e)
         result = _s(user, **user.serializer_rule())
         return RetWrapper.wrap_and_return(result)
 

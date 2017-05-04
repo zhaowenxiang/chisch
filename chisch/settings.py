@@ -106,6 +106,7 @@ MIDDLEWARE_CLASSES = (
     # 'django.contrib.sessions.middleware.SessionMiddleware',
     'chisch.middleware.log.LogMiddleware',
     'chisch.middleware.authenticate.AuthenticationMiddleware',
+    'chisch.middleware.upload.UploadMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
@@ -182,3 +183,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 DEFAULT_CONTENT_TYPE = 'application/json'
+
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 1024    # 1G
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 1024    # 1G

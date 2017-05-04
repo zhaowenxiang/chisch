@@ -275,61 +275,83 @@ class OssManager(object):
         # 首先初始化AccessKeyId、AccessKeySecret、Endpoint等信息。
         # 通过环境变量获取，或者把诸如“<你的AccessKeyId>”替换成真实的AccessKeyId等。
         ALIYUN_OSS = settings.ALIYUN_OSS
-        self.access_key_id = ALIYUN_OSS.get('ACCESS_KEY_ID')
-        self.access_key_secret = ALIYUN_OSS.get('ACCESS_KEY_SECRET')
+        access_key_id = ALIYUN_OSS.get('ACCESS_KEY_ID')
+        access_key_secret = ALIYUN_OSS.get('ACCESS_KEY_SECRET')
+        auth = oss2.Auth(access_key_id, access_key_secret)
         self.bucket_name = ALIYUN_OSS.get('BUCKET_NAME')
         self.endpoint = ALIYUN_OSS.get('ENDPOINT')
-        self.boundary = ALIYUN_OSS.get('BOUNDARY')
-
+        self.bucket = oss2.Bucket(auth, self.endpoint, self.bucket_name)
 
     def get_object_url(self):
         pass
 
-    def single_object_direct_upload(self, key, f):
-        """
-        :param key: Object name for cloud storage
-        :param f: The file
-        :return: status
-        """
-        auth = oss2.Auth(self.access_key_id, self.access_key_secret)
-        bucket = oss2.Bucket(auth, self.endpoint, self.bucket_name)
+    # def single_object_upload(self, key, data):
+    #     if len(data) <= settings.SMALL_OBJECT_UPPER_LIMIT:
+    #         resp = self.small_object_direct_upload(key, data)
+    #     else:
+    #         resp = self.big_object_local_transfer_upload(key, data)
+        if str(resp.status).startswith('20'):
+            avatar_host = self.endpoint.replace('://',
+                                                '://' + self.bucket_name + '.')
+            avatar_url = avatar_host + key
+            return avatar_url
+        else:
+            raise Exception
+
+    # def small_object_direct_upload(self, key, data):
+    #     """
+    #     small_object_direct_upload
+    #     :param key:
+    #     :param data:
+    #     :return: resp
+    #     """
+    #
+    #     try:
+    #         resp = self.bucket.put_object(key, data)
+    #     except Exception, e:
+    #         raise e
+    #     return resp
+
+    def single_object_upload(self, key, f, permission):
+        from oss2 import SizedFileAdapter, determine_part_size
+        from oss2.models import PartInfo
+        preferred_size = settings.OBJECT_PREFERRED_SIZE
+        total_size = os.path.getsize(f['path'])
+        part_size = determine_part_size(total_size,
+                                        preferred_size=preferred_size)
+
+        # 初始化分片
+        upload_id = self.bucket.init_multipart_upload(key).upload_id
+        parts = []
+
+        # 逐个上传分片
+        with open(f['path'], 'rb') as fileobj:
+            part_number = 1
+            offset = 0
+            try:
+                while offset < total_size:
+                    num_to_upload = min(part_size, total_size - offset)
+                    result = self.bucket.upload_part(key,
+                                                     upload_id,
+                                                     part_number,
+                                                     SizedFileAdapter(
+                                                         fileobj,
+                                                         num_to_upload
+                                                     ))
+                    parts.append(PartInfo(part_number, result.etag))
+                    offset += num_to_upload
+                    part_number += 1
+            except Exception, e:
+                raise e
         try:
-            resp = bucket.put_object(key, f['value'])
-            res = bucket.put_object_acl(key, oss2.OBJECT_ACL_PUBLIC_READ)
+            resp = self.bucket.complete_multipart_upload(key, upload_id, parts)
+            self.bucket.put_object_acl(key, permission)
         except Exception, e:
             raise e
-        return resp
-
-        # POST请求表单域，注意大小写
-        # policy = build_encode_policy(120,
-        #                              [
-        #                                  ['eq', '$bucket', self.bucket_name],
-        #                                  ['content-length-range', 0, 10485760]
-        #                              ])
-        # field_dict = {
-        #     'OSSAccessKeyId': self.access_key_id,
-        #     # Policy包括超时时间(单位秒)和限制条件condition
-        #     'policy': policy,
-        #     'Signature': build_signature(self.access_key_secret, policy),
-        #     'Content-Disposition': 'attachment;filename=' + key,
-        #     'key': key,
-        #     'content-type': 'image/png',
-        #     'content': f['value'],
-        # }
-        # body = build_post_body(field_dict, self.boundary)
-        # headers = build_post_headers(len(body), self.boundary)
-        # try:
-        #     resp = requests.post(build_post_url(self.endpoint,
-        #                                         self.bucket_name),
-        #                          data=body,
-        #                          headers=headers)
-        # except Exception, e:
-        #     raise e
-        # return resp
-
-# # 确认请求结果
-# assert resp.status_code == 200
-# assert resp.content == '{"Status":"OK"}'
-# assert resp.headers['x-oss-hash-crc64ecma'] == str(
-#     calculate_crc64(field_dict['content']))
-
+        if str(resp.status).startswith('20'):
+            avatar_host = self.endpoint.replace('://',
+                                                '://' + self.bucket_name + '.')
+            avatar_url = avatar_host + key
+            return avatar_url
+        else:
+            raise Exception
