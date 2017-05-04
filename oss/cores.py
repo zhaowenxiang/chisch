@@ -290,13 +290,13 @@ class OssManager(object):
     #         resp = self.small_object_direct_upload(key, data)
     #     else:
     #         resp = self.big_object_local_transfer_upload(key, data)
-        if str(resp.status).startswith('20'):
-            avatar_host = self.endpoint.replace('://',
-                                                '://' + self.bucket_name + '.')
-            avatar_url = avatar_host + key
-            return avatar_url
-        else:
-            raise Exception
+    #     if str(resp.status).startswith('20'):
+    #         avatar_host = self.endpoint.replace('://',
+    #                                             '://' + self.bucket_name + '.')
+    #         avatar_url = avatar_host + key
+    #         return avatar_url
+    #     else:
+    #         raise Exception
 
     # def small_object_direct_upload(self, key, data):
     #     """
