@@ -91,7 +91,10 @@ class UserDetailView(DetailView):
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
 
+        if user.display_name == user.mobile_number:
+            user.display_name = mobile_number
         user.mobile_number = mobile_number
+
         user.save()
         self.auth_manager.login(request,
                                 user,
