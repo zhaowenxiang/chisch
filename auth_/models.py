@@ -1,7 +1,6 @@
 # coding: utf-8
 
 from django.db import models
-from django.utils import timezone
 
 from user_.models import User
 from .cores import AuthManager

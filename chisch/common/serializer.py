@@ -1,9 +1,5 @@
 #! -*- coding: utf-8 -*-
 
-import simplejson
-from django.db import models
-from django.db.models.query import QuerySet
-
 from dss.Serializer import serializer
 
 
@@ -13,7 +9,7 @@ def s(data, **kwargs):
         data.__dict__[extra] = getattr(data, extra, None)
     include_attr = kwargs.get('include_attr', None)
     exclude_attr = kwargs.get('exclude_attr', None)
-    foreign = kwargs.get('foreign', False)
+    foreign = kwargs.get('foreign', True)
     many = kwargs.get('many', False)
     through = kwargs.get('through', True)
 

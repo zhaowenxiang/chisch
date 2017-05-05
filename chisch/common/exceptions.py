@@ -155,6 +155,10 @@ class VerifyCodeError(Error403):
     code = 40306
 
 
+class NonLecturerError(Error403):
+    code = 40307
+
+
 class InvalidAccessTokenErr(Error401):
 
     def _build_message(self, message, **kwargs):

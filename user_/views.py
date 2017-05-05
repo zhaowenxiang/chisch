@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import logging
-import sys
 
 import oss2
+from django.conf import settings
 from django.db import transaction
 
 from chisch.common.retwrapper import RetWrapper
@@ -26,11 +26,12 @@ logger = logging.getLogger('django')
                      'oss_manager')
 class UserDetailView(DetailView):
 
-    @login_required
     def get(self, request, *args, **kwargs):
-        # TODO
-        user = self.user_manager.get(id=request.user.id)
-        result = _s(user, **user.serializer_rule())
+        user_id = args[0]
+        user = self.user_manager.get(id=user_id)
+        token_user_id = request.user.id if request.user.is_authenticated \
+            else None
+        result = _s(user, **user.serializer_rule(user.id, token_user_id))
         return RetWrapper.wrap_and_return(result)
 
     @transaction.atomic
@@ -116,9 +117,8 @@ class UserDetailView(DetailView):
     def upload_user_avatar(self, request, *args, **kwargs):
         from oss.cores import get_object_key
         user = request.user
-        action = sys._getframe().f_code.co_name
         f = kwargs['files'][0]
-        key = get_object_key(action, user.id, f['type'])
+        key = get_object_key('upload_avatar', user.id, settings.IMAGE_TYPE)
         permission = oss2.OBJECT_ACL_PUBLIC_READ
         try:
             avatar_url = self.oss_manager.single_object_upload(key, f,

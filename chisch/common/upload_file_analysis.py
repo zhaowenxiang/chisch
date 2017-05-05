@@ -50,13 +50,11 @@ def parse_multipart_form_data(body=""):
             file_path = settings.OBJECT_LOCAL_TRANSFER_DIR + str(uuid.uuid1())
             with open(file_path, 'wb') as f:
                 f.write(value)
-
-            file_type = _parse_file_type(part)
-
+            # file_type = _parse_file_type(part)
             f = {
                 'name': name,
                 'name': disp_params.get("filename"),
-                'type': file_type,
+                # 'type': file_type,
                 'path': file_path,
             }
             files.append(f)
@@ -106,19 +104,19 @@ def _parse_content_disposition(line):
     return key, pdict
 
 
-def _parse_file_type(line):
-    ctype_list = []
-    ctype_eoh = line.find('Content-Type')
-    point = ctype_eoh + len('Content-Type') + 1
-    while True:
-        if line[point] in [None, ' ', ':']:
-            point += 1
-            continue
-        elif line[point] == '\r':
-            break
-        else:
-            ctype_list.append(line[point])
-            point += 1
-            continue
-    file_type = ''.join(ctype_list)
-    return '.' + file_type.split('/')[1]
+# def _parse_file_type(line):
+#     ctype_list = []
+#     ctype_eoh = line.find('Content-Type')
+#     point = ctype_eoh + len('Content-Type') + 1
+#     while True:
+#         if line[point] in [None, ' ', ':']:
+#             point += 1
+#             continue
+#         elif line[point] == '\r':
+#             break
+#         else:
+#             ctype_list.append(line[point])
+#             point += 1
+#             continue
+#     file_type = ''.join(ctype_list)
+#     return '.' + file_type.split('/')[1]

@@ -33,6 +33,3 @@ class UploadMiddleware(object):
             for f in self.files:
                 os.remove(f['path'])
         return response
-
-
-

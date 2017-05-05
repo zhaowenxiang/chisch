@@ -99,7 +99,8 @@ INSTALLED_APPS = (
     'account',
     'verify',
     'cron',
-    'oss'
+    'oss',
+    'curriculum',
 )
 
 MIDDLEWARE_CLASSES = (

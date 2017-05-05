@@ -26,13 +26,13 @@ ALIYUN_OSS = {
     'ROLE_SESSION_NAME': 'chisch',
     'BOUNDARY': '-'*10 + 'chisch' + '-'*10,
     'OBJECT_KEYS_SUB_ELEMENTS': {
-        'upload_user_avatar': {
+        'upload_avatar': {
             'path': 'image/user/avatar/',
             'only_one': True,
         },
-        'upload_dynamic': {
-            'path': 'image/user/dynamic/',
-            'only_one': False,
+        'create_curriculum': {
+            'path': 'image/curriculum/cover/',
+            'only_one': True,
         },
         'upload_video_cover': {
             'path': 'image/user/avatar/',
@@ -46,6 +46,9 @@ ALIYUN_OSS = {
 OBJECT_LOCAL_TRANSFER_DIR = '/tmp/chisch/transfer/'   # 本地转存路径
 OBJECT_PREFERRED_SIZE = 1024 * 1024 * 2       # 分片大小,2M
 
+IMAGE_TYPE = '.png'
+VIDEO_TYPE = '.mp4'
+
 MNS = {
     'ACCESS_KEY_ID': 'LTAIFSaBApB2TuC4',
     'ACCESS_KEY_SECRET': '0qMu5s3yHEBrxb2klSyZKnHmOPb0HZ',
@@ -55,4 +58,5 @@ MNS = {
     'TOPIC': 'sms.topic-cn-hangzhou',
     'QUEUE_NAME': 'verify-code-queue',
 }
+
 
