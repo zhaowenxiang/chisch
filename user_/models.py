@@ -40,7 +40,7 @@ class User(BaseModel, AbstractBaseUser):
         db_table = 'user'
 
     @staticmethod
-    def serializer_rule(user_id, token_user_id=None):
+    def serializer_rule(user_id=None, token_user_id=None, own=False):
         """
         序列化规则，根据user_id以及token_user_id判断发起操作的用户跟被操作
         用户是否是同一个用户，不同的情况，序列化的规则不同。例如，用户自己可以
@@ -60,7 +60,9 @@ class User(BaseModel, AbstractBaseUser):
             return kwargs
         else:
             kwargs = {
-                'exclude_attr': exclude_attr + ,
+                'exclude_attr': exclude_attr + ['created_at', 'updated_at',
+                                                'mobile_number', 'email',
+                                                'is_admin'],
             }
             return kwargs
 
