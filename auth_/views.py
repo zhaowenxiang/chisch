@@ -38,7 +38,7 @@ class AuthView(ListView):
             )
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
-        result = _s(user, **user.serializer_rule())
+        result = _s(user, **user.serializer_rule(own=True))
         return RetWrapper.wrap_and_return(result)
 
     @transaction.atomic
@@ -55,7 +55,7 @@ class AuthView(ListView):
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
         self.auth_manager.login(request, user, agent_idfa=agent_idfa)
-        result = _s(user, **user.serializer_rule())
+        result = _s(user, **user.serializer_rule(own=True))
         return RetWrapper.wrap_and_return(result)
 
     @transaction.atomic

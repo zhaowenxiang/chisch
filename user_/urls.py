@@ -9,5 +9,5 @@ from .views import (
 
 urlpatterns = [
     url(r'^$', UserListView.as_view()),
-    url(r'^([^0][0-9]*)$', UserDetailView.as_view()),
+    url(r'^/([^0][0-9]*)$', UserDetailView.as_view()),
 ]

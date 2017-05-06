@@ -26,7 +26,7 @@ ALIYUN_OSS = {
     'ROLE_SESSION_NAME': 'chisch',
     'BOUNDARY': '-'*10 + 'chisch' + '-'*10,
     'OBJECT_KEYS_SUB_ELEMENTS': {
-        'upload_avatar': {
+        'upload_user_avatar': {
             'path': 'image/user/avatar/',
             'only_one': True,
         },

@@ -51,15 +51,17 @@ class User(BaseModel, AbstractBaseUser):
         """
         extra_attr = []
         exclude_attr = ['password', 'backend']
-        if user_id == token_user_id:
+        if own == True or (user_id is not None and user_id== token_user_id):
             extra_attr += ['account']
             kwargs = {
+                'foreign': False,
                 'extra_attr': extra_attr,
                 'exclude_attr': exclude_attr,
             }
             return kwargs
         else:
             kwargs = {
+                'foreign': False,
                 'exclude_attr': exclude_attr + ['created_at', 'updated_at',
                                                 'mobile_number', 'email',
                                                 'is_admin'],

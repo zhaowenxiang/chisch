@@ -82,6 +82,7 @@ class VerifyManager(models.Manager):
         3、跟上次获取同类型验证码的时间间隔是否超过指定时长
         4、如果验证码用于注册，检验该用户是否已经注册过
         5、如果验证码用于登陆、修改密码，检验用户是否已经注册过
+        5、如果验证码用于修改绑定手机,检验该手机号是否已经绑定过别的帐号
         :param user_name:
         :param verify_type:
         :param ip:
@@ -90,7 +91,9 @@ class VerifyManager(models.Manager):
         is_registered = self.user_manager.is_registered(user_name)
         if is_registered and verify_type == VTR:
             return False, "The user has registered."
-        if not is_registered and verify_type in [VTL, VTCP, VTCMN]:
+        if is_registered and verify_type == VTCMN:
+            return False, "The phone number has been bound to another account."
+        if not is_registered and verify_type in [VTL, VTCP]:
             return False, "The user has not registered."
 
         if not settings.OPEN_MRP:

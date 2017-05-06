@@ -24,15 +24,7 @@ logger = logging.getLogger('django')
                      'verify_manager',
                      'auth_manager',
                      'oss_manager')
-class UserDetailView(DetailView):
-
-    def get(self, request, *args, **kwargs):
-        user_id = args[0]
-        user = self.user_manager.get(id=user_id)
-        token_user_id = request.user.id if request.user.is_authenticated \
-            else None
-        result = _s(user, **user.serializer_rule(user.id, token_user_id))
-        return RetWrapper.wrap_and_return(result)
+class UserListView(ListView):
 
     @transaction.atomic
     def change_password(self, request, *args, **kwargs):
@@ -42,11 +34,11 @@ class UserDetailView(DetailView):
         :param kwargs:
         :return:
         """
-        user_name = args[0]
-        new_password = kwargs.get('new_password', None)
+        user_name = kwargs['user_name']
+        new_password = kwargs['new_password']
         old_password = kwargs.get('old_password', None)
         verify_code = kwargs.get('verify_code', None)
-        agent_idfa = kwargs.get('agent_idfa', None)
+        agent_idfa = kwargs['agent_idfa']
 
         try:
             user = self.user_manager.auth(user_name,
@@ -62,7 +54,7 @@ class UserDetailView(DetailView):
                                 user,
                                 agent_idfa=agent_idfa,
                                 flush_all_token=True)
-        result = _s(user, **user.serializer_rule())
+        result = _s(user, **user.serializer_rule(own=True))
         return RetWrapper.wrap_and_return(result)
 
     @login_required
@@ -74,19 +66,18 @@ class UserDetailView(DetailView):
         :param kwargs:
         :return:
         """
-        user_name = args[0]
         mobile_number = kwargs['mobile_number']
         verify_code = kwargs['verify_code']
         agent_idfa = kwargs['agent_idfa']
         password = kwargs['password']
         try:
-            self.verify_manager.verify(user_name=user_name,
+            self.verify_manager.verify(user_name=mobile_number,
                                        verify_type=VTCMN,
                                        code=verify_code)
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
         try:
-            user = self.user_manager.auth(user_name,
+            user = self.user_manager.auth(request.user.mobile_number,
                                           password=password,
                                           verify_type=VTCP)
         except Exception, e:
@@ -101,7 +92,7 @@ class UserDetailView(DetailView):
                                 user,
                                 agent_idfa=agent_idfa,
                                 flush_all_token=True)
-        result = _s(user, **user.serializer_rule())
+        result = _s(user, **user.serializer_rule(own=True))
         return RetWrapper.wrap_and_return(result)
 
     @login_required
@@ -109,16 +100,16 @@ class UserDetailView(DetailView):
     def update(self, request, *args, **kwargs):
 
         user = self.user_manager.update(request.user, **kwargs)
-        result = _s(user, **user.serializer_rule())
+        result = _s(user, **user.serializer_rule(own=True))
         return RetWrapper.wrap_and_return(result)
 
     @login_required
     @transaction.atomic
-    def upload_user_avatar(self, request, *args, **kwargs):
+    def upload_avatar(self, request, *args, **kwargs):
         from oss.cores import get_object_key
         user = request.user
         f = kwargs['files'][0]
-        key = get_object_key('upload_avatar', user.id, settings.IMAGE_TYPE)
+        key = get_object_key('upload_user_avatar', user.id, settings.IMAGE_TYPE)
         permission = oss2.OBJECT_ACL_PUBLIC_READ
         try:
             avatar_url = self.oss_manager.single_object_upload(key, f,
@@ -133,12 +124,19 @@ class UserDetailView(DetailView):
                 user.save()
             except Exception, e:
                 return RetWrapper.wrap_and_return(e)
-        result = _s(user, **user.serializer_rule())
+        result = _s(user, **user.serializer_rule(own=True))
         return RetWrapper.wrap_and_return(result)
 
 
 @dependency.requires('user_manager', 'verification_manager')
-class UserListView(ListView):
-    pass
+class UserDetailView(DetailView):
+
+    def get(self, request, *args, **kwargs):
+        user_id = args[0]
+        user = self.user_manager.get(id=user_id)
+        token_user_id = request.user.id if request.user.is_authenticated \
+            else None
+        result = _s(user, **user.serializer_rule(user.id, token_user_id))
+        return RetWrapper.wrap_and_return(result)
 
 
