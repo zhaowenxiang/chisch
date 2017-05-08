@@ -22,5 +22,7 @@ urlpatterns = [
     url(r'^user', include('user_.urls', namespace='user')),
     url(r'^auth', include('auth_.urls', namespace='auth')),
     url(r'^oss', include('oss.urls', namespace='oss')),
-    url(r'^curriculum', include('curriculum.urls', namespace='oss'))
+    url(r'^curriculum', include('curriculum.urls', namespace='curriculum')),
+    url(r'^video', include('curriculum.video.urls', namespace='video')),
+
 ]

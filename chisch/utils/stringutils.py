@@ -15,3 +15,4 @@ def generate_verify_code():
 
 def generate_token():
     return str(uuid.uuid4())
+

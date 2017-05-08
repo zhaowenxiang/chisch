@@ -22,6 +22,7 @@ ALIYUN_OSS = {
     'ENDPOINT': 'https://oss-cn-shenzhen.aliyuncs.com/',
     'ROLE_ARN': 'acs:ram::1709927201743129:role/aliyunosstokengeneratorrole',
     'TokenExpireTime': 60 * 60,
+    'VIDEO_SIGN_URL_EXPIRES': 60 * 60,   # 视频私有链接有效时间60分
     'REGION': 'cn-shenzhen',
     'ROLE_SESSION_NAME': 'chisch',
     'BOUNDARY': '-'*10 + 'chisch' + '-'*10,
@@ -34,10 +35,10 @@ ALIYUN_OSS = {
             'path': 'image/curriculum/cover/',
             'only_one': True,
         },
-        'upload_video_cover': {
-            'path': 'image/user/avatar/',
+        'upload_video': {
+            'path': 'video/',
             'file_suffix': '.mp4',
-            'only_one': False,
+            'only_one': True,
         },
     }
 }

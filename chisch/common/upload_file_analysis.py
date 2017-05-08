@@ -5,30 +5,30 @@ import uuid
 from django.conf import settings
 
 
-def parse_multipart_form_data(body=""):
-    """Parses a ``multipart/form-data`` body.
+def parse_multipart_form_data(data=""):
+    """Parses a ``multipart/form-data`` data.
 
-    The ``boundary`` and ``body`` parameters are both byte strings.
+    The ``boundary`` and ``data`` parameters are both byte strings.
     The dictionaries given in the arguments and files parameters
-    will be updated with the contents of the body.
+    will be updated with the contents of the data.
     """
     # The standard allows for the boundary to be quoted in the header,
     # although it's rare (it happens at least for google app engine
     # xmpp).  I think we're also supposed to handle backslash-escapes
     # here but I'll save that until we see a client that uses them
     # in the wild.
-    boundary_eoh = body.find("\r\n")
-    boundary = body[:boundary_eoh]
+    boundary_eoh = data.find("\r\n")
+    boundary = data[:boundary_eoh]
 
     arguments = []
     files = []
 
     if boundary.startswith(b'"') and boundary.endswith(b'"'):
         boundary = boundary[1:-1]
-    final_boundary_index = body.rfind(boundary + b"--")
+    final_boundary_index = data.rfind(boundary + b"--")
     if final_boundary_index == -1:
         return
-    parts = body[:final_boundary_index].split(
+    parts = data[:final_boundary_index].split(
         boundary + b"\r\n")
     for part in parts:
         if not part:
@@ -52,9 +52,7 @@ def parse_multipart_form_data(body=""):
                 f.write(value)
             # file_type = _parse_file_type(part)
             f = {
-                'name': name,
                 'name': disp_params.get("filename"),
-                # 'type': file_type,
                 'path': file_path,
             }
             files.append(f)

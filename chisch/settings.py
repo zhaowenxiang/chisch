@@ -101,6 +101,7 @@ INSTALLED_APPS = (
     'cron',
     'oss',
     'curriculum',
+    'curriculum.video'
 )
 
 MIDDLEWARE_CLASSES = (

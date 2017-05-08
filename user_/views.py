@@ -112,7 +112,7 @@ class UserListView(ListView):
         key = get_object_key('upload_user_avatar', user.id, settings.IMAGE_TYPE)
         permission = oss2.OBJECT_ACL_PUBLIC_READ
         try:
-            avatar_url = self.oss_manager.single_object_upload(key, f,
+            avatar_url, _ = self.oss_manager.single_object_upload(key, f,
                                                                permission)
         except Exception, e:
             return RetWrapper.wrap_and_return(e)

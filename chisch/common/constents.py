@@ -29,3 +29,6 @@ TOKEN_EFFECTIVE_TIME = 15                       # token有效期为15天
 TOKEN_INVALID_REASON_UNRECOGNIZED = 0           # 无法识别token
 TOKEN_INVALID_REASON_EXPIRE = 1                 # token有效期已满
 TOKEN_INVALID_REASON_LOGIN_OTHER_PLACE = 2      # 同种设备异地登陆，导致该token失效
+
+VIDEO_STATUS_NORMAL = 1                         # 视频状态正常
+VIDEO_STATUS_ABNORMAL = 0                       # 视频状态不正常

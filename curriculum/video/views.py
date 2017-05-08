@@ -16,41 +16,42 @@ from chisch.common.views import DetailView, ListView
 logger = logging.getLogger('django')
 
 
-@dependency.requires('curriculum_manager', 'oss_manager')
-class CurriculumListView(ListView):
+@dependency.requires('video_manager', 'oss_manager')
+class VideoListView(ListView):
 
     @login_required
     @lecturer_required
     @transaction.atomic
     def create(self, request, *args, **kwargs):
 
-        user_id = request.user.id
-
         f = kwargs.pop('files')[0] if ('files' in kwargs) \
             and len(kwargs['files']) > 0 else None
 
         try:
-            curriculum = self.curriculum_manager.create(user_id=user_id,
-                                                        **kwargs)
+            video = self.video_manager.create(**kwargs)
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
-        if f:
-            from oss.cores import get_object_key
-            key = get_object_key('create_curriculum',
-                                 curriculum.id,
-                                 settings.IMAGE_TYPE)
+        from oss.cores import get_object_key
+        key = get_object_key('upload_video',
+                             video.id,
+                             settings.VIDEO_TYPE)
+        if kwargs['price'] == 0:
             permission = oss2.OBJECT_ACL_PUBLIC_READ
-            try:
-                cover_url, _ = self.oss_manager.single_object_upload(key, f,
-                                                                  permission)
-            except Exception, e:
-                return RetWrapper.wrap_and_return(e)
-            try:
-                curriculum.cover_url = cover_url
-                curriculum.save()
-            except Exception, e:
-                return RetWrapper.wrap_and_return(e)
-        result = _s(curriculum, **curriculum.serializer_rule())
+        else:
+            permission = oss2.OBJECT_ACL_PRIVATE
+
+        try:
+            video_url, invalid_at = self.oss_manager.single_object_upload(key, f,
+                                                              permission)
+        except Exception, e:
+            return RetWrapper.wrap_and_return(e)
+        try:
+            video.video_url = video_url
+            video.video_url_invalid_at = invalid_at
+            video.save()
+        except Exception, e:
+            return RetWrapper.wrap_and_return(e)
+        result = _s(video, **video.serializer_rule())
         return RetWrapper.wrap_and_return(result)
 
 
