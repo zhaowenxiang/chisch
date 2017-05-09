@@ -16,11 +16,15 @@ from chisch.common.views import DetailView, ListView
 logger = logging.getLogger('django')
 
 
+@dependency.requires('curriculum_manager')
+class CurriculumCategoryListView(ListView):
+    def get(self, request):
+        result = self.curriculum_manager.category
+        return RetWrapper.wrap_and_return(result)
+
+
 @dependency.requires('curriculum_manager', 'oss_manager')
 class CurriculumListView(ListView):
-    def __init__(self, *args, **kwargs):
-
-
 
     @login_required
     @lecturer_required
@@ -57,7 +61,10 @@ class CurriculumListView(ListView):
         return RetWrapper.wrap_and_return(result)
 
     def get_curriculum_category(self, request, *args, **kwargs):
-        category = self.curriculum_manager.get_curriculum_category()
+        try:
+            category = self.curriculum_manager.get_curriculum_category()
+        except Exception, e:
+            return RetWrapper.wrap_and_return(e)
         return RetWrapper.wrap_and_return(category)
 
 
