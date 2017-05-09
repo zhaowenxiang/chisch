@@ -74,3 +74,13 @@ class User(BaseModel, AbstractBaseUser):
                 'created_at', 'updated_at', 'last_login',
                 'is_lecturer', 'is_admin', 'status']
 
+
+class lecturer(User):
+    real_name = models.CharField(max_length=50)          # 真实姓名
+    id_card_no = models.CharField(max_length=18)         # 身份证号码
+    lecture_category = models.SmallIntegerField()        # 主讲类目
+
+
+    class Meta:
+        db_table = 'lecturer'
+

@@ -37,7 +37,7 @@ class RetWrapper(object):
                 'status': 200,
                 'code': 200,
                 'message': 'success',
-                'result': simplejson.loads(data)
+                'result': data,
             }
 
         content = str(ret).replace("'", '"')\

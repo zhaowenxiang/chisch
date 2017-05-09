@@ -18,6 +18,9 @@ logger = logging.getLogger('django')
 
 @dependency.requires('curriculum_manager', 'oss_manager')
 class CurriculumListView(ListView):
+    def __init__(self, *args, **kwargs):
+
+
 
     @login_required
     @lecturer_required
@@ -52,6 +55,10 @@ class CurriculumListView(ListView):
                 return RetWrapper.wrap_and_return(e)
         result = _s(curriculum, **curriculum.serializer_rule())
         return RetWrapper.wrap_and_return(result)
+
+    def get_curriculum_category(self, request, *args, **kwargs):
+        category = self.curriculum_manager.get_curriculum_category()
+        return RetWrapper.wrap_and_return(category)
 
 
 @dependency.requires('curriculum_manager', 'oss_manager')

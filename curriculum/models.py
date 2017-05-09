@@ -9,7 +9,7 @@ curriculum_manager = CurriculumManager()
 
 
 class CurriculumClassification(models.Model):
-    title = models.CharField(max_length=254)
+    category = models.CharField(max_length=254)               #
     level = models.SmallIntegerField()
     superior_id = models.IntegerField(null=True)
     subordinate_id = models.IntegerField(null=True)

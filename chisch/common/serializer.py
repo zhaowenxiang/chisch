@@ -1,5 +1,6 @@
 #! -*- coding: utf-8 -*-
 
+import simplejson
 from dss.Serializer import serializer
 
 
@@ -13,11 +14,12 @@ def s(data, **kwargs):
     many = kwargs.get('many', False)
     through = kwargs.get('through', True)
 
-    return serializer(data,
-                      datetime_format='string',
-                      output_type='json',
-                      include_attr=include_attr,
-                      exclude_attr=exclude_attr,
-                      foreign=foreign,
-                      many=many,
-                      through=through).replace("\n", "").replace(" ", "")
+    result = serializer(data,
+                        datetime_format='string',
+                        output_type='json',
+                        include_attr=include_attr,
+                        exclude_attr=exclude_attr,
+                        foreign=foreign,
+                        many=many,
+                        through=through).replace("\n", "").replace(" ", "")
+    return simplejson.loads(result)
