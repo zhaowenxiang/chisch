@@ -32,13 +32,11 @@ class AuthView(ListView):
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
         try:
-            user = self.user_manager.create(
-                user_name=user_name,
-                password=password
-            )
+            user = self.user_manager.create(user_name=user_name,
+                                            password=password)
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
-        result = _s(user, **user.serializer_rule(own=True))
+        result = _s(user, own=True)
         return RetWrapper.wrap_and_return(result)
 
     @transaction.atomic
@@ -54,8 +52,9 @@ class AuthView(ListView):
                                           verify_code=verify_code)
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
-        self.auth_manager.login(request, user, agent_idfa=agent_idfa)
-        result = _s(user, **user.serializer_rule(own=True))
+        token = self.auth_manager.login(request, user, agent_idfa=agent_idfa)
+        extra = {'account': user.account, 'token': token}
+        result = _s(user, extra=extra)
         return RetWrapper.wrap_and_return(result)
 
     @transaction.atomic

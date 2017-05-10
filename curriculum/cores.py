@@ -2,7 +2,6 @@
 
 import logging
 import json
-import xml.dom.minidom
 from django.db import models
 
 from chisch.common import dependency
@@ -24,14 +23,14 @@ class CurriculumManager(models.Manager):
         super(CurriculumManager, self).__init__(*args, **kwargs)
         self.category = get_curriculum_category()
 
-    def _build_model(self, user_id, **kwargs):
+    def _build_model(self, lecturer_id, **kwargs):
 
         curriculum = self.model(
-            user_id=user_id,
+            lecturer_id=lecturer_id,
             title=kwargs['title'],
             degree=kwargs['degree'],
             brief_introduction=kwargs['brief_introduction'],
-            curriculum_classification_id=kwargs['curriculum_classification_id'],
+            curriculum_type=kwargs['type'],
             qq_group=kwargs.get('qq_group', None),
             wx_group=kwargs.get('wx_group', None),
             cover_url=kwargs.get('cover_url', None),
@@ -40,9 +39,9 @@ class CurriculumManager(models.Manager):
         )
         return curriculum
 
-    def create(self, user_id, **kwargs):
+    def create(self, lecturer_id, **kwargs):
 
-        curriculum = self._build_model(user_id, **kwargs)
+        curriculum = self._build_model(lecturer_id, **kwargs)
         try:
             curriculum.save(using=self._db)
         except Exception, e:

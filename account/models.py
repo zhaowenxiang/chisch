@@ -3,6 +3,7 @@ from django.db import models
 
 from user_.models import User
 from .cores import AccountManager
+from chisch.common.models import BaseModel
 
 # Create your models here.
 
@@ -10,7 +11,7 @@ from .cores import AccountManager
 _account_manager = AccountManager()
 
 
-class Account(models.Model):
+class Account(BaseModel, models.Model):
     user = models.OneToOneField(User)
     study_currency = models.PositiveIntegerField()
 

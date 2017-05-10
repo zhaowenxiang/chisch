@@ -25,16 +25,11 @@ class UserManager(BaseUserManager):
             return True
 
     def _build_model(self, user_name=None, password=None):
-        if "@" in user_name:
-            email = user_name
-            mobile_number = None
-        else:
-            mobile_number = user_name
-            email = None
 
-        user = self.model(display_name=user_name,
-                          mobile_number=mobile_number,
-                          email=email,
+        display_name = user_name[:3] + '*' * 4 + user_name[-4:]
+
+        user = self.model(display_name=display_name,
+                          mobile_number=user_name,
                           is_lecturer=False,
                           is_admin=False,
                           status=1)
@@ -53,7 +48,7 @@ class UserManager(BaseUserManager):
             self.account_manager.create(user=user, study_currency=0)
         except Exception, e:
             #TODO LOG
-            raise
+            raise e
         return user
 
     def auth(self, user_name, password=None, verify_type=None,
@@ -79,7 +74,7 @@ class UserManager(BaseUserManager):
                 return None, "User status exception."
         else:
             try:
-                self.get(Q(mobile_number=user_name) | Q(email=user_name))
+                self.get(mobile_number=user_name)
             except self.model.DoesNotExist:
                 return None, "The user has not registered."
             else:

@@ -50,11 +50,11 @@ class UserListView(ListView):
 
         user.set_password(new_password)
         user.save()
-        self.auth_manager.login(request,
-                                user,
-                                agent_idfa=agent_idfa,
-                                flush_all_token=True)
-        result = _s(user, **user.serializer_rule(own=True))
+        token = self.auth_manager.login(request,
+                                        user,
+                                        agent_idfa=agent_idfa,
+                                        flush_all_token=True)
+        result = _s(user, extra={'access_token': token})
         return RetWrapper.wrap_and_return(result)
 
     @login_required
@@ -88,19 +88,21 @@ class UserListView(ListView):
         user.mobile_number = mobile_number
 
         user.save()
-        self.auth_manager.login(request,
-                                user,
-                                agent_idfa=agent_idfa,
-                                flush_all_token=True)
-        result = _s(user, **user.serializer_rule(own=True))
+        access_token = self.auth_manager.login(request,
+                                               user,
+                                               agent_idfa=agent_idfa,
+                                               flush_all_token=True)
+        result = _s(user, extra={'access_token': access_token})
         return RetWrapper.wrap_and_return(result)
 
     @login_required
     @transaction.atomic
     def update(self, request, *args, **kwargs):
-
-        user = self.user_manager.update(request.user, **kwargs)
-        result = _s(user, **user.serializer_rule(own=True))
+        try:
+            user = self.user_manager.update(request.user, **kwargs)
+        except Exception, e:
+            return RetWrapper.wrap_and_return(e)
+        result = _s(user)
         return RetWrapper.wrap_and_return(result)
 
     @login_required
@@ -124,7 +126,7 @@ class UserListView(ListView):
                 user.save()
             except Exception, e:
                 return RetWrapper.wrap_and_return(e)
-        result = _s(user, **user.serializer_rule(own=True))
+        result = _s(user)
         return RetWrapper.wrap_and_return(result)
 
 

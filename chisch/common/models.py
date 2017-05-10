@@ -3,6 +3,24 @@
 
 class BaseModel(object):
 
+    @classmethod
+    def serializer_rule(cls, own=True):
+        """
+        默认不序列化所有外键
+        :return:
+        """
+
+        kwargs = {
+            'include_attr': [],
+            'exclude_attr': [],
+            'extra_attr': [],
+            'foreign': [],
+            'many': [],
+            'through': []
+        }
+
+        return kwargs
+
     @property
     def modifiable_fields(self):
         fields = []

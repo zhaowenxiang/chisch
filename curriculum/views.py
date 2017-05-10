@@ -31,13 +31,13 @@ class CurriculumListView(ListView):
     @transaction.atomic
     def create(self, request, *args, **kwargs):
 
-        user_id = request.user.id
+        lecturer_id = request.user.id
 
         f = kwargs.pop('files')[0] if ('files' in kwargs) \
             and len(kwargs['files']) > 0 else None
 
         try:
-            curriculum = self.curriculum_manager.create(user_id=user_id,
+            curriculum = self.curriculum_manager.create(lecturer_id=lecturer_id,
                                                         **kwargs)
         except Exception, e:
             return RetWrapper.wrap_and_return(e)

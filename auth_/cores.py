@@ -98,7 +98,7 @@ class AuthManager(models.Manager):
         flush_all_token = kwargs.get('flush_all_token', False)
         self._flush_token(user.id, agent_idfa, all=flush_all_token)
         token = self._create_token(user, agent_idfa)
-        setattr(user, 'access_token', token.access_token)
+        return token.access_token
 
     def logout(self, request):
         user = getattr(request, 'user', None)

@@ -13,7 +13,7 @@ class UploadMiddleware(object):
         if request.META['CONTENT_TYPE'] != 'multipart/form-data':
             pass
         else:
-            data = getattr(request, 'body', request._body)
+            data = request.body
             arguments, files = parse_multipart_form_data(data)
             body = {
                 'action': None,

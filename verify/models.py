@@ -3,6 +3,7 @@
 from django.db import models
 from django.utils import timezone
 
+from chisch.common.models import BaseModel
 from .cores import VerifyManager, VerifyStatisticManager
 
 
@@ -10,7 +11,7 @@ _verify_manager = VerifyManager()
 _verify_statistic_manager = VerifyStatisticManager()
 
 
-class VerifyCode(models.Model):
+class VerifyCode(BaseModel, models.Model):
     user_name = models.CharField(max_length=254)
     verify_type = models.SmallIntegerField()
     code = models.CharField(max_length=6)
@@ -27,8 +28,8 @@ class VerifyCode(models.Model):
         db_table = 'verify_code'
 
 
-class VerifyStatistic(models.Model):
-    way = models.SmallIntegerField()     #统计方式（1:user_name，2:ip）
+class VerifyStatistic(BaseModel, models.Model):
+    way = models.SmallIntegerField()               # 统计方式（1:user_name，2:ip）
     value = models.CharField(max_length=20)
     verify_type = models.SmallIntegerField(null=True)
     count = models.SmallIntegerField()
