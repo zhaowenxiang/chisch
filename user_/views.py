@@ -50,11 +50,11 @@ class UserListView(ListView):
 
         user.set_password(new_password)
         user.save()
-        token = self.auth_manager.login(request,
-                                        user,
-                                        agent_idfa=agent_idfa,
-                                        flush_all_token=True)
-        result = _s(user, extra={'access_token': token})
+        access_token = self.auth_manager.login(request,
+                                               user,
+                                               agent_idfa=agent_idfa,
+                                               flush_all_token=True)
+        result = _s(user, extra={'access_token': access_token})
         return RetWrapper.wrap_and_return(result)
 
     @login_required
@@ -135,10 +135,14 @@ class UserDetailView(DetailView):
 
     def get(self, request, *args, **kwargs):
         user_id = args[0]
-        user = self.user_manager.get(id=user_id)
+        try:
+            user = self.user_manager.get(id=user_id)
+        except Exception, e:
+            return RetWrapper.wrap_and_return(e)
         token_user_id = request.user.id if request.user.is_authenticated \
             else None
-        result = _s(user, **user.serializer_rule(user.id, token_user_id))
+
+        result = _s(user, own=False)
         return RetWrapper.wrap_and_return(result)
 
 

@@ -36,7 +36,7 @@ class AuthView(ListView):
                                             password=password)
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
-        result = _s(user, own=True)
+        result = _s(user)
         return RetWrapper.wrap_and_return(result)
 
     @transaction.atomic
@@ -52,8 +52,10 @@ class AuthView(ListView):
                                           verify_code=verify_code)
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
-        token = self.auth_manager.login(request, user, agent_idfa=agent_idfa)
-        extra = {'account': user.account, 'token': token}
+        access_token = self.auth_manager.login(request,
+                                               user,
+                                               agent_idfa=agent_idfa)
+        extra = {'account': user.account, 'access_token': access_token}
         result = _s(user, extra=extra)
         return RetWrapper.wrap_and_return(result)
 
