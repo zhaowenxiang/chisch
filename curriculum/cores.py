@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import json
 import xml.dom.minidom
 from django.db import models
 
@@ -11,50 +12,9 @@ logger = logging.getLogger('django')
 
 
 def get_curriculum_category():
-    first_level_types = []
-    second_level_types = []
-    third_level_types = []
-    dom = xml.dom.minidom.parse('chisch/curriculun_categorys/internet.xml')
-
-    first_level_type_nodes = dom.getElementsByTagName('first_level_type')
-    for node in first_level_type_nodes:
-        first_level_type_id = node.getAttribute('id')
-        first_level_type_value = node.getAttribute('value')
-        first_level_type_dict = {
-            'type_id': first_level_type_id,
-            'type_value': first_level_type_value
-        }
-        first_level_types.append(first_level_type_dict)
-    second_level_type_nodes = dom.getElementsByTagName('second_level_type')
-    for node in second_level_type_nodes:
-        second_level_type_id = node.getAttribute('id')
-        second_level_type_value = node.getAttribute('value')
-        parent_level_type_id = node.parentNode.getAttribute('id')
-        second_level_type_dict = {
-            'id': second_level_type_id,
-            'value': second_level_type_value,
-            'parent_id': parent_level_type_id
-        }
-        second_level_types.append(second_level_type_dict)
-    third_level_type_nodes = dom.getElementsByTagName('third_level_type')
-    for node in third_level_type_nodes:
-        third_level_type_id = node.getAttribute('id')
-        third_level_type_value = node.firstChild.data
-        parent_level_type_id = node.parentNode.getAttribute('id')
-        third_level_type_dict = {
-            'id': third_level_type_id,
-            'value': third_level_type_value,
-            'parent_id': parent_level_type_id
-        }
-        third_level_types.append(third_level_type_dict)
-
-    result = {
-        'first_level_types': first_level_types,
-        'second_level_types': second_level_types,
-        'third_level_types': third_level_types,
-    }
-
-    return result
+    with open('chisch/curriculun_categorys.json', 'r') as f:
+        category = json.load(f)
+    return category
 
 
 @dependency.provider('curriculum_manager')
