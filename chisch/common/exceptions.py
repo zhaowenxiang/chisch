@@ -159,6 +159,10 @@ class NonLecturerError(Error403):
     code = 40307
 
 
+class CreateWorkOrderError(Error403):
+    code = 40308
+
+
 class ResourceNotExistError(Error404):
     code = 40401
     message_format = "%(source)s does not exist."

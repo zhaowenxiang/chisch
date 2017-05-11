@@ -100,8 +100,9 @@ INSTALLED_APPS = (
     'verify',
     'cron',
     'oss',
+    'workorder',
     'curriculum',
-    'curriculum.video'
+    'curriculum.video',
 )
 
 MIDDLEWARE_CLASSES = (
