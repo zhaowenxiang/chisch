@@ -159,6 +159,11 @@ class NonLecturerError(Error403):
     code = 40307
 
 
+class ResourceNotExistError(Error404):
+    code = 40401
+    message_format = "%(source)s does not exist."
+
+
 class InvalidAccessTokenErr(Error401):
 
     def _build_message(self, message, **kwargs):

@@ -59,9 +59,9 @@ class User(BaseModel, AbstractBaseUser):
         else:
             exclude_attr += ['created_at', 'updated_at', 'mobile_number',
                              'email', 'is_admin']
-            kwargs = {
+            kwargs.update({
                 'exclude_attr': exclude_attr
-            }
+            })
         return kwargs
 
     @property

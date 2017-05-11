@@ -2,8 +2,6 @@
 
 import logging
 
-import oss2
-from django.conf import settings
 from django.db import transaction
 
 from chisch.common.retwrapper import RetWrapper
@@ -15,6 +13,7 @@ from chisch.common.constents import (
     VERIFY_TYPE_CHANGE_PASSWORD as VTCP,
     VERIFY_TYPE_CHANGE_MOBILE_NUMBER as VTCMN,
 )
+from chisch.utils.stringutils import hide_mobile_number
 
 
 logger = logging.getLogger('django')
@@ -83,11 +82,14 @@ class UserListView(ListView):
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
 
-        if user.display_name == user.mobile_number:
-            user.display_name = mobile_number
+        if user.display_name == hide_mobile_number(user.mobile_number):
+            user.display_name = hide_mobile_number(mobile_number)
         user.mobile_number = mobile_number
 
-        user.save()
+        try:
+            user.save()
+        except Exception, e:
+            return RetWrapper.wrap_and_return(e)
         access_token = self.auth_manager.login(request,
                                                user,
                                                agent_idfa=agent_idfa,
@@ -108,14 +110,10 @@ class UserListView(ListView):
     @login_required
     @transaction.atomic
     def upload_avatar(self, request, *args, **kwargs):
-        from oss.cores import get_object_key
         user = request.user
-        f = kwargs['files'][0]
-        key = get_object_key('upload_user_avatar', user.id, settings.IMAGE_TYPE)
-        permission = oss2.OBJECT_ACL_PUBLIC_READ
+        image_file = kwargs['files'][0]
         try:
-            avatar_url, _ = self.oss_manager.single_object_upload(key, f,
-                                                               permission)
+            avatar_url = self.user_manager.upload_avatar(user.id, image_file)
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
         if user.avatar_url:
@@ -134,15 +132,18 @@ class UserListView(ListView):
 class UserDetailView(DetailView):
 
     def get(self, request, *args, **kwargs):
-        user_id = args[0]
+        user_id = int(args[0])
         try:
-            user = self.user_manager.get(id=user_id)
+            user = self.user_manager.detail(user_id=user_id)
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
         token_user_id = request.user.id if request.user.is_authenticated \
             else None
-
-        result = _s(user, own=False)
+        if user_id == token_user_id:
+            extra = {'account': user.account}
+            result = _s(user, extra=extra)
+        else:
+            result = _s(user, own=False)
         return RetWrapper.wrap_and_return(result)
 
 

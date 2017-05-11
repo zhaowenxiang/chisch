@@ -16,3 +16,7 @@ def generate_verify_code():
 def generate_token():
     return str(uuid.uuid4())
 
+
+def hide_mobile_number(mobile_number):
+    return mobile_number[:3] + '*' * 4 + mobile_number[-4:]
+

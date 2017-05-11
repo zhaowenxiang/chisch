@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-
+import oss2
+from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.models import BaseUserManager
 from django.db.models import Q
@@ -10,10 +11,11 @@ from chisch.common.constents import (
     VERIFY_TYPE_LOGIN,
     USER_STATUS_ACTIVE,
 )
+from chisch.utils import stringutils
 
 
 @dependency.provider('user_manager')
-@dependency.requires('account_manager', 'verify_manager')
+@dependency.requires('account_manager', 'verify_manager', 'oss_manager')
 class UserManager(BaseUserManager):
 
     def is_registered(self, user_name):
@@ -26,7 +28,7 @@ class UserManager(BaseUserManager):
 
     def _build_model(self, user_name=None, password=None):
 
-        display_name = user_name[:3] + '*' * 4 + user_name[-4:]
+        display_name = stringutils.hide_mobile_number(user_name)
 
         user = self.model(display_name=display_name,
                           mobile_number=user_name,
@@ -115,5 +117,23 @@ class UserManager(BaseUserManager):
         self.filter(id=user.id).update(**kwargs)
         return user
 
-    def upload_avatar(self, user_id, request):
-        return request.user
+    def upload_avatar(self, user_id, f):
+        from oss.cores import get_object_key
+        key = get_object_key('upload_user_avatar', user_id,
+                             settings.IMAGE_TYPE)
+        permission = oss2.OBJECT_ACL_PUBLIC_READ
+        try:
+            avatar_url, _ = self.oss_manager.single_object_upload(key, f,
+                                                                  permission)
+        except Exception, e:
+            raise e
+        return avatar_url
+
+    def detail(self, user_id):
+        try:
+            user = self.get(id=user_id)
+        except self.model.DoesNotExist:
+            raise exceptions.ResourceNotExistError(source='User')
+        return user
+
+
