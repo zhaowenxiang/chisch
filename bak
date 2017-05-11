@@ -1,0 +1,20 @@
+http://api.letvcloud.com/open.php?ver=2.0&format=json&timestamp=1494496519&sign=6ca2141307d91c6f3b4d69b7f54245e8&user_unique=lgsnakoalj&api=video.upload.init&video_name=1111111
+
+{
+	"api": "video.upload.init",
+	"format": "json",
+	"timestamp": "1494496519",
+	"user_unique": "lgsnakoalj",
+	"ver": "2.0",
+	"video_name": "1111111",
+	"sign": "6ca2141307d91c6f3b4d69b7f54245e8"
+}
+
+import hashlib
+
+md5 = hashlib.md5('apivideo.upload.initformatjsontimestamp1494496519user_uniquelgsnakoaljver2.0video_name1111111f8dc95d9b6d5cdfeb204a8b10ab2af1a')
+
+import urllib
+
+urllib.urlencode(d)
+
