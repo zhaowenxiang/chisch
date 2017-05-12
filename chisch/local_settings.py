@@ -60,4 +60,12 @@ MNS = {
     'QUEUE_NAME': 'verify-code-queue',
 }
 
+VOD = {
+    'USER_UNIQUE': 'lgsnakoalj',
+    'SECRET_KEY': 'f8dc95d9b6d5cdfeb204a8b10ab2af1a',
+    'RESPONSE_FORMAT': 'json',
+    'VER': '2.0',
+    'URL': 'http://api.letvcloud.com/open.php',
+}
+
 

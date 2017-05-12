@@ -5,15 +5,16 @@ import json
 from django.db import models
 
 from chisch.common import dependency
+from chisch import curriculun_categories
 
 
 logger = logging.getLogger('django')
 
 
-def get_curriculum_category():
-    with open('chisch/curriculun_categorys.json', 'r') as f:
-        category = json.load(f)
-    return category
+def get_curriculum_categories():
+    category_list = curriculun_categories.categories
+    categories = json.dumps(category_list)
+    return categories
 
 
 @dependency.provider('curriculum_manager')
@@ -21,7 +22,7 @@ class CurriculumManager(models.Manager):
 
     def __init__(self, *args, **kwargs):
         super(CurriculumManager, self).__init__(*args, **kwargs)
-        self.category = get_curriculum_category()
+        self.categories = get_curriculum_categories()
 
     def _build_model(self, lecturer_id, **kwargs):
 

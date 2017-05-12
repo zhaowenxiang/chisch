@@ -28,7 +28,7 @@ class RetWrapper(object):
 
         if isinstance(data, (Exception, RetWrapper.SuccessResponse)):
             ret = {
-                'status': getattr(data, 'http_status', 200),
+                'status': 200,
                 'code': getattr(data, 'code', 500),
                 'message': getattr(data, 'message', 'Server error.'),
             }

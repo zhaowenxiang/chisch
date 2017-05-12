@@ -61,7 +61,15 @@ class Error(Exception):
 
 
 class UnexpectedError(Error):
+
     code = 500
+
+    def _build_message(self, message, **kwargs):
+        """Build and returns an exception message.
+        :raises KeyError: given insufficient kwargs
+        """
+        message = 'server error'
+        return message
 
 
 class Error400(Error):

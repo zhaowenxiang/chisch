@@ -1,4 +1,6 @@
-[
+# -*- coding: utf-8 -*-
+
+categories = [
   {
     "id": "1",
     "value": "IT/互联网",

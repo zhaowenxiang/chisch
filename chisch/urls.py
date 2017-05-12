@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^work_order', include('workorder.urls', namespace='work_order')),
     url(r'^curriculum', include('curriculum.urls', namespace='curriculum')),
     url(r'^video', include('curriculum.video.urls', namespace='video')),
+    url(r'^vod', include('vod.urls', namespace='vod')),
 
 ]

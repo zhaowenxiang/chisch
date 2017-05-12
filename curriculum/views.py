@@ -60,9 +60,9 @@ class CurriculumListView(ListView):
         result = _s(curriculum, **curriculum.serializer_rule())
         return RetWrapper.wrap_and_return(result)
 
-    def get_curriculum_category(self, request, *args, **kwargs):
+    def get_curriculum_categories(self, request, *args, **kwargs):
         try:
-            category = self.curriculum_manager.get_curriculum_category()
+            category = self.curriculum_manager.get_curriculum_categories()
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
         return RetWrapper.wrap_and_return(category)
