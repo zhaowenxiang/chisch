@@ -10,7 +10,7 @@ class UploadMiddleware(object):
     def process_request(self, request):
 
         request.upload_files_path = []
-        if request.META['CONTENT_TYPE'] != 'multipart/form-data':
+        if 'multipart/form-data' not in request.META['CONTENT_TYPE']:
             pass
         else:
             data = request.body

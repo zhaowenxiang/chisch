@@ -61,11 +61,14 @@ MNS = {
 }
 
 VOD = {
-    'USER_UNIQUE': 'lgsnakoalj',
+    'USER_UNIQUE': 'tkHh5O7431CgWayx',
     'SECRET_KEY': 'f8dc95d9b6d5cdfeb204a8b10ab2af1a',
-    'RESPONSE_FORMAT': 'json',
-    'VER': '2.0',
-    'URL': 'http://api.letvcloud.com/open.php',
+    'FORMAT': 'json',
+    'VERSION': '2017-03-21',
+    'ACCESS_KEY_ID': 'LTAIFSaBApB2TuC4',
+    'SIGNATUREMETHOD': 'HMAC-SHA1',
+    'SIGNATUREVERSION': '1.0',
+    'SERVER_URL': 'https://vod.cn-shanghai.aliyuncs.com'
 }
 
 

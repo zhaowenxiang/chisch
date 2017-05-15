@@ -9,12 +9,12 @@ import cores
 logger = logging.getLogger('django')
 
 
-def video_upload_init(request):
-    params = request.GET
-    api = params['api']
-    video_name = params['video_name']
+def signature_url(request):
+    params_query_dict = request.GET
+    params = {k: v for k, v in params_query_dict.items()}
     try:
-        resp_data = cores.video_upload_init(api, video_name)
+        url = cores.get_url()
     except Exception, e:
         return RetWrapper.wrap_and_return(e)
-    return RetWrapper.wrap_and_return(resp_data)
+    result = {'url': url}
+    return RetWrapper.wrap_and_return(result)

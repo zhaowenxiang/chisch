@@ -2,8 +2,8 @@
 
 from django.conf.urls import url
 
-from .views import video_upload_init
+from .views import signature_url
 
 urlpatterns = [
-    url(r'^$', video_upload_init, name='video_upload_init'),
+    url(r'^$', signature_url, name='signature_url'),
 ]
