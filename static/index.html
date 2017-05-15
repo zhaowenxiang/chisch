@@ -3,33 +3,50 @@
     <title>千寻教育</title>
     <meta charset="utf-8">
     <script src="./js/lib/angular-1.6.4/angular.min.js"></script>
-    <link rel="stylesheet" href="css/lib/bootstrap-3.3.7-dist/bootstrap.min.css">
-
+    <link rel="stylesheet" href="css/lib/bootstrap-3.3.7-dist/bootstrap.min.css"/>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="js/lib/bootstrap-3.3.7-dist/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span12">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <p>this is a person</p>
+    <div class="container-fluid" style="margin-left: 5%; margin-right: 5%; margin-top: 1%">
+	<div class="row">
+		<div class="col-md-3">
+            <img src="images/logo.png" width="145" height="60">
+		</div>
+		<div class="col-md-6">
+            <form id="searchForm" method="post">
+                <fieldset>
+                    <input id="s" type="text" />
+                    <input type="submit" value="Submit" id="submitButton" />
+                    <div id="searchInContainer">
+                        <input type="radio" name="check" value="site" id="searchSite" checked />
+                        <label for="searchSite" id="siteNameLabel">课程</label>
+                        <input type="radio" name="check" value="web" id="searchWeb" />
+                        <label for="searchWeb">讲师</label>
                     </div>
-                    <div class="span6">
-                    </div>
-                    <div class="span4">
-                    </div>
-                </div>
-                <div class="row-fluid">
-                    <div class="span12">
-                    </div>
-                </div>
-                <div class="row-fluid">
-                    <div class="span12">
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <ul class="icons">
+                        <li class="web" title="Web Search" data-searchType="web">Web</li>
+                        <li class="images" title="Image Search" data-searchType="images">Images</li>
+                        <li class="news" title="News Search" data-searchType="news">News</li>
+                        <li class="videos" title="Video Search" data-searchType="video">Videos</li>
+                    </ul>
+                </fieldset>
+            </form>
+		</div>
+		<div class="col-md-3">
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span12">
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span12">
+		</div>
+	</div>
     </div>
 <script src="./js/controller/index.js"></script>
+<script src="./js/index.js"></script>
 </body>
 </html>
