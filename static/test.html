@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>千寻测试</title>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js">
+</script>
+<script>
+    $(function () {
+        $("button").click(function () {
+            $.ajax({
+                url: "http://localhost:8000/user/1",
+                type: "get",
+                dataType: "json",
+                beforeSend: function (request) {
+                    request.setRequestHeader("Access-Token", "123333");
+                },
+                success: function (data, status) {
+                    console.log(status)
+                    console.log(data)
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            });
+        });
+    });
+</script>
+</head>
+<body>
+    <p id="p1" style="position: relative">如果你点我，我就会消失。</p>
+    <p id="p2" class="test">继续<b>点我!</b></p>
+    <p>接着点我!</p>
+    <input class="in" type="text">
+    <button>点我</button>
+</body>
+</html>

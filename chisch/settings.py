@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from local_settings import *
+from corsheaders.defaults import default_headers
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -94,6 +95,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'user_',
     'auth_',
     'account',
@@ -107,6 +109,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     # 'chisch.middleware.log.LogMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'chisch.middleware.authenticate.AuthenticationMiddleware',
     'chisch.middleware.upload.UploadMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -149,6 +152,12 @@ DATABASES = {
         'PORT': '3306'
     }
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_HEADERS = default_headers + (
+    "Access-Token",
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
