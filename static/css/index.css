@@ -1,0 +1,44 @@
+body {
+    background-color: #3C352B;
+}
+
+#header > div{
+    margin-top: 10px;
+    height: 60px;
+}
+
+.search > div{
+    float: left;
+}
+
+.searchInput {
+    width: 432px;
+    background-color: #342e26;
+    border: none;
+    color: #fff;
+    z-index: 1;
+    padding: 11px;
+    font-size: 20px;
+    -webkit-border-radius: 6px 0px 0px 6px;
+    -moz-border-radius: 6px 0px 0px 6px;
+    border-radius: 6px 0px 0px 6px;
+    -webkit-box-shadow: inset 1px 1px 1px 0px #000;
+    -moz-box-shadow: inset 1px 1px 1px 0px #000;
+    box-shadow: inset 1px 1px 1px 0px #000;
+    margin-top:0px;
+}
+
+.searchButton {
+    background-color: #66c706;
+    width: 47px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.searchButton:hover {
+    background-color: #fff;
+}
+
+.searchImage {
+    margin: 10px;
+}
