@@ -1,0 +1,111 @@
+body {
+
+}
+
+#header {
+    background: url("../image/headerBackGround.png") repeat-x;
+    height: 60px;
+}
+
+#header > div {
+    height: 100%;
+}
+
+.logo span{
+    padding: 10px;
+    color: #ddd;
+    float: right;
+    font-size: 25px;
+}
+
+.headerNav {
+    margin-left: 0;
+    padding: 0;
+}
+
+.headerNav table{
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    color: #ddd;
+}
+
+.headerNav table td{
+    text-align: center;
+    cursor: pointer;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+}
+
+.headerNav table td:hover {
+    background: url("../image/buttonBack.png") repeat-x;
+    border-left: 1px solid #555;
+    border-right: 1px solid #555;
+}
+
+.search_input {
+    background:none;
+    width: 70%;
+    color: #fff;
+    margin-top: 20px;
+    margin-left: 10px;
+    border-top:none;
+    border-left:none;
+    border-right:none;
+    border-bottom:1px solid #fff;
+}
+
+.search_input:focus {
+    outline:none;
+}
+
+.search_button {
+    cursor: pointer;
+}
+
+.search_button:hover {
+    width: 32px;
+}
+
+.search_button:active {
+    width: 30px;
+}
+
+#findVideoNav {
+    height: 40px;
+    background: #444;
+    -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
+    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, .25);
+}
+
+#findVideoNav ul {
+    margin-left: 15%;
+    padding-top: 10px;
+    z-index: 300;
+    position: absolute;
+}
+
+#findVideoNav ul li {
+    list-style: none;
+    float:left;
+    padding: 0 20px;
+    text-align: center;
+}
+
+#findVideoNav ul li a {
+    font-family:'隶书';
+    font-size: 13px;
+    padding: 0 10px;
+    text-align: center;
+    color: #888;
+    text-decoration:none
+}
+
+#findVideoNav ul li a:hover {
+    color: #02f3dc;
+}
+
+.focus_color_blue {
+    color: #02f3dc;
+}
+
