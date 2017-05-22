@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/index1.css">
     <script src="script/js/index.js"></script>
+    <script src="script/controller/indexController.js"></script>
 </head>
 <body>
-    <div class=container-fluid">
+    <div class=container-fluid" ng-app="indexApp" ng-controller="indexController">
         <div class="row" id="header">
             <div class="col-lg-2 col-xs-2 logo">
                 <span>传视播课</span>
@@ -34,10 +35,10 @@
         </div>
         <div class="row" id="findVideoNav">
             <ul id="find_video_nav_ul">
-                <li><a href="http://www.baidu.com" target="_blank">推荐</a></li>
-                <li><a href="http://www.baidu.com">排行榜</a></li>
-                <li><a href="http://www.baidu.com">新品</a></li>
-                <li><a href="http://www.baidu.com">列表</a></li>
+                <li>推荐</li>
+                <li>排行榜</li>
+                <li>新品</li>
+                <li>列表</li>
             </ul>
         </div>
 
