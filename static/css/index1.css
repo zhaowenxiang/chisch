@@ -43,13 +43,6 @@ body {
     border-right: 1px solid #555;
 }
 
-/*jquery控制的样式*/
-.header_nav_select {
-    background: url("../image/buttonBack.png") repeat-x;
-    border-left: 1px solid #555;
-    border-right: 1px solid #555;
-}
-
 .search_input {
     background:none;
     width: 70%;
@@ -93,16 +86,22 @@ body {
 }
 
 #findVideoNav ul li {
-    cursor: pointer;
     list-style: none;
     float:left;
-    padding: 0 30px;
+    padding: 0 20px;
     text-align: center;
-    font-size: 13px;
-    color: #888;
 }
 
-#findVideoNav ul li:hover {
+#findVideoNav ul li a {
+    font-family:'隶书';
+    font-size: 13px;
+    padding: 0 10px;
+    text-align: center;
+    color: #888;
+    text-decoration:none
+}
+
+#findVideoNav ul li a:hover {
     color: #02f3dc;
 }
 

@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<title>传视播课</title>
+	<title>传视播客</title>
     <meta charset="utf-8">
-    <script src="lib/jquery/jquery-3.2.1.min.js"></script>
     <script src="lib/angularjs/angular.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css">
+    <script src="lib/jquery/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
 </head>
-<body>
+<body ng-app="">
 	<div class="wrapper">
-		<div class="brand">
-            <span>传视播客</span>
+        <div class="header fixed">
+            <div class="brand">
+                <span>传视播客</span>
+            </div>
+            <div class="nav">
+                <table id="nav-table">
+                    <tr>
+                        <td id="find-video" onclick="window.location='#'">发现教程</td>
+                        <td id="my-video">我的教程</td>
+                        <td id="friends">朋友</td>
+                        <td id="market">商城</td>
+                        <td id="app-download">APP下载</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="search">
+                <input type="text" class="search_input" placeholder="根据用户名或者课程名查询...">
+                <img src="image/icon-search.png" class="search_button">
+            </div>
+            <div class="info" style="background-color: #8a6d3b">11</div>
         </div>
-        <div class="nav">
-            <table>
-                <tr>
-                    <td>发现教程</td>
-                    <td>我的教程</td>
-                    <td>朋友</td>
-                    <td>商城</td>
-                    <td>APP下载</td>
-                </tr>
-            </table>
+        <div class="find-video-nav" hidden>
+            <ul id="find_video_nav_ul">
+                <li>推荐</li>
+                <li>排行榜</li>
+                <li>新品</li>
+                <li>列表</li>
+            </ul>
         </div>
-        <div class="search">
-            <input type="text" class="search_input" placeholder="根据用户名或者课程名查询...">
-            <img src="image/icon-search.png" class="search_button">
+        <div class="content" ng-show="true"  ng-include="'ecommend.html'">
         </div>
-        <div class="info" style="background-color: #8a6d3b">11</div>
 	</div>
+<script src="script/js/index.js"></script>
 </body>
 </html>

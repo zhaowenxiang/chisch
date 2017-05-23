@@ -1,11 +1,17 @@
 $(document).ready(function () {
-    $(".headerNav td").click(function () {
-       $(".headerNav td").removeClass("header_nav_select")
-       $(this).addClass("header_nav_select");
+    $("#nav-table td").click(function () {
+        console.log(window.location.href);
+        console.log(window.location.hash)
+        $(this).siblings().removeClass("header-nav-td-select");
+        $(this).addClass("header-nav-td-select");
+        var id = "#" + $(this).attr("id")
+        console.log(id);
+        $("." + $(this).attr("id") + "-nav").show()
     });
 
-    $("#find_video_nav_ul li").click(function () {
-       $("#find_video_nav_ul li").css("background", "none");
-       $(this).css("background", "#111");
-    });
+
+
+
+
+    $("#find-video").click()
 });
