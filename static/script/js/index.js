@@ -11,7 +11,5 @@ $(document).ready(function () {
 
 
 
-
-
     $("#find-video").click()
 });
