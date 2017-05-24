@@ -18,3 +18,4 @@ import urllib
 
 urllib.urlencode(d)
 
+http://www.cnblogs.com/liulangmao/p/4533922.html
