@@ -3,12 +3,10 @@
 <head>
 	<title>传视播客</title>
     <meta charset="utf-8">
-    <!-- <script src="lib/angularjs/angular.min.js"></script>
-    <script src="lib/angularjs/angular-route.min.js"></script> -->
-    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
-    <script src="https://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
-    <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js">
-   <!--  <script src="lib/jquery/jquery-3.2.1.min.js"></script> -->
+    <script src="lib/angularjs/angular.min.js"></script>
+    <script src="lib/angularjs/angular-route.min.js"></script>
+    <script src="lib/angularjs/angular-ui-route.min.js"></script>
+    <script src="lib/jquery/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="css/index2.css">
     <script src="script/route.js"></script>
 </head>
@@ -42,7 +40,7 @@
                 <li>列表</li>
             </ul>
         </div>
-        <div class="content1" ng-view>
+        <div class="content1" ui-view>
             <h1>index.html</h1>
         </div>
         <div class="footer">
@@ -50,7 +48,18 @@
         </div>
 	</div>
     <script>
-        var app = angular.module('indexMainApp', ['ngRoute']);
+        var app = angular.module('indexMainApp', ['ui.router']);
+        app.config(function ($stateProvider, $urlRouterProvider) {
+            $stateProvider
+            .state('my', {
+                url: '/my',
+                templateUrl: 'my.html'
+            })
+            .state('friends', {
+                url: '/friends',
+                templateUrl: 'friends.html'
+            })
+        });
         app.controller('indexController', function ($scope, $location) {
             url = $location.url()
             var headerNavList = $scope.headerNavList = [
@@ -102,13 +111,6 @@
                 $location.path(path)
             }
         });
-        app.config(['$routeProvider', function ($routeProvider) {
-           $routeProvider
-               .when('/', {template: 'this is index'})
-               .when('/my', {template: 'this is my'})
-               .when('/friends', {templateUrl: 'friends.html'})
-               //.otherwise({redirectTo:'http://www.baidu.com'});
-        }]);
         // app.config(routeConfig)
     </script>
 <!-- <script src="script/js/index.js"></script> -->
