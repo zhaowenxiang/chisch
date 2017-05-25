@@ -2,7 +2,7 @@ var app = angular.module('mainApp', ['ui.router']);
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('/', {
-        url: '/',
+        url: '',
         templateUrl: 'view/find/main.html'
     })
     .state('my', {
