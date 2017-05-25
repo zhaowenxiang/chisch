@@ -19,8 +19,8 @@
             <div class="nav">
                 <table id="nav-table">
                     <tr>
-                        <td ng-repeat="nav in headerNavList" ui-sref="friends"
-                            ng-class="{'header-nav-td-select': $state.includes('friends')}">
+                        <td ng-repeat="nav in headerNavList" ui-sref="{{ nav.linkView }}"
+                            ui-sref-active="header-nav-td-select">
                             {{ nav.title }}
                         </td>
                     </tr>
@@ -41,7 +41,7 @@
             </ul>
         </div>
         <div class="content1" ui-view>
-            <h1>index.html</h1>
+
         </div>
         <div class="footer">
 
@@ -51,6 +51,10 @@
         var app = angular.module('indexMainApp', ['ui.router']);
         app.config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
+            .state('/', {
+                url: '/',
+                templateUrl: 'find.html'
+            })
             .state('my', {
                 url: '/my',
                 templateUrl: 'my.html'
@@ -61,56 +65,34 @@
             })
         });
         app.controller('indexController', function ($scope, $location, $state) {
-            console.log($state.includes('friends'));
             url = $location.url()
             var headerNavList = $scope.headerNavList = [
                 {
                     'id': 'find',
                     'title': '发现',
-                    'linkUrl': '/',
-                    'active': false
+                    'linkView': '/',
                 },
                 {
                     'id': 'my',
                     'title': '我的',
-                    'linkUrl': '/my',
-                    'active': false
+                    'linkView': 'my',
                 },
                 {
                     'id': 'friends',
                     'title': '朋友',
-                    'linkUrl': '/friends',
-                    'active': false
+                    'linkView': 'friends',
                 },
                 {
                     'id': 'market',
                     'title': '商场',
-                    'linkUrl': '/market',
-                    'active': false
+                    'linkView': 'market',
                 },
                 {
                     'id': 'download',
                     'title': 'APP下载',
-                    'linkUrl': '/download',
-                    'active': false
+                    'linkView': 'download',
                 }
             ]
-            angular.forEach(headerNavList, function (data) {
-                if (url.substr(1).indexOf(data.linkUrl.substr(1)) != -1) {
-                    data.active = true;
-                    return false;
-                }
-            });
-            $scope.clickFindVideo = function (id, path) {
-                angular.forEach(headerNavList, function (data) {
-                    if (data.id == id) {
-                        data.active = true;
-                    }else {
-                        data.active = false;
-                    }
-                });
-                $location.path(path)
-            }
         });
         // app.config(routeConfig)
     </script>
