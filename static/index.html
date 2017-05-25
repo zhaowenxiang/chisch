@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
 	<title>传视播客</title>
     <meta charset="utf-8">
     <script src="lib/angularjs/angular.min.js"></script>
+    <script src="lib/angularjs/angular-route.min.js"></script>
+    <script src="lib/angularjs/angular-ui-route.min.js"></script>
     <script src="lib/jquery/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
 </head>
-<body ng-app="">
-	<div class="wrapper">
+<body>
+	<div class="wrapper" ng-app="mainApp" ng-controller="mainController">
         <div class="header fixed">
             <div class="brand">
                 <span>传视播客</span>
@@ -16,11 +18,10 @@
             <div class="nav">
                 <table id="nav-table">
                     <tr>
-                        <td id="find-video" onclick="window.location='#'">发现教程</td>
-                        <td id="my-video">我的教程</td>
-                        <td id="friends">朋友</td>
-                        <td id="market">商城</td>
-                        <td id="app-download">APP下载</td>
+                        <td ng-repeat="nav in headerNavList" ui-sref="{{ nav.linkView }}"
+                            ui-sref-active="header-nav-td-select">
+                            {{ nav.title }}
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -30,17 +31,13 @@
             </div>
             <div class="info" style="background-color: #8a6d3b">11</div>
         </div>
-        <div class="find-video-nav" hidden>
-            <ul id="find_video_nav_ul">
-                <li>推荐</li>
-                <li>排行榜</li>
-                <li>新品</li>
-                <li>列表</li>
-            </ul>
-        </div>
-        <div ng-mouseleave="" class="content" ng-show="true"  ng-include="'ecommend.html'">
+        <div class="contents" ui-view></div>
+        <div class="footer">
+
         </div>
 	</div>
-<script src="script/js/index.js"></script>
+<script src="script/app/mainApp.js"></script>
+<script src="script/controller/mainController.js"></script>
+<script src="script/controller/findController.js"></script>
 </body>
 </html>

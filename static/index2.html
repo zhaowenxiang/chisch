@@ -63,6 +63,7 @@
                 url: '/friends',
                 templateUrl: 'friends.html'
             })
+            $urlRouterProvider.otherwise('/');
         });
         app.controller('indexController', function ($scope, $location, $state) {
             url = $location.url()

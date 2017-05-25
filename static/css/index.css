@@ -106,7 +106,7 @@ body {
     z-index: 10000;
 }
 
-.find-video-nav {
+.find-nav {
     margin-top: 62px;
     height: 40px;
     width: 100%;
@@ -115,13 +115,13 @@ body {
     -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, .25);
 }
 
-.find-video-nav ul {
+.find-nav ul {
     margin-left: 15%;
     z-index: 300;
     position: absolute;
 }
 
-.find-video-nav li {
+.find-nav li {
     cursor: pointer;
     list-style: none;
     float:left;
@@ -130,9 +130,14 @@ body {
     font-size: 13px;
     color: #888;
 }
-.content {
+
+.find-nav-select {
+    color: #02f3dc !important;
+}
+
+.contents {
     height: 400px;
     width: 100%;
-    margin-top: -20px;
+    margin-top: 62px;
     background-color: #1C1915;
 }
