@@ -1,4 +1,5 @@
-app.controller("findController", function ($scope) {
+app.controller("findController", function ($scope, $location, $state) {
+    console.log($location.url());
     var findNavList = $scope.findNavList = [
         {
             'id': 'recommend',
@@ -21,4 +22,19 @@ app.controller("findController", function ($scope) {
             'linkView': '/.free',
         },
     ]
+
+    var activeLinkView = "";
+    if ($location.url() == '/') {
+        activeLinkView = '/./';
+    }else {
+        angular.forEach(findNavList, function (data) {
+            if ($location.url() == '/' + data.linkView.substr(2)) {
+                activeLinkView = data.linkView;
+                return false;
+            }
+        });
+    }
+    if (activeLinkView != "") {
+        $state.go(activeLinkView)
+    }
 });

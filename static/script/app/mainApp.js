@@ -2,7 +2,7 @@ var app = angular.module('mainApp', ['ui.router']);
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
     .state('/', {
-        url: '',
+        url: '/',
         templateUrl: 'view/find/main.html'
     })
     .state('my', {
@@ -26,15 +26,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         templateUrl: 'view/find/recommend.html'
     })
     .state('/.ranking', {
-        url: '',
+        url: 'ranking',
         templateUrl: 'view/find/ranking.html'
     })
     .state('/.new', {
-        url: '',
+        url: 'new',
         templateUrl: 'view/find/new.html'
     })
     .state('/.free', {
-        url: '',
+        url: 'free',
         templateUrl: 'view/find/free.html'
     })
     $urlRouterProvider.otherwise('/');
