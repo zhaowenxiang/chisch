@@ -1,5 +1,5 @@
 var app = angular.module('mainApp', ['ui.router']);
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
     .state('/', {
         url: '',
@@ -38,4 +38,5 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'view/find/free.html'
     })
     $urlRouterProvider.otherwise('/');
+    $locationProvider.hashPrefix("");
 });
