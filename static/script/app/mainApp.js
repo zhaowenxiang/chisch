@@ -23,19 +23,31 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('/./', {
         url: '',
-        templateUrl: 'view/find/recommend.html'
+        templateUrl: 'view/find/backEnd.html'
     })
-    .state('/.ranking', {
-        url: 'ranking',
-        templateUrl: 'view/find/ranking.html'
+    .state('/.fore_end', {
+        url: 'fore_end',
+        templateUrl: 'view/find/foreEnd.html'
     })
-    .state('/.new', {
-        url: 'new',
-        templateUrl: 'view/find/new.html'
+    .state('/.mobile', {
+        url: 'mobile',
+        templateUrl: 'view/find/mobile.html'
     })
-    .state('/.free', {
-        url: 'free',
-        templateUrl: 'view/find/free.html'
+    .state('/.operation', {
+        url: 'operation',
+        templateUrl: 'view/find/operation.html'
+    })
+    .state('/.product', {
+        url: 'product',
+        templateUrl: 'view/find/product.html'
+    })
+    .state('/.office', {
+        url: 'office',
+        templateUrl: 'view/find/office.html'
+    })
+    .state('/.design', {
+        url: 'design',
+        templateUrl: 'view/find/design.html'
     })
     $urlRouterProvider.otherwise('/');
     $locationProvider.hashPrefix("");

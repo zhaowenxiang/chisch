@@ -1,25 +1,39 @@
 app.controller("findController", function ($scope, $location, $state) {
-    console.log($location.url());
     var findNavList = $scope.findNavList = [
         {
-            'id': 'recommend',
-            'title': '推荐',
+            'id': 'back_end',
+            'title': '后端',
             'linkView': '/./',
         },
         {
-            'id': 'ranking',
-            'title': '排行榜',
-            'linkView': '/.ranking',
+            'id': 'fore_end',
+            'title': '前端',
+            'linkView': '/.fore_end',
         },
         {
-            'id': 'new',
-            'title': '最新',
-            'linkView': '/.new',
+            'id': 'IOS/Android',
+            'title': '移动',
+            'linkView': '/.mobile',
         },
         {
-            'id': 'free',
-            'title': '免费',
-            'linkView': '/.free',
+            'id': 'operation',
+            'title': '运维',
+            'linkView': '/.operation',
+        },
+        {
+            'id': 'product',
+            'title': '产品',
+            'linkView': '/.product',
+        },
+        {
+            'id': 'office_software',
+            'title': '办公软件',
+            'linkView': '/.office',
+        },
+        {
+            'id': 'design_software',
+            'title': '设计软件',
+            'linkView': '/.design',
         },
     ]
 
