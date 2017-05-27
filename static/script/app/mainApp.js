@@ -23,7 +23,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('/./', {
         url: '',
-        templateUrl: 'view/find/backEnd.html'
+        templateUrl: 'view/find/backEnd/nav.html'
     })
     .state('/.fore_end', {
         url: 'fore_end',
