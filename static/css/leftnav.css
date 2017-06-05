@@ -1,4 +1,33 @@
-.find-left-menu,.find-left-menu * {
+.find-menu {
+	width:10%
+}
+
+.specific-content {
+	width: 70%;
+	margin: 0 20px ;
+	float: left;
+	background-color: #2aabd2;
+}
+
+.filterinput{
+	background-color:rgba(249, 244, 244, 0);
+	border-radius:15px;
+	width:90%;
+	height:30px;
+	border:thin solid #FFF;
+	text-indent:0.5em;
+	font-weight:bold;
+	color:#FFF;
+}
+.menu-ul a{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	width:100%;
+}
+
+.find-menu,.find-menu * {
 	font-family: 'Open Sans',sans-serif;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -6,25 +35,14 @@
 	outline: 0
 }
 
-.filterinput{
-	background-color:rgba(249, 244, 244, 0);
-	border-radius:10px;
-	width:90%;
-	height:30px;
-	border:thin solid #888;
-	text-indent:0.5em;
-	font-weight:bold;
-	color:#FFF;
-}
-
-.find-left-menu {
-	width: 200px;
+.find-menu {
+	min-width: 180px;
 	float: left;
 	position: relative;
-	box-shadow: 0 10px 20px #333
+	box-shadow: 0 20px 50px #333
 }
 
-.find-left-menu .find-left-menu-footer,.find-left-menu .find-left-menu-header {
+.find-menu .find-menu-footer,.find-menu .find-menu-header {
 	width: 100%;
 	height: 50px;
 	padding-left: 22px;
@@ -35,26 +53,27 @@
 	background: #414956
 }
 
-.find-left-menu ul {
+.find-menu ul {
 	margin: 0;
 	padding: 0;
 	list-style: none
 }
 
-.find-left-menu ul li {
+.find-menu ul li {
 	width: 100%;
 	display: block;
 	float: left;
 	position: relative
 }
 
-.find-left-menu ul li a {
+.find-menu ul li a {
 	width: 100%;
 	padding: 14px 22px;
 	float: left;
 	text-decoration: none;
 	color: #f0f0f0;
 	font-size: 13px;
+	background: #414956;
 	white-space: nowrap;
 	position: relative;
 	overflow: hidden;
@@ -64,17 +83,58 @@
 	transition: color .2s linear,background .2s linear
 }
 
-.find-left-menu>ul>li>a {
+.find-menu>ul>li.active>a,.find-menu>ul>li:hover>a {
+	color: #fff;
+	background: #3b424d
+}
+
+.find-menu>ul>li>a {
 	border-bottom: solid 1px #3b424d
 }
 
-.find-left-menu ul ul.submenu,.find-left-menu ul ul.submenu li ul.submenu {
+.find-menu ul li a i {
+	width: 34px;
+	float: left;
+	line-height: 18px;
+	font-size: 16px;
+	text-align: left
+}
+
+.find-menu .submenu-indicator {
+	float: right;
+	right: 22px;
+	position: absolute;
+	line-height: 19px;
+	font-size: 20px;
+	-o-transition: transform .3s linear;
+	-moz-transition: transform .3s linear;
+	-webkit-transition: transform .3s linear;
+	-ms-transition: transform .3s linear
+}
+
+.find-menu ul ul.submenu .submenu-indicator {
+	line-height: 16px
+}
+
+.find-menu .submenu-indicator-minus>.submenu-indicator {
+	-ms-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg)
+}
+
+.find-menu ul ul.submenu,.find-menu ul ul.submenu li ul.submenu {
 	width: 100%;
-	display: none;
+	display: block;
 	position: static
 }
 
-.find-left-menu ul ul.submenu li a {
+.find-menu ul ul.submenu li {
+	clear: both;
+	width: 100%
+}
+
+.find-menu ul ul.submenu li a {
 	width: 100%;
 	float: left;
 	font-size: 11px;
@@ -88,23 +148,23 @@
 	transition: border .2s linear
 }
 
-.find-left-menu ul ul.submenu li:hover>a {
+.find-menu ul ul.submenu li:hover>a {
 	border-left-color: #414956
 }
 
-.find-left-menu ul ul.submenu>li>a {
+.find-menu ul ul.submenu>li>a {
 	padding-left: 30px
 }
 
-.find-left-menu ul ul.submenu>li>ul.submenu>li>a {
+.find-menu ul ul.submenu>li>ul.submenu>li>a {
 	padding-left: 45px
 }
 
-.find-left-menu ul ul.submenu>li>ul.submenu>li>ul.submenu>li>a {
+.find-menu ul ul.submenu>li>ul.submenu>li>ul.submenu>li>a {
 	padding-left: 60px
 }
 
-.find-left-menu ul li .find-left-menu-label,.find-left-menu ul ul.submenu li .find-left-menu-label {
+.find-menu ul li .find-menu-label,.find-menu ul ul.submenu li .find-menu-label {
 	min-width: 20px;
 	padding: 1px 2px 1px 1px;
 	position: absolute;
@@ -119,7 +179,7 @@
 	border-radius: 100%
 }
 
-.find-left-menu ul ul.submenu li .find-left-menu-label {
+.find-menu ul ul.submenu li .find-menu-label {
 	top: 12px
 }
 
@@ -171,91 +231,91 @@
 	}
 }
 
-.blue.find-left-menu .find-left-menu-footer,.blue.find-left-menu .find-left-menu-header,.blue.find-left-menu ul li a {
+.blue.find-menu .find-menu-footer,.blue.find-menu .find-menu-header,.blue.find-menu ul li a {
 	background: #4A89DC
 }
 
-.blue.find-left-menu>ul>li.active>a,.blue.find-left-menu>ul>li:hover>a {
+.blue.find-menu>ul>li.active>a,.blue.find-menu>ul>li:hover>a {
 	background: #3e82da
 }
 
-.blue.find-left-menu>ul>li>a {
+.blue.find-menu>ul>li>a {
 	border-bottom-color: #3e82da
 }
 
-.blue.find-left-menu ul ul.submenu li:hover>a {
+.blue.find-menu ul ul.submenu li:hover>a {
 	border-left-color: #3e82da
 }
 
-.green.find-left-menu .find-left-menu-footer,.green.find-left-menu .find-left-menu-header,.green.find-left-menu ul li a {
+.green.find-menu .find-menu-footer,.green.find-menu .find-menu-header,.green.find-menu ul li a {
 	background: #03A678
 }
 
-.green.find-left-menu>ul>li.active>a,.green.find-left-menu>ul>li:hover>a {
+.green.find-menu>ul>li.active>a,.green.find-menu>ul>li:hover>a {
 	background: #049372
 }
 
-.green.find-left-menu>ul>li>a {
+.green.find-menu>ul>li>a {
 	border-bottom-color: #049372
 }
 
-.green.find-left-menu ul ul.submenu li:hover>a {
+.green.find-menu ul ul.submenu li:hover>a {
 	border-left-color: #049372
 }
 
-.red.find-left-menu .find-left-menu-footer,.red.find-left-menu .find-left-menu-header,.red.find-left-menu ul li a {
-	background: #222
+.red.find-menu .find-menu-footer,.red.find-menu .find-menu-header,.red.find-menu ul li a {
+	background: #ED5565
 }
 
-.red.find-left-menu>ul>li.active>a,.red.find-left-menu>ul>li:hover>a {
+.red.find-menu>ul>li.active>a,.red.find-menu>ul>li:hover>a {
 	background: #DA4453
 }
 
-.red.find-left-menu>ul>li>a {
-	border-bottom-color: #333
+.red.find-menu>ul>li>a {
+	border-bottom-color: #DA4453
 }
 
-.red.find-left-menu ul ul.submenu li:hover>a {
+.red.find-menu ul ul.submenu li:hover>a {
 	border-left-color: #DA4453
 }
 
-.white.find-left-menu .find-left-menu-footer,.white.find-left-menu .find-left-menu-header,.white.find-left-menu ul li a {
+.white.find-menu .find-menu-footer,.white.find-menu .find-menu-header,.white.find-menu ul li a {
 	background: #fff;
 	color: #555
 }
 
-.white.find-left-menu>ul>li.active>a,.white.find-left-menu>ul>li:hover>a {
+.white.find-menu>ul>li.active>a,.white.find-menu>ul>li:hover>a {
 	background: #f0f0f0
 }
 
-.white.find-left-menu>ul>li>a {
+.white.find-menu>ul>li>a {
 	border-bottom-color: #f0f0f0
 }
 
-.white.find-left-menu ul ul.submenu li:hover>a {
+.white.find-menu ul ul.submenu li:hover>a {
 	border-left-color: #f0f0f0
 }
 
-.white.find-left-menu ul ul.submenu li a {
+.white.find-menu ul ul.submenu li a {
 	color: #f0f0f0
 }
 
-.white.find-left-menu>ul>li>a>.ink {
+.white.find-menu>ul>li>a>.ink {
 	background: rgba(0,0,0,.1)
 }
 
-.black.find-left-menu .find-left-menu-footer,.black.find-left-menu .find-left-menu-header,.black.find-left-menu ul li a {
+.black.find-menu .find-menu-footer,.black.find-menu .find-menu-header,.black.find-menu ul li a {
 	background: #292929
 }
 
-.black.find-left-menu>ul>li.active>a,.black.find-left-menu>ul>li:hover>a {
+.black.find-menu>ul>li.active>a,.black.find-menu>ul>li:hover>a {
 	background: #222
 }
 
-.black.find-left-menu>ul>li>a {
+.black.find-menu>ul>li>a {
 	border-bottom-color: #222
 }
 
-.black.find-left-menu ul ul.submenu li:hover>a {
+.black.find-menu ul ul.submenu li:hover>a {
 	border-left-color: #222
 }

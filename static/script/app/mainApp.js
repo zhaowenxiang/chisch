@@ -49,6 +49,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         url: 'design',
         templateUrl: 'view/find/design.html'
     })
+    .state('/./.python', {
+        url: 'python',
+        templateUrl: 'view/find/backEnd/content.html'
+    })
+    .state('/./.language', {
+        url: 'language',
+        templateUrl: 'view/find/backEnd/content.html'
+    })
+
     $urlRouterProvider.otherwise('/');
     $locationProvider.hashPrefix("");
 });

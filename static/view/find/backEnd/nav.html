@@ -1,37 +1,20 @@
-<div ng-controller="findBackEndController">
-    <div id="find-left-menu" class="find-left-menu red">
-		<div class="find-left-menu-header" id="form">
-            <input type="text" class="filterinput">
-        </div>
-		<ul>
-		    <li><a href="#"><i class="fa fa-home"></i>Home </a></li>
-			<li><a href="#">Events </a></li>
-			<li><a href="#"><i class="fa fa-file-image-o"></i>Gallery </a></li>
-			<li><a href="#"><i class="fa fa-cog"></i>Services </a>
-				<ul class="submenu">
-					<li><a href="#">Web Design </a></li>
-					<li><a href="#">Hosting </a></li>
-					<li><a href="#">Design </a></li>
-					<li><a href="#">Consulting </a></li>
-				</ul>
-			</li>
-			<li><a href="#"><i class="fa fa-home"></i>系统管理 </a></li>
-			<li><a href="#"><i class="fa fa-suitcase"></i>Portfolio </a>
-				<ul class="submenu">
-					<li><a href="#">Web Design </a></li>
-					<li><a href="#">Graphics </a><span class="find-left-menu-label">10 </span>
-					</li>
-					<li><a href="#">Photoshop </a></li>
-					<li><a href="#">Programming </a></li>
-				</ul>
-			</li>
-			<li><a href="#"><i class="fa fa-user"></i>About </a></li>
-			<li><a href="#"><i class="fa fa-envelope"></i>Contact </a></li>
-
+<div class="find-wrapper" ng-controller="findBackEndController">
+    <div class="find-menu red">
+		<div class="find-menu-header" id="form"></div>
+		<ul class="menu-ul">
+            <li ng-repeat="menu in backEndMenuList">
+                <a ui-sref="/./.language/{{ java }}">
+                    {{ menu.title }}
+                    <span ng-if="menu.with_sub"> > </span>
+                </a>
+                <ul class="submenu">
+                    <li ng-repeat="submenu in menu.sub">{{ submenu.title }}</li>
+                </ul>
+            </li>
 		</ul>
-		<div class="find-left-menu-footer">
+		<div class="find-menu-footer">
 			Footer
 		</div>
 	</div>
-    <div class="back-end-content" ng-view></div>
+    <div class="specific-content" ui-view></div>
 </div>
