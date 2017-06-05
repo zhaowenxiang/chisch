@@ -1,9 +1,8 @@
 <div class="find-wrapper" ng-controller="findBackEndController">
-    <div class="find-menu red">
-		<div class="find-menu-header" id="form"></div>
+    <div class="find-menu">
 		<ul class="menu-ul">
-            <li ng-repeat="menu in backEndMenuList">
-                <a ui-sref="/./.language/{{ java }}">
+            <li ng-repeat="menu in backEndMenuList" ui-sref-active="active">
+                <a ui-sref="/./.language({language: menu.id})">
                     {{ menu.title }}
                     <span ng-if="menu.with_sub"> > </span>
                 </a>
@@ -12,9 +11,6 @@
                 </ul>
             </li>
 		</ul>
-		<div class="find-menu-footer">
-			Footer
-		</div>
 	</div>
     <div class="specific-content" ui-view></div>
 </div>

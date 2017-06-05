@@ -54,7 +54,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         templateUrl: 'view/find/backEnd/content.html'
     })
     .state('/./.language', {
-        url: 'language',
+        url: ':language',
         templateUrl: 'view/find/backEnd/content.html'
     })
 

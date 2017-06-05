@@ -9,16 +9,6 @@
 	background-color: #2aabd2;
 }
 
-.filterinput{
-	background-color:rgba(249, 244, 244, 0);
-	border-radius:15px;
-	width:90%;
-	height:30px;
-	border:thin solid #FFF;
-	text-indent:0.5em;
-	font-weight:bold;
-	color:#FFF;
-}
 .menu-ul a{
 	overflow:hidden;
 	text-overflow:ellipsis;
@@ -36,21 +26,9 @@
 }
 
 .find-menu {
-	min-width: 180px;
 	float: left;
 	position: relative;
 	box-shadow: 0 20px 50px #333
-}
-
-.find-menu .find-menu-footer,.find-menu .find-menu-header {
-	width: 100%;
-	height: 50px;
-	padding-left: 22px;
-	float: left;
-	line-height: 50px;
-	font-weight: 600;
-	color: #f0f0f0;
-	background: #414956
 }
 
 .find-menu ul {
@@ -71,9 +49,9 @@
 	padding: 14px 22px;
 	float: left;
 	text-decoration: none;
-	color: #f0f0f0;
+	color: #bbb;
 	font-size: 13px;
-	background: #414956;
+	background: #444;
 	white-space: nowrap;
 	position: relative;
 	overflow: hidden;
@@ -160,162 +138,6 @@
 	padding-left: 45px
 }
 
-.find-menu ul ul.submenu>li>ul.submenu>li>ul.submenu>li>a {
-	padding-left: 60px
-}
-
-.find-menu ul li .find-menu-label,.find-menu ul ul.submenu li .find-menu-label {
-	min-width: 20px;
-	padding: 1px 2px 1px 1px;
-	position: absolute;
-	right: 18px;
-	top: 14px;
-	font-size: 11px;
-	font-weight: 800;
-	color: #555;
-	text-align: center;
-	line-height: 18px;
-	background: #f0f0f0;
-	border-radius: 100%
-}
-
-.find-menu ul ul.submenu li .find-menu-label {
-	top: 12px
-}
-
-.ink {
-	display: block;
-	position: absolute;
-	background: rgba(255,255,255,.3);
-	border-radius: 100%;
-	-webkit-transform: scale(0);
-	-moz-transform: scale(0);
-	-ms-transform: scale(0);
-	-o-transform: scale(0);
-	transform: scale(0)
-}
-
-.animate-ink {
-	-webkit-animation: ripple .5s linear;
-	-moz-animation: ripple .5s linear;
-	-ms-animation: ripple .5s linear;
-	-o-animation: ripple .5s linear;
-	animation: ripple .5s linear
-}
-
-@-webkit-keyframes ripple {
-	100% {
-		opacity: 0;
-		-webkit-transform: scale(2.5)
-	}
-}
-
-@-moz-keyframes ripple {
-	100% {
-		opacity: 0;
-		-moz-transform: scale(2.5)
-	}
-}
-
-@-o-keyframes ripple {
-	100% {
-		opacity: 0;
-		-o-transform: scale(2.5)
-	}
-}
-
-@keyframes ripple {
-	100% {
-		opacity: 0;
-		transform: scale(2.5)
-	}
-}
-
-.blue.find-menu .find-menu-footer,.blue.find-menu .find-menu-header,.blue.find-menu ul li a {
-	background: #4A89DC
-}
-
-.blue.find-menu>ul>li.active>a,.blue.find-menu>ul>li:hover>a {
-	background: #3e82da
-}
-
-.blue.find-menu>ul>li>a {
-	border-bottom-color: #3e82da
-}
-
-.blue.find-menu ul ul.submenu li:hover>a {
-	border-left-color: #3e82da
-}
-
-.green.find-menu .find-menu-footer,.green.find-menu .find-menu-header,.green.find-menu ul li a {
-	background: #03A678
-}
-
-.green.find-menu>ul>li.active>a,.green.find-menu>ul>li:hover>a {
-	background: #049372
-}
-
-.green.find-menu>ul>li>a {
-	border-bottom-color: #049372
-}
-
-.green.find-menu ul ul.submenu li:hover>a {
-	border-left-color: #049372
-}
-
-.red.find-menu .find-menu-footer,.red.find-menu .find-menu-header,.red.find-menu ul li a {
-	background: #ED5565
-}
-
-.red.find-menu>ul>li.active>a,.red.find-menu>ul>li:hover>a {
-	background: #DA4453
-}
-
-.red.find-menu>ul>li>a {
-	border-bottom-color: #DA4453
-}
-
-.red.find-menu ul ul.submenu li:hover>a {
-	border-left-color: #DA4453
-}
-
-.white.find-menu .find-menu-footer,.white.find-menu .find-menu-header,.white.find-menu ul li a {
-	background: #fff;
-	color: #555
-}
-
-.white.find-menu>ul>li.active>a,.white.find-menu>ul>li:hover>a {
-	background: #f0f0f0
-}
-
-.white.find-menu>ul>li>a {
-	border-bottom-color: #f0f0f0
-}
-
-.white.find-menu ul ul.submenu li:hover>a {
-	border-left-color: #f0f0f0
-}
-
-.white.find-menu ul ul.submenu li a {
-	color: #f0f0f0
-}
-
-.white.find-menu>ul>li>a>.ink {
-	background: rgba(0,0,0,.1)
-}
-
-.black.find-menu .find-menu-footer,.black.find-menu .find-menu-header,.black.find-menu ul li a {
-	background: #292929
-}
-
-.black.find-menu>ul>li.active>a,.black.find-menu>ul>li:hover>a {
-	background: #222
-}
-
-.black.find-menu>ul>li>a {
-	border-bottom-color: #222
-}
-
-.black.find-menu ul ul.submenu li:hover>a {
-	border-left-color: #222
+.find-menu ul li a {
+	background: #333
 }
