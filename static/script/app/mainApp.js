@@ -23,35 +23,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('/./', {
         url: '',
-        templateUrl: 'view/find/backEnd/nav.html'
+        templateUrl: 'view/find/content.html'
     })
-    .state('/.fore_end', {
-        url: 'fore_end',
-        templateUrl: 'view/find/foreEnd.html'
-    })
-    .state('/.mobile', {
-        url: 'mobile',
-        templateUrl: 'view/find/mobile.html'
-    })
-    .state('/.operation', {
-        url: 'operation',
-        templateUrl: 'view/find/operation.html'
-    })
-    .state('/.product', {
-        url: 'product',
-        templateUrl: 'view/find/product.html'
-    })
-    .state('/.office', {
-        url: 'office',
-        templateUrl: 'view/find/office.html'
-    })
-    .state('/.design', {
-        url: 'design',
-        templateUrl: 'view/find/design.html'
-    })
-    .state('/./.python', {
-        url: 'python',
-        templateUrl: 'view/find/backEnd/content.html'
+    .state('/.domain', {
+        url: ':domain',
+        templateUrl: 'view/find/content.html'
     })
     .state('/./.language', {
         url: ':language',

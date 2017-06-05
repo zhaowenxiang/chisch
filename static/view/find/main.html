@@ -1,7 +1,7 @@
-<div id="findWrapper" ng-controller="findController">
+<div ng-controller="findMainController">
     <div class="find-nav">
         <ul>
-            <li ng-repeat="nav in findNavList" ui-sref="{{ nav.linkView }}"
+            <li ng-repeat="nav in findNavList" ui-sref="/.domain({domain: nav.linkUrl})"
                 ui-sref-active="find-nav-select">{{ nav.title }}</li>
         </ul>
     </div>

@@ -1,5 +1,4 @@
 app.controller('mainController', function ($scope, $location, $state) {
-    url = $location.url();
     var headerNavList = $scope.headerNavList = [
         {
             'id': 'find',

@@ -1,0 +1,16 @@
+<div class="find-wrapper" ng-controller="findBackEndController">
+    <div class="find-menu">
+		<ul class="menu-ul">
+            <li ng-repeat="menu in backEndMenuList" ui-sref-active="active">
+                <a ui-sref="/./.language({language: menu.id})">
+                    {{ menu.title }}
+                    <span ng-if="menu.with_sub"> > </span>
+                </a>
+                <ul class="submenu">
+                    <li ng-repeat="submenu in menu.sub">{{ submenu.title }}</li>
+                </ul>
+            </li>
+		</ul>
+	</div>
+    <div class="specific-content" ui-view></div>
+</div>
