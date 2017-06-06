@@ -1,4 +1,4 @@
-app.controller("findMainController", function ($scope, $location, $state) {
+app.controller("findNavController", function ($scope, $location, $state) {
     var findNavList = $scope.findNavList = [
         {
             'id': 'back_end',

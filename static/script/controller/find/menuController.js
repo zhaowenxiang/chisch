@@ -1,5 +1,5 @@
-app.controller("findBackEndController", function ($scope, $location, $state) {
-    var backEndMenuList = $scope.backEndMenuList = [
+app.controller("findMenuController", function ($scope, $location, $state, $stateParams) {
+    var backEndMenuList = [
         {
             'id': 'python',
             'title': 'Python',
@@ -46,4 +46,44 @@ app.controller("findBackEndController", function ($scope, $location, $state) {
             'linkView': '/./.language',
         },
     ]
+    var foreEndMenuList = [
+        {
+            'id': 'html',
+            'title': 'Html',
+            'linkView': '/./.language',
+        },
+        {
+            'id': 'css',
+            'title': 'CSS',
+            'linkView': '/./.language',
+        },
+        {
+            'id': 'javascript',
+            'title': 'JavaScript',
+            'linkView': '/./.language',
+        }
+    ]
+    var mobileEndMenuList = [
+        {
+            'id': 'android',
+            'title': 'Android',
+            'linkView': '/./.language',
+        },
+        {
+            'id': 'ios',
+            'title': 'IOS',
+            'linkView': '/./.language',
+        }
+    ]
+    switch ($stateParams.domain) {
+        case '':
+            $scope.menuList = backEndMenuList;
+            break;
+        case 'fore_end':
+            $scope.menuList = foreEndMenuList;
+            break;
+        case 'mobile':
+            $scope.menuList = mobileEndMenuList;
+            break;
+    }
 });
