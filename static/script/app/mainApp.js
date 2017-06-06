@@ -3,7 +3,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
     .state('/', {
         url: '/',
-        templateUrl: 'view/find/main.html'
+        templateUrl: 'view/find/nav.html'
     })
     .state('my', {
         url: '/my',
@@ -23,15 +23,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('/./', {
         url: '',
-        templateUrl: 'view/find/content.html'
+        templateUrl: 'view/find/menu.html'
     })
     .state('/.domain', {
         url: ':domain',
-        templateUrl: 'view/find/content.html'
+        templateUrl: 'view/find/menu.html'
     })
     .state('/./.language', {
         url: ':language',
-        templateUrl: 'view/find/backEnd/content.html'
+        templateUrl: 'view/find/content.html'
     })
 
     $urlRouterProvider.otherwise('/');
