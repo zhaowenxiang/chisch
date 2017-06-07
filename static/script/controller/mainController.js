@@ -3,27 +3,42 @@ app.controller('mainController', function ($scope, $location, $state) {
         {
             'id': 'find',
             'title': '发现',
-            'linkView': '/',
+            'state': 'find'
         },
         {
             'id': 'my',
             'title': '我的',
-            'linkView': 'my',
+            'state': 'my'
         },
         {
             'id': 'friend',
             'title': '朋友',
-            'linkView': 'friend',
+            'state': 'friend'
         },
         {
             'id': 'market',
             'title': '商场',
-            'linkView': 'market',
+            'state': 'market'
         },
         {
             'id': 'download',
             'title': 'APP下载',
-            'linkView': 'download',
+            'state': 'download'
         }
     ]
+    // console.log($location.url());
+    // var activeLinkView = "";
+    // if ($location.url() == '/' || $location.url() == '') {
+    //     activeLinkView = 'find';
+    // }else {
+    //     angular.forEach(headerNavList, function (data) {
+    //         if ($location.url() == '/' + data.state) {
+    //             activeLinkView = data.state;
+    //             return false;
+    //         }
+    //     });
+    // }
+    // if (activeLinkView != "") {
+    //     $state.go(activeLinkView)
+    // }
 });

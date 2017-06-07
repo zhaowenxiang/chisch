@@ -3,59 +3,52 @@ app.controller("findNavController", function ($scope, $location, $state) {
         {
             'id': 'back_end',
             'title': '后端',
-            'baseLink': '/.domain',
-            'linkUrl': ''
+            'state': 'find.back_end({domain: "back_end"})',
         },
         {
             'id': 'fore_end',
             'title': '前端',
-            'baseLink': '/.domain',
-            'linkUrl': 'fore_end'
+            'state': 'find.fore_end({domain: "fore_end"})',
         },
         {
             'id': 'IOS/Android',
             'title': '移动',
-            'baseLink': '/.domain',
-            'linkUrl': 'mobile'
+            'state': 'find.mobile({domain: "mobile"})',
         },
         {
             'id': 'operation',
             'title': '运维',
-            'baseLink': '/.domain',
-            'linkUrl': 'operation'
+            'state': 'find.operation({domain: "operation"})',
         },
         {
             'id': 'product',
             'title': '产品',
-            'baseLink': '/.domain',
-            'linkUrl': 'product'
+            'state': 'find.product({domain: "product"})',
         },
         {
             'id': 'office_software',
             'title': '办公软件',
-            'baseLink': '/.domain',
-            'linkUrl': 'office_software'
+            'state': 'find.office_software({domain: "office_software"})',
         },
         {
             'id': 'design_software',
             'title': '设计软件',
-            'baseLink': '/.domain',
-            'linkUrl': 'design_software'
+            'state': 'find.design_software({domain: "design_software"})',
         },
     ]
 
-    var activeLinkView = "";
-    if ($location.url() == '/') {
-        activeLinkView = '/./';
-    }else {
-        angular.forEach(findNavList, function (data) {
-            if ($location.url() == '/' + data.linkView.substr(2)) {
-                activeLinkView = data.linkView;
-                return false;
-            }
-        });
-    }
-    if (activeLinkView != "") {
-        $state.go(activeLinkView)
-    }
+    // var activeLinkView = "";
+    // if ($location.url() == '/find') {
+    //     activeLinkView = 'find.back_end';
+    // }else {
+    //     angular.forEach(findNavList, function (data) {
+    //         if ($location.url() == '/' + data.linkView.substr(2)) {
+    //             activeLinkView = data.linkView;
+    //             return false;
+    //         }
+    //     });
+    // }
+    // if (activeLinkView != "") {
+    //     $state.go(activeLinkView)
+    // }
 });

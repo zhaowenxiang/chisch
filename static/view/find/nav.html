@@ -1,7 +1,7 @@
 <div ng-controller="findNavController">
     <div class="find-nav">
         <ul>
-            <li ng-repeat="nav in findNavList" ui-sref="/.domain({domain: nav.linkUrl})"
+            <li ng-repeat="nav in findNavList" ui-sref="{{ nav.state }}"
                 ui-sref-active="find-nav-select">{{ nav.title }}</li>
         </ul>
     </div>

@@ -2,9 +2,8 @@
     <div class="find-menu">
 		<ul class="menu-ul">
             <li ng-repeat="menu in menuList" ui-sref-active="active">
-                <a ui-sref="/./.language({language: menu.id})">
+                <a ui-sref="{{ menu.state }}">
                     {{ menu.title }}
-                    <span ng-if="menu.with_sub"> > </span>
                 </a>
             </li>
 		</ul>

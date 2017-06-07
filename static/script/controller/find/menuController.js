@@ -3,80 +3,83 @@ app.controller("findMenuController", function ($scope, $location, $state, $state
         {
             'id': 'python',
             'title': 'Python',
-            'linkView': '/./.language',
+            'state': 'find.back_end.python',
         },
         {
             'id': 'java',
             'title': 'Java',
-            'linkView': '/./.language',
+            'state': 'find.back_end.java',
         },
         {
             'id': 'ruby',
             'title': 'Ruby',
-            'linkView': '/./.language',
+            'state': 'find.back_end.ruby',
         },
         {
             'id': 'golang',
             'title': 'Golang',
-            'linkView': '/./.language',
+            'state': 'find.back_end.golang',
         },
         {
             'id': 'c',
             'title': 'C',
-            'linkView': '/./.language',
+            'state': 'find.back_end.c',
         },
         {
             'id': 'c++',
             'title': 'C++',
-            'linkView': '/./.language',
+            'state': 'find.back_end.c++',
         },
         {
             'id': 'basic',
             'title': 'Basic',
-            'linkView': '/./.language',
+            'state': 'find.back_end.basic',
         },
         {
             'id': 'pascal',
             'title': 'Pascal',
-            'linkView': '/./.language',
+            'state': 'find.back_end.pascal',
         },
         {
             'id': 'erlang',
             'title': 'Erlang',
-            'linkView': '/./.language',
+            'state': 'find.back_end.erlang',
         },
     ]
     var foreEndMenuList = [
         {
             'id': 'html',
             'title': 'Html',
-            'linkView': '/./.language',
+            'state': '/./.language',
         },
         {
             'id': 'css',
             'title': 'CSS',
-            'linkView': '/./.language',
+            'state': '/./.language',
         },
         {
             'id': 'javascript',
             'title': 'JavaScript',
-            'linkView': '/./.language',
+            'state': '/./.language',
         }
     ]
     var mobileEndMenuList = [
         {
             'id': 'android',
             'title': 'Android',
-            'linkView': '/./.language',
+            'state': '/./.language',
         },
         {
             'id': 'ios',
             'title': 'IOS',
-            'linkView': '/./.language',
+            'state': '/./.language',
         }
     ]
     switch ($stateParams.domain) {
         case '':
+            $scope.menuList = backEndMenuList;
+            break;
+        case 'back_end':
             $scope.menuList = backEndMenuList;
             break;
         case 'fore_end':
