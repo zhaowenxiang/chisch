@@ -2,10 +2,10 @@ var app = angular.module('mainApp', ['ui.router']);
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
     //一级菜单
-    .state('/', {
-        url: '/find',
-        templateUrl: 'view/find/nav.html'
-    })
+    //.state('/', {
+    //    url: '/find',
+    //    templateUrl: 'view/find/nav.html',
+    //})
     .state('find', {
         url: '/find',
         templateUrl: 'view/find/nav.html'
@@ -28,70 +28,122 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     //二级发现菜单
     .state('find.back_end', {
-        url: '/:domain',
-        templateUrl: 'view/find/menu.html'
+        url: '/back_end',
+        templateUrl: 'view/find/menu.html',
+        params: {
+            domain: "back_end"
+        }
     })
     .state('find.fore_end', {
-        url: '/:domain',
+        url: '/fore_end',
         templateUrl: 'view/find/menu.html',
+        params: {
+            domain: "fore_end"
+        }
     })
     .state('find.mobile', {
-        url: '/:domain',
+        url: '/mobile',
         templateUrl: 'view/find/menu.html',
+        params: {
+            domain: "mobile"
+        }
     })
     .state('find.operation', {
-        url: '/:domain',
+        url: '/operation',
         templateUrl: 'view/find/menu.html',
+        params: {
+            domain: "operation"
+        }
     })
     .state('find.product', {
-        url: '/:domain',
+        url: '/product',
         templateUrl: 'view/find/menu.html',
+        params: {
+            domain: "product"
+        }
     })
     .state('find.office_software', {
-        url: '/:domain',
+        url: '/office_software',
         templateUrl: 'view/find/menu.html',
+        params: {
+            domain: "office_software"
+        }
     })
     .state('find.design_software', {
-        url: '/:domain',
+        url: '/design_software',
         templateUrl: 'view/find/menu.html',
+        params: {
+            domain: "design_software"
+        }
     })
     .state('find.back_end.python', {
-        url: '/:language',
-        templateUrl: 'view/find/content.html'
+        url: '/python',
+        templateUrl: 'view/find/content.html',
+        params: {
+            language: "python"
+        }
     })
     .state('find.back_end.java', {
-        url: '/:language',
-        templateUrl: 'view/find/content.html'
+        url: '/java',
+        templateUrl: 'view/find/content.html',
+        params: {
+            language: "java"
+        }
     })
     .state('find.back_end.ruby', {
-        url: '/:language',
-        templateUrl: 'view/find/content.html'
+        url: '/ruby',
+        templateUrl: 'view/find/content.html',
+        params: {
+            language: "ruby"
+        }
     })
     .state('find.back_end.golang', {
-        url: '/:language',
-        templateUrl: 'view/find/content.html'
+        url: '/golang',
+        templateUrl: 'view/find/content.html',
+        params: {
+            language: "golang"
+        }
     })
     .state('find.back_end.c', {
-        url: '/:language',
-        templateUrl: 'view/find/content.html'
+        url: '/c',
+        templateUrl: 'view/find/content.html',
+        params: {
+            language: "c"
+        }
     })
     .state('find.back_end.c++', {
-        url: ':language',
-        templateUrl: 'view/find/content.html'
+        url: '/c++',
+        templateUrl: 'view/find/content.html',
+        params: {
+            language: "c++"
+        }
     })
     .state('find.back_end.basic', {
-        url: '/:language',
-        templateUrl: 'view/find/content.html'
+        url: '/basic',
+        templateUrl: 'view/find/content.html',
+        params: {
+            language: "basic"
+        }
     })
     .state('find.back_end.pascal', {
-        url: '/:language',
-        templateUrl: 'view/find/content.html'
+        url: '/pascal',
+        templateUrl: 'view/find/content.html',
+        params: {
+            language: "pascal"
+        }
     })
     .state('find.back_end.erlang', {
-        url: '/:language',
-        templateUrl: 'view/find/content.html'
+        url: '/erlang',
+        templateUrl: 'view/find/content.html',
+        params: {
+            language: "erlang"
+        }
     })
+    .state('404', {
+        url: '/404',
+        templateUrl: '404.html',
+    }),
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/404');
     $locationProvider.hashPrefix("");
 });

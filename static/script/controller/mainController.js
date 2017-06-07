@@ -1,4 +1,4 @@
-app.controller('mainController', function ($scope, $location, $state) {
+app.controller('mainController', function ($rootScope, $scope, $location, $state) {
     var headerNavList = $scope.headerNavList = [
         {
             'id': 'find',
@@ -25,7 +25,7 @@ app.controller('mainController', function ($scope, $location, $state) {
             'title': 'APP下载',
             'state': 'download'
         }
-    ]
+    ];
     // console.log($location.url());
     // var activeLinkView = "";
     // if ($location.url() == '/' || $location.url() == '') {
