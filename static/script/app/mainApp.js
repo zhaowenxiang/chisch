@@ -56,12 +56,39 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         templateUrl: 'view/find/menu.html',
     })
     .state('find.back_end.python', {
-        url: '/python',
+        url: '/:language',
         templateUrl: 'view/find/content.html'
     })
-    //三级语言选择
-    .state('/./.language', {
+    .state('find.back_end.java', {
+        url: '/:language',
+        templateUrl: 'view/find/content.html'
+    })
+    .state('find.back_end.ruby', {
+        url: '/:language',
+        templateUrl: 'view/find/content.html'
+    })
+    .state('find.back_end.golang', {
+        url: '/:language',
+        templateUrl: 'view/find/content.html'
+    })
+    .state('find.back_end.c', {
+        url: '/:language',
+        templateUrl: 'view/find/content.html'
+    })
+    .state('find.back_end.c++', {
         url: ':language',
+        templateUrl: 'view/find/content.html'
+    })
+    .state('find.back_end.basic', {
+        url: '/:language',
+        templateUrl: 'view/find/content.html'
+    })
+    .state('find.back_end.pascal', {
+        url: '/:language',
+        templateUrl: 'view/find/content.html'
+    })
+    .state('find.back_end.erlang', {
+        url: '/:language',
         templateUrl: 'view/find/content.html'
     })
 
