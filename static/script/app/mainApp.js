@@ -2,14 +2,7 @@ var app = angular.module('mainApp', ['ui.router']);
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
     //一级菜单
-    //.state('/', {
-    //    url: '/find',
-    //    templateUrl: 'view/find/nav.html',
-    //})
-    .state('find', {
-        url: '/find',
-        templateUrl: 'view/find/nav.html'
-    })
+
     .state('my', {
         url: '/my',
         templateUrl: 'view/my/main.html'
@@ -26,13 +19,17 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         url: '/download',
         templateUrl: 'view/download/main.html'
     })
-    //二级发现菜单
+    //发现下的二级菜单
     .state('find.back_end', {
         url: '/back_end',
         templateUrl: 'view/find/menu.html',
         params: {
             domain: "back_end"
         }
+    })
+    .state('find', {
+        url: '/find',
+        templateUrl: 'view/find/nav.html'
     })
     .state('find.fore_end', {
         url: '/fore_end',
@@ -77,7 +74,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         }
     })
     .state('find.back_end.python', {
-        url: '/python',
+        url: '^',
         templateUrl: 'view/find/content.html',
         params: {
             language: "python"
