@@ -26,6 +26,8 @@ app.controller('mainController', function ($rootScope, $scope, $location, $state
             'state': 'download'
         }
     ];
+    //console.log($state);
+    //$state.transition('find');
     // console.log($location.url());
     // var activeLinkView = "";
     // if ($location.url() == '/' || $location.url() == '') {

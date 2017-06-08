@@ -1,5 +1,9 @@
 var app = angular.module('mainApp', ['ui.router']);
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    $urlRouterProvider.when(
+        '',
+        'find/back_end/python'
+    )
     $stateProvider
     //一级菜单
 
@@ -74,7 +78,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         }
     })
     .state('find.back_end.python', {
-        url: '^',
+        url: '/python',
         templateUrl: 'view/find/content.html',
         params: {
             language: "python"
