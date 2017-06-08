@@ -6,7 +6,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     )
     $stateProvider
     //一级菜单
-
+    .state('find', {
+        url: '/find',
+        templateUrl: 'view/find/nav.html',
+        controller: 'findNavController',
+    })
     .state('my', {
         url: '/my',
         templateUrl: 'view/my/main.html'
@@ -29,11 +33,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         templateUrl: 'view/find/menu.html',
         params: {
             domain: "back_end"
-        }
-    })
-    .state('find', {
-        url: '/find',
-        templateUrl: 'view/find/nav.html'
+        },
+        cache: false
     })
     .state('find.fore_end', {
         url: '/fore_end',

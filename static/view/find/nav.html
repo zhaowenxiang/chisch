@@ -1,7 +1,8 @@
-<div ng-controller="findNavController">
+<div>
     <div class="find-nav">
         <ul>
             <li ng-repeat="nav in findNavList" ui-sref="{{ nav.state }}"
+                ui-sref-opts="{reload:'{{nav.state}}'}"
                 ui-sref-active="find-nav-select">{{ nav.title }}</li>
         </ul>
     </div>

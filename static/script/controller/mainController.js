@@ -1,4 +1,5 @@
 app.controller('mainController', function ($rootScope, $scope, $location, $state) {
+    console.log("index mainController");
     var headerNavList = $scope.headerNavList = [
         {
             'id': 'find',
