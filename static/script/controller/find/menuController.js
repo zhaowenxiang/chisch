@@ -76,7 +76,7 @@ app.controller("findMenuController", function ($scope, $location, $state, $state
             'state': '/./.language',
         }
     ]
-    switch ($stateParams.domain) {
+    switch ($state.current.data.domain) {
         case '':
             $scope.menuList = backEndMenuList;
             break;

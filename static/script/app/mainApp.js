@@ -31,113 +31,112 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('find.back_end', {
         url: '/back_end',
         templateUrl: 'view/find/menu.html',
-        params: {
+        data: {
             domain: "back_end"
         },
-        cache: false
     })
     .state('find.fore_end', {
         url: '/fore_end',
         templateUrl: 'view/find/menu.html',
-        params: {
+        data: {
             domain: "fore_end"
         }
     })
     .state('find.mobile', {
         url: '/mobile',
         templateUrl: 'view/find/menu.html',
-        params: {
+        data: {
             domain: "mobile"
         }
     })
     .state('find.operation', {
         url: '/operation',
         templateUrl: 'view/find/menu.html',
-        params: {
+        data: {
             domain: "operation"
         }
     })
     .state('find.product', {
         url: '/product',
         templateUrl: 'view/find/menu.html',
-        params: {
+        data: {
             domain: "product"
         }
     })
     .state('find.office_software', {
         url: '/office_software',
         templateUrl: 'view/find/menu.html',
-        params: {
+        data: {
             domain: "office_software"
         }
     })
     .state('find.design_software', {
         url: '/design_software',
         templateUrl: 'view/find/menu.html',
-        params: {
+        data: {
             domain: "design_software"
         }
     })
     .state('find.back_end.python', {
         url: '/python',
         templateUrl: 'view/find/content.html',
-        params: {
+        data: {
             language: "python"
         }
     })
     .state('find.back_end.java', {
         url: '/java',
         templateUrl: 'view/find/content.html',
-        params: {
+        data: {
             language: "java"
         }
     })
     .state('find.back_end.ruby', {
         url: '/ruby',
         templateUrl: 'view/find/content.html',
-        params: {
+        data: {
             language: "ruby"
         }
     })
     .state('find.back_end.golang', {
         url: '/golang',
         templateUrl: 'view/find/content.html',
-        params: {
+        data: {
             language: "golang"
         }
     })
     .state('find.back_end.c', {
         url: '/c',
         templateUrl: 'view/find/content.html',
-        params: {
+        data: {
             language: "c"
         }
     })
     .state('find.back_end.c++', {
         url: '/c++',
         templateUrl: 'view/find/content.html',
-        params: {
+        data: {
             language: "c++"
         }
     })
     .state('find.back_end.basic', {
         url: '/basic',
         templateUrl: 'view/find/content.html',
-        params: {
+        data: {
             language: "basic"
         }
     })
     .state('find.back_end.pascal', {
         url: '/pascal',
         templateUrl: 'view/find/content.html',
-        params: {
+        data: {
             language: "pascal"
         }
     })
     .state('find.back_end.erlang', {
         url: '/erlang',
         templateUrl: 'view/find/content.html',
-        params: {
+        data: {
             language: "erlang"
         }
     })

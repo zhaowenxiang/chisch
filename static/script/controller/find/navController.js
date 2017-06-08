@@ -40,18 +40,4 @@ app.controller("findNavController", function ($scope, $location, $state) {
     if ($state.current.name == 'find') {
         $state.go('find.back_end');
     }
-    // var activeLinkView = "";
-    // if ($location.url() == '/find') {
-    //     activeLinkView = 'find.back_end';
-    // }else {
-    //     angular.forEach(findNavList, function (data) {
-    //         if ($location.url() == '/' + data.linkView.substr(2)) {
-    //             activeLinkView = data.linkView;
-    //             return false;
-    //         }
-    //     });
-    // }
-    // if (activeLinkView != "") {
-    //     $state.go(activeLinkView)
-    // }
 });
