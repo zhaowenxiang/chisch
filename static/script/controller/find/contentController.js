@@ -1,22 +1,25 @@
 app.controller("findContentController", function ($scope, $location, $state, $stateParams) {
     $scope.language = $state.current.data.language;
 
-    //url 中的查询条件
-    console.log($location.search())
-    var queryCriteria = $scope.queryCriteria = $location.search();
+    //初始化查询条件
+    function initQueryCriteria(queryParams) {
+        if (queryParams.orderBy == undefined) {
+            queryParams.orderBy = "comprehensive";
+        }else {
 
-    // 默认选中排序规则（综合排序）
-    if (queryCriteria.orderBy == undefined) {
-        queryCriteria.orderRule = "comprehensive";
-        //$scope.orderRule = "comprehensive";
-    }else {
-
+        }
+        if (queryParams.isLookAt != undefined){
+             (queryParams.isLookAt != 0)? queryParams.isLookAt = true: queryParams.isLookAt = false;
+        }else {
+            queryParams.isLookAt = false;
+        }
+        return queryParams
     }
 
-    //过滤器
-    queryCriteria.isFree = true;
+    var queryCriteria = $scope.queryCriteria = initQueryCriteria($location.search());
+    $location.search(queryCriteria);
     $scope.query = function () {
-        // console.log($location.absUrl());
-        console.log($location.search());
+        console.log(queryCriteria);
+        $location.search(queryCriteria);
     }
 });
