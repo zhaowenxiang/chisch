@@ -1,18 +1,23 @@
 <div class="specific-content" ng-controller="findContentController">
     <h2 ng-bind="language"></h2>
-    <div class="hot-recommendation"></div>
 
-    <input id="tab1" type="radio" name="tabs" checked>
-    <label for="tab1">Codepen</label>
+    <input class="orderRule" id="tab1" type="radio" name="tabs" value="comprehensive"
+           ng-click=query() ng-model="queryCriteria.orderRule">
+    <label for="tab1">综合排序</label>
 
-    <input id="tab2" type="radio" name="tabs">
-    <label for="tab2">Dribbble</label>
+    <input class="orderRule" id="tab2" type="radio" name="tabs" value="popularity"
+           ng-click=query() ng-model="queryCriteria.orderRule">
+    <label for="tab2">人气榜</label>
 
-    <input id="tab3" type="radio" name="tabs">
-    <label for="tab3">Dropbox</label>
+    <input class="orderRule" id="tab3" type="radio" name="tabs" value="new"
+           ng-click=query() ng-model="queryCriteria.orderRule">
+    <label for="tab3">最新上传</label>
 
-    <input id="tab4" type="radio" name="tabs">
-    <label for="tab4">Drupal</label>
+    <input class="orderRule" id="tab4" type="radio" name="tabs" value="freeOfCharge"
+           ng-click=query() ng-model="queryCriteria.orderRule">
+    <label for="tab4">免费专区</label>
+
+    <input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="queryCriteria.isFree" />乒乓球
     <section id="content1">
     <p>
       Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.

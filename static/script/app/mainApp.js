@@ -81,7 +81,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         url: '/python',
         templateUrl: 'view/find/content.html',
         data: {
-            language: "python"
+            language: "python",
+            default_order: "Comprehensive",
         }
     })
     .state('find.back_end.java', {

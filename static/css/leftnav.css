@@ -150,14 +150,14 @@ section {
   border-top: 1px solid #ddd;
 }
 
-input {
+.orderRule {
   display: none;
 }
 
 label {
   display: inline-block;
   margin: 0 0 -1px;
-  padding: 15px 25px;
+  padding: 15px 15px;
   font-weight: 600;
   text-align: center;
   color: #bbb;
@@ -191,7 +191,7 @@ label:hover {
   cursor: pointer;
 }
 
-input:checked + label {
+.orderRule:checked + label {
   color: #555;
   border: 1px solid #ddd;
   border-top: 2px solid orange;
