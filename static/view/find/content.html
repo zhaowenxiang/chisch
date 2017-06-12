@@ -20,11 +20,11 @@
     <input type="checkbox" ng-true-value="true" ng-false-value="false"
            ng-click=query() ng-model="queryCriteria.isLookAt" />允许试看
     <section id="content1">
-    <p>
-      Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
-    </p>
-    <p>
-      Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
-    </p>
-  </section>
+    </section>
+    <table>
+        <tr ng-repeat="re in res" ng-if="($index+1)%4 == 1">
+            <td ng-repeat="re in res">{{ re.id }}</td>
+        </tr>
+    </table>
+
 </div>

@@ -21,5 +21,61 @@ app.controller("findContentController", function ($scope, $location, $state, $st
     $scope.query = function () {
         console.log(queryCriteria);
         $location.search(queryCriteria);
+
+        var res = $scope.res = [
+            {
+                "id": 1,
+                "title": queryCriteria.orderBy,
+            },
+            {
+                "id": 2,
+                "title": queryCriteria.orderBy,
+            },
+            {
+                "id": 3,
+                "title": queryCriteria.orderBy,
+            },
+            {
+                "id": 4,
+                "title": queryCriteria.orderBy,
+            },
+            {
+                "id": 5,
+                "title": queryCriteria.orderBy,
+            },
+            {
+                "id": 6,
+                "title": queryCriteria.orderBy,
+            },
+            {
+                "id": 7,
+                "title": queryCriteria.orderBy,
+            },
+            {
+                "id": 8,
+                "title": queryCriteria.orderBy,
+            },
+            {
+                "id": 9,
+                "title": queryCriteria.orderBy,
+            },
+            {
+                "id": 9,
+                "title": queryCriteria.orderBy,
+            },
+            {
+                "id": 9,
+                "title": queryCriteria.orderBy,
+            },
+            {
+                "id": 9,
+                "title": queryCriteria.orderBy,
+            },
+            {
+                "id": 9,
+                "title": queryCriteria.orderBy,
+            }
+        ]
+        console.log(res);
     }
 });
