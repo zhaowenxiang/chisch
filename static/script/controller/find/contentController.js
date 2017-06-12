@@ -60,19 +60,19 @@ app.controller("findContentController", function ($scope, $location, $state, $st
                 "title": queryCriteria.orderBy,
             },
             {
-                "id": 9,
+                "id": 10,
                 "title": queryCriteria.orderBy,
             },
             {
-                "id": 9,
+                "id": 11,
                 "title": queryCriteria.orderBy,
             },
             {
-                "id": 9,
+                "id": 12,
                 "title": queryCriteria.orderBy,
             },
             {
-                "id": 9,
+                "id": 13,
                 "title": queryCriteria.orderBy,
             }
         ]

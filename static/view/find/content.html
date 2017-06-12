@@ -23,7 +23,7 @@
     </section>
     <table>
         <tr ng-repeat="re in res" ng-if="($index+1)%4 == 1">
-            <td ng-repeat="re in res">{{ re.id }}</td>
+            <td ng-repeat="re in res.slice($index, $index+4)">{{ re.id }}</td>
         </tr>
     </table>
 
