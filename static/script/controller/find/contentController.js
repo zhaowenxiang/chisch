@@ -1,4 +1,4 @@
-app.controller("findContentController", function ($scope, $location, $state, $stateParams) {
+app.controller("findContentController", function ($scope, $location, $state, $stateParams, $http) {
     $scope.language = $state.current.data.language;
 
     //初始化查询条件
@@ -76,6 +76,26 @@ app.controller("findContentController", function ($scope, $location, $state, $st
                 "title": queryCriteria.orderBy,
             }
         ]
-        console.log(res);
+        $http({
+	        method: 'GET',
+	        url: 'http://localhost:8000/user/6',
+            headers: {
+	            'Content-Type': "application/json; charset=UTF-8",
+            },
+        }).then(function (result) {  //正确请求成功时处理
+            console.log(result);
+            alert("success");
+            // console.log(result);
+        }).catch(function (result) { //捕捉错误处理
+            alert("failed");
+            console.log(result);
+        })
+        // $http.get(
+        //     "https://www.baidu.com"
+        // ).success(function (data) {
+        //     console.log(data);
+        // }).error(function (err) {
+        //     console.log(err);
+        // });
     }
 });
