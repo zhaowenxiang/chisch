@@ -43,7 +43,8 @@ class RetWrapper(object):
         content = str(ret).replace("'", '"')\
                           .replace('None', 'null')\
                           .replace('False', 'false')\
-                          .replace('True', 'true')
+                          .replace('True', 'true')\
+                          .replace(': u', ': ')
         return content, ret['status']
 
     @classmethod
