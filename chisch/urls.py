@@ -18,13 +18,13 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin', include(admin.site.urls)),
-    url(r'^verify', include('verify.urls', namespace='verify')),
-    url(r'^user', include('user_.urls', namespace='user')),
-    url(r'^auth', include('auth_.urls', namespace='auth')),
-    url(r'^oss', include('oss.urls', namespace='oss')),
-    url(r'^work_order', include('workorder.urls', namespace='work_order')),
-    url(r'^curriculum', include('curriculum.urls', namespace='curriculum')),
-    url(r'^video', include('curriculum.video.urls', namespace='video')),
-    url(r'^vod', include('vod.urls', namespace='vod')),
+    url(r'^api/verify', include('verify.urls', namespace='verify')),
+    url(r'^api/user', include('user_.urls', namespace='user')),
+    url(r'^api/auth', include('auth_.urls', namespace='auth')),
+    url(r'^api/oss', include('oss.urls', namespace='oss')),
+    url(r'^api/work_order', include('workorder.urls', namespace='work_order')),
+    url(r'^api/curriculum', include('curriculum.urls', namespace='curriculum')),
+    url(r'^api/video', include('curriculum.video.urls', namespace='video')),
+    url(r'^api/vod', include('vod.urls', namespace='vod')),
 
 ]
