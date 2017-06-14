@@ -57,7 +57,7 @@ class CurriculumListView(ListView):
                 curriculum.save()
             except Exception, e:
                 return RetWrapper.wrap_and_return(e)
-        result = _s(curriculum, **curriculum.serializer_rule())
+        result = _s(curriculum, own=True)
         return RetWrapper.wrap_and_return(result)
 
     def get_curriculum_categories(self, request, *args, **kwargs):

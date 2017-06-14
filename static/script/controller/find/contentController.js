@@ -78,7 +78,7 @@ app.controller("findContentController", function ($scope, $location, $state, $st
         ]
         $http({
 	        method: 'GET',
-	        url: 'http://localhost:8000/user/6',
+	        url: 'http://120.77.213.246/api/user/1',
             headers: {
 	            'Content-Type': "application/json; charset=UTF-8",
             },

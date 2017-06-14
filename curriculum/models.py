@@ -30,6 +30,5 @@ class Curriculum(BaseModel, models.Model):
 
     @classmethod
     def serializer_rule(cls, user_id=None, token_user_id=None, own=False):
-        kwargs = User.serializer_rule()
-        kwargs.update({"foreign": True})
+        kwargs = super(Curriculum, cls).serializer_rule(own=own)
         return kwargs
