@@ -60,6 +60,14 @@ class CurriculumListView(ListView):
         result = _s(curriculum, own=True)
         return RetWrapper.wrap_and_return(result)
 
+    def page_list(self, request, *args, **kwargs):
+        try:
+            curriculums = self.curriculum_manager.all()
+        except Exception, e:
+            return RetWrapper.wrap_and_return(e)
+        result = _s(curriculums, own=True)
+        return RetWrapper.wrap_and_return(result)
+
     def get_curriculum_categories(self, request, *args, **kwargs):
         try:
             category = self.curriculum_manager.get_curriculum_categories()
