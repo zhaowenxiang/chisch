@@ -77,11 +77,17 @@ app.controller("findContentController", function ($scope, $location, $state, $st
             }
         ]
         $http({
-	        method: 'GET',
-	        url: 'http://120.77.213.246/api/user/1',
+	        method: 'POST',
+	        url: 'http://120.77.213.246/api/curriculum',
             headers: {
 	            'Content-Type': "application/json; charset=UTF-8",
             },
+            data: {
+	            action: 'page_list',
+                params: {
+
+                }
+	        }
         }).then(function (result) {  //正确请求成功时处理
             console.log(result);
             alert("success");
@@ -90,12 +96,5 @@ app.controller("findContentController", function ($scope, $location, $state, $st
             alert("failed");
             console.log(result);
         })
-        // $http.get(
-        //     "https://www.baidu.com"
-        // ).success(function (data) {
-        //     console.log(data);
-        // }).error(function (err) {
-        //     console.log(err);
-        // });
     }
 });
