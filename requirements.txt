@@ -1,6 +1,6 @@
 django-crontab
-django-simple-serializer==2.0.5
-simplejson
+#django-simple-serializer==2.0.5
+simplejson==3.10.0
 django==1.8.16
 MySQL-python
 six
