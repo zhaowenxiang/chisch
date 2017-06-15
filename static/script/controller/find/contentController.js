@@ -22,60 +22,62 @@ app.controller("findContentController", function ($scope, $location, $state, $st
         console.log(queryCriteria);
         $location.search(queryCriteria);
 
-        var res = $scope.res = [
-            {
-                "id": 1,
-                "title": queryCriteria.orderBy,
-            },
-            {
-                "id": 2,
-                "title": queryCriteria.orderBy,
-            },
-            {
-                "id": 3,
-                "title": queryCriteria.orderBy,
-            },
-            {
-                "id": 4,
-                "title": queryCriteria.orderBy,
-            },
-            {
-                "id": 5,
-                "title": queryCriteria.orderBy,
-            },
-            {
-                "id": 6,
-                "title": queryCriteria.orderBy,
-            },
-            {
-                "id": 7,
-                "title": queryCriteria.orderBy,
-            },
-            {
-                "id": 8,
-                "title": queryCriteria.orderBy,
-            },
-            {
-                "id": 9,
-                "title": queryCriteria.orderBy,
-            },
-            {
-                "id": 10,
-                "title": queryCriteria.orderBy,
-            },
-            {
-                "id": 11,
-                "title": queryCriteria.orderBy,
-            },
-            {
-                "id": 12,
-                "title": queryCriteria.orderBy,
-            },
-            {
-                "id": 13,
-                "title": queryCriteria.orderBy,
-            }
-        ]
+        var res = $scope.res = new Array()
+        console.log(res)
+        //     [
+        //     {
+        //         "id": 1,
+        //         "title": queryCriteria.orderBy,
+        //     },
+        //     {
+        //         "id": 2,
+        //         "title": queryCriteria.orderBy,
+        //     },
+        //     {
+        //         "id": 3,
+        //         "title": queryCriteria.orderBy,
+        //     },
+        //     {
+        //         "id": 4,
+        //         "title": queryCriteria.orderBy,
+        //     },
+        //     {
+        //         "id": 5,
+        //         "title": queryCriteria.orderBy,
+        //     },
+        //     {
+        //         "id": 6,
+        //         "title": queryCriteria.orderBy,
+        //     },
+        //     {
+        //         "id": 7,
+        //         "title": queryCriteria.orderBy,
+        //     },
+        //     {
+        //         "id": 8,
+        //         "title": queryCriteria.orderBy,
+        //     },
+        //     {
+        //         "id": 9,
+        //         "title": queryCriteria.orderBy,
+        //     },
+        //     {
+        //         "id": 10,
+        //         "title": queryCriteria.orderBy,
+        //     },
+        //     {
+        //         "id": 11,
+        //         "title": queryCriteria.orderBy,
+        //     },
+        //     {
+        //         "id": 12,
+        //         "title": queryCriteria.orderBy,
+        //     },
+        //     {
+        //         "id": 13,
+        //         "title": queryCriteria.orderBy,
+        //     }
+        // ]
         $http({
 	        method: 'POST',
 	        url: 'http://120.77.213.246/api/curriculum',
@@ -88,13 +90,15 @@ app.controller("findContentController", function ($scope, $location, $state, $st
 
                 }
 	        }
-        }).then(function (result) {  //正确请求成功时处理
-            console.log(result);
-            alert("success");
+        }).then(function (response) {  //正确请求成功时处理
+            console.log(response.data.result);
+            angular.forEach(response.data.result, function (record) {
+                res.push(record)
+            });
             // console.log(result);
-        }).catch(function (result) { //捕捉错误处理
+        }).catch(function (error) { //捕捉错误处理
             alert("failed");
-            console.log(result);
+            console.log(error);
         })
     }
 });

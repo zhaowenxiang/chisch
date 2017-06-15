@@ -21,9 +21,12 @@
            ng-click=query() ng-model="queryCriteria.isLookAt" />允许试看
     <section id="content1">
     </section>
-    <table>
-        <tr ng-repeat="re in res" ng-if="($index+1)%4 == 1">
-            <td ng-repeat="re in res.slice($index, $index+4)">{{ re.id }}</td>
+    <table class="content-table">
+        <tr ng-repeat="re in res" ng-if="($index+1)%5 == 1">
+            <td ng-repeat="re in res.slice($index, $index+5)">
+                <img ng-src="{{ re.cover_url }}">
+                <!--{{ re.title }}-->
+            </td>
         </tr>
     </table>
 
