@@ -218,14 +218,31 @@ section {
   }
 }
 
-.content-table {
-	width: 90%;
+.content-div {
+	width: 100%;
+	background-color: #78d244;
 }
 
-.content-table tr, .content-table td {
+.content-table {
+	display: inline;
+	width: 100%;
+	/*border-collapse: separate;*/
+	/*border-spacing: 0px 50px;*/
+}
+
+.content-table tr {
+	/*border: 1px solid #333;*/
+}
+
+.content-table td {
+	border: 1px solid #fff;
+}
+
+.content-table td:hover {
 	border: 1px solid #333;
 }
 
 .content-table img {
-	width: 100%;
+	/*margin: 0 0;*/
+	width: 90%;
 }
