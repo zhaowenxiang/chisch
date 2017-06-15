@@ -19,65 +19,10 @@ app.controller("findContentController", function ($scope, $location, $state, $st
     var queryCriteria = $scope.queryCriteria = initQueryCriteria($location.search());
     $location.search(queryCriteria);
     $scope.query = function () {
-        console.log(queryCriteria);
         $location.search(queryCriteria);
 
         var res = $scope.res = new Array()
-        console.log(res)
-        //     [
-        //     {
-        //         "id": 1,
-        //         "title": queryCriteria.orderBy,
-        //     },
-        //     {
-        //         "id": 2,
-        //         "title": queryCriteria.orderBy,
-        //     },
-        //     {
-        //         "id": 3,
-        //         "title": queryCriteria.orderBy,
-        //     },
-        //     {
-        //         "id": 4,
-        //         "title": queryCriteria.orderBy,
-        //     },
-        //     {
-        //         "id": 5,
-        //         "title": queryCriteria.orderBy,
-        //     },
-        //     {
-        //         "id": 6,
-        //         "title": queryCriteria.orderBy,
-        //     },
-        //     {
-        //         "id": 7,
-        //         "title": queryCriteria.orderBy,
-        //     },
-        //     {
-        //         "id": 8,
-        //         "title": queryCriteria.orderBy,
-        //     },
-        //     {
-        //         "id": 9,
-        //         "title": queryCriteria.orderBy,
-        //     },
-        //     {
-        //         "id": 10,
-        //         "title": queryCriteria.orderBy,
-        //     },
-        //     {
-        //         "id": 11,
-        //         "title": queryCriteria.orderBy,
-        //     },
-        //     {
-        //         "id": 12,
-        //         "title": queryCriteria.orderBy,
-        //     },
-        //     {
-        //         "id": 13,
-        //         "title": queryCriteria.orderBy,
-        //     }
-        // ]
+
         $http({
 	        method: 'POST',
 	        url: 'http://120.77.213.246/api/curriculum',

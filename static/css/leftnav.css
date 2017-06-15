@@ -219,10 +219,13 @@ section {
 }
 
 .content-table {
-	width: 100%;
+	width: 90%;
 }
 
 .content-table tr, .content-table td {
 	border: 1px solid #333;
-	height: 100px;
+}
+
+.content-table img {
+	width: 100%;
 }
