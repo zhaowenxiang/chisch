@@ -9,6 +9,7 @@
 	width: 70%;
 	margin: 0 20px ;
 	float: left;
+	/*background-color: #1b6d85;*/
 }
 
 .menu-ul a{
@@ -220,14 +221,14 @@ section {
 
 .content-div {
 	width: 100%;
-	background-color: #78d244;
+	/*background-color: #78d244;*/
 }
 
 .content-table {
-	display: inline;
 	width: 100%;
-	/*border-collapse: separate;*/
-	/*border-spacing: 0px 50px;*/
+	/*background-color: #0f0f0f;*/
+	border-collapse: separate;
+	border-spacing: 0px 20px;
 }
 
 .content-table tr {
@@ -235,6 +236,7 @@ section {
 }
 
 .content-table td {
+	width: 20%;
 	border: 1px solid #fff;
 }
 
@@ -242,7 +244,21 @@ section {
 	border: 1px solid #333;
 }
 
+.content-table td div {
+	display: block;
+	margin-left: 2%;
+	margin-right: 2%;
+	width: 96%;
+}
+
+.content-table .title-div {
+	margin-top: 5px;
+}
+
+.content-table .curriculum-info-div {
+	margin-top: 20px;
+}
+
 .content-table img {
-	/*margin: 0 0;*/
-	width: 90%;
+	width: 100%;
 }

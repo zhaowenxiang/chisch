@@ -2,6 +2,12 @@ body {
     margin: 0px;
     padding: 0px;
     font-size: 14px;
+    width: 100%;
+}
+
+html {
+    margin: 0;
+    padding: 0
 }
 .header {
     height: 60px;
