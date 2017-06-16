@@ -227,8 +227,8 @@ section {
 .content-table {
 	width: 100%;
 	/*background-color: #0f0f0f;*/
-	border-collapse: separate;
-	border-spacing: 0px 40px;
+	/*border-collapse: separate;*/
+	/*border-spacing: 0px 50px;*/
 }
 
 .content-table tr {
