@@ -47,4 +47,6 @@ app.controller("findContentController", function ($scope, $location, $state, $st
         })
     }
     $scope.query();
+    document.getElementById('price');
+
 });
