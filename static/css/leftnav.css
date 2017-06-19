@@ -221,44 +221,31 @@ section {
 
 .content-div {
 	width: 100%;
-	/*background-color: #78d244;*/
 }
 
 .content-table {
 	width: 100%;
 	margin-top: -40px;
-	/*background-color: #0f0f0f;*/
 	border-collapse: separate;
 	border-spacing: 0px 40px;
-}
-
-.content-table tr {
-	/*border: 1px solid #333;*/
 }
 
 .content-table td {
 	width: 20%;
 	border: 1px solid #fff;
+	padding: 1%;
 }
 
 .content-table td:hover {
-	/*box-shadow: 2px 2px 4px #888;*/
-	/*border-left: 1px solid #888;*/
-	/*border-top: 1px solid #888;*/
-	/*box-shadow: -2px 0 0 green;*/
-	/*box-shadow: 0 -2px 0 blue;*/
-	/*-webkit-box-shadow:5px 2px 5px #00f;*/
-	/*-moz-box-shadow:2px 5px 5px #999;*/
 	-webkit-box-shadow: 2px 2px 10px #888 ;
 	-moz-box-shadow:  0px 0px 10px #888;
-	/*box-shadow: #888 0px 0px 10px;*/
 }
 
-.content-table td div {
+.content-table .curriculum-div {
 	display: block;
-	margin-left: 2%;
-	margin-right: 2%;
-	width: 96%;
+	/*margin-left: 2%;*/
+	/*margin-right: 2%;*/
+	/*width: 96%;*/
 }
 
 .content-table .title-div {
@@ -276,6 +263,7 @@ section {
 .content-table .curriculum-title {
 	font-family: 'Open Sans',sans-serif;
 	font-size: 13px;
+	height: 30px;
 }
 
 .content-table .watch-time, .content-table .lecturer-name{
@@ -289,4 +277,17 @@ section {
 
 .gray {
 	color: #5e5e5e;
+}
+
+.image-div span, image-div img {
+	position: relative;
+	bottom: 25px;
+}
+
+.image-div span {
+	left: 10px;
+	background: rgba(70, 62, 25, 0.96);
+	opacity:.7;
+	filter:alpha(opacity=70);
+	-moz-opacity:.7;
 }
