@@ -3,6 +3,7 @@ body {
     padding: 0px;
     font-size: 14px;
     width: 100%;
+    overflow: scroll;
 }
 
 html {
