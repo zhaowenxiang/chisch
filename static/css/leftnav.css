@@ -287,3 +287,9 @@ section {
 	filter:alpha(opacity=70);
 	-moz-opacity:.7;
 }
+
+.pagination {
+	width: 100%;
+	/*background-color: #2b542c;*/
+	text-align:center
+}
