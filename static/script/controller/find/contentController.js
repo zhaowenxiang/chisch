@@ -53,7 +53,7 @@ app.controller("findContentController", function ($scope, $location, $state, $st
             console.log(error);
         })
     }
-    $scope.query();
+    $scope.query(1);
     document.getElementById('price');
 
 });

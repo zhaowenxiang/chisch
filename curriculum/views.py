@@ -64,7 +64,7 @@ class CurriculumListView(ListView):
         page_size = kwargs['page_size']
         page_number = kwargs['page_number']
         offset = (page_number-1) * page_size
-        limit = page_size
+        limit = offset + page_size
         try:
             curriculums = self.curriculum_manager.all()[offset: limit]
         except Exception, e:
