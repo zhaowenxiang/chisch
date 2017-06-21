@@ -2,23 +2,23 @@
     <h2 ng-bind="language"></h2>
 
     <input class="orderRule" id="tab1" type="radio" name="tabs" value="comprehensive"
-           ng-click=query() ng-model="queryCriteria.orderBy">
+           ng-click=query(1) ng-model="queryCriteria.orderBy">
     <label for="tab1">综合排序</label>
 
     <input class="orderRule" id="tab2" type="radio" name="tabs" value="popularity"
-           ng-click=query() ng-model="queryCriteria.orderBy">
+           ng-click=query(1) ng-model="queryCriteria.orderBy">
     <label for="tab2">人气榜</label>
 
     <input class="orderRule" id="tab3" type="radio" name="tabs" value="new"
-           ng-click=query() ng-model="queryCriteria.orderBy">
+           ng-click=query(1) ng-model="queryCriteria.orderBy">
     <label for="tab3">最新上传</label>
 
     <input class="orderRule" id="tab4" type="radio" name="tabs" value="freeOfCharge"
-           ng-click=query() ng-model="queryCriteria.orderBy">
+           ng-click=query(1) ng-model="queryCriteria.orderBy">
     <label for="tab4">免费专区</label>
 
     <input type="checkbox" ng-true-value="true" ng-false-value="false"
-           ng-click=query() ng-model="queryCriteria.isLookAt" />允许试看
+           ng-click=query(1) ng-model="queryCriteria.isLookAt" />允许试看
     <section id="content1"></section>
     <div class="content-div">
         <table class="content-table" width="100%">
@@ -49,7 +49,7 @@
     </div>
     <div class="pagination">
         <form>
-            <button ng-repeat="page_num in page_num_array">
+            <button ng-repeat="page_num in page_num_array" ng-click="query(page_num)">
                 {{ page_num }}
             </button>
         </form>

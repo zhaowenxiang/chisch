@@ -18,7 +18,7 @@ app.controller("findContentController", function ($scope, $location, $state, $st
 
     var queryCriteria = $scope.queryCriteria = initQueryCriteria($location.search());
     $location.search(queryCriteria);
-    $scope.query = function () {
+    $scope.query = function (page_number) {
         $location.search(queryCriteria);
 
         var res = $scope.res = new Array()
@@ -33,7 +33,7 @@ app.controller("findContentController", function ($scope, $location, $state, $st
 	            action: 'page_list',
                 params: {
                     'page_size': 30,
-                    'page_number': 1,
+                    'page_number': page_number,
                 }
 	        }
         }).then(function (response) {  //正确请求成功时处理
