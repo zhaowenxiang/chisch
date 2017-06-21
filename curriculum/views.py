@@ -63,7 +63,7 @@ class CurriculumListView(ListView):
     def page_list(self, request, *args, **kwargs):
         page_size = kwargs['page_size']
         page_number = kwargs['page_number']
-        offset = (page_size-1) * page_number
+        offset = (page_number-1) * page_size
         limit = page_size
         try:
             curriculums = self.curriculum_manager.all()[offset: limit]
