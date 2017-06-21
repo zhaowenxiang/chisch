@@ -69,7 +69,11 @@ class CurriculumListView(ListView):
             curriculums = self.curriculum_manager.all()[offset: limit]
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
-        result = _s(curriculums, own=True)
+        result = {}
+        result['rows'] = _s(curriculums, own=True)
+        result['pagination'] = {
+            'total': 55,
+        }
         return RetWrapper.wrap_and_return(result)
 
     def get_curriculum_categories(self, request, *args, **kwargs):

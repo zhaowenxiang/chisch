@@ -49,11 +49,9 @@
     </div>
     <div class="pagination">
         <form>
-            <input type="button" value="上一页">
-            <input type="button" value="上一页">
-            <input type="button" value="上一页">
-            <input type="button" value="上一页">
-            <button>尾页</button>
+            <button ng-repeat="page_num in page_num_array">
+                {{ page_num }}
+            </button>
         </form>
     </div>
 </div>

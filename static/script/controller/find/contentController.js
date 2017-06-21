@@ -37,10 +37,16 @@ app.controller("findContentController", function ($scope, $location, $state, $st
                 }
 	        }
         }).then(function (response) {  //正确请求成功时处理
-            console.log(response.data.result);
-            angular.forEach(response.data.result, function (record) {
-                res.push(record)
+            angular.forEach(response.data.result.rows, function (record) {
+                res.push(record);
             });
+            $scope.total = response.data.result.pagination.total;
+            $scope.page_num_array = []
+            var page_count = Math.ceil($scope.total/30)
+            for (var i=1; i<=page_count; i++) {
+                $scope.page_num_array.push(i)
+            }
+
             // console.log(result);
         }).catch(function (error) { //捕捉错误处理
             alert("failed");
