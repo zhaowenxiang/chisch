@@ -61,8 +61,12 @@ class CurriculumListView(ListView):
         return RetWrapper.wrap_and_return(result)
 
     def page_list(self, request, *args, **kwargs):
+        page_size = kwargs['page_size']
+        page_number = kwargs['page_number']
+        offset = (page_size-1) * page_number
+        limit = page_size
         try:
-            curriculums = self.curriculum_manager.all()
+            curriculums = self.curriculum_manager.all()[offset: limit]
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
         result = _s(curriculums, own=True)
