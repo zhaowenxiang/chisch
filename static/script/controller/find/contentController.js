@@ -32,8 +32,8 @@ app.controller("findContentController", function ($scope, $location, $state, $st
             data: {
 	            action: 'page_list',
                 params: {
-                    'page_size': 1,
-                    'page_number': 30,
+                    'page_size': 30,
+                    'page_number': 1,
                 }
 	        }
         }).then(function (response) {  //正确请求成功时处理
