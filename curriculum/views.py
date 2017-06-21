@@ -5,6 +5,7 @@ import logging
 import oss2
 from django.conf import settings
 from django.db import transaction
+from django.db.models import Count
 
 from chisch.common import dependency
 from chisch.common.decorators import login_required, lecturer_required
@@ -37,8 +38,8 @@ class CurriculumListView(ListView):
             and len(kwargs['files']) > 0 else None
 
         try:
-            curriculum = self.curriculum_manager.create(lecturer_id=lecturer_id,
-                                                        **kwargs)
+            curriculum = self.\
+                curriculum_manager.create(lecturer_id=lecturer_id, **kwargs)
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
         if f:
@@ -48,8 +49,8 @@ class CurriculumListView(ListView):
                                  settings.IMAGE_TYPE)
             permission = oss2.OBJECT_ACL_PUBLIC_READ
             try:
-                cover_url, _ = self.oss_manager.single_object_upload(key, f,
-                                                                  permission)
+                cover_url, _ = \
+                    self.oss_manager.single_object_upload(key, f, permission)
             except Exception, e:
                 return RetWrapper.wrap_and_return(e)
             try:
@@ -67,12 +68,13 @@ class CurriculumListView(ListView):
         limit = offset + page_size
         try:
             curriculums = self.curriculum_manager.all()[offset: limit]
+            curriculums_count = self.curriculum_manager.annotate(Count('authors'))
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
         result = {}
         result['rows'] = _s(curriculums, own=True)
         result['pagination'] = {
-            'total': 55,
+            'total': curriculums_count,
         }
         return RetWrapper.wrap_and_return(result)
 
