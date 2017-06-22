@@ -1,19 +1,33 @@
 requirejs.config({
-    //baseUrl: "/root/git/chisch/static/lib/",
     paths: {
-        'angular': "../lib/angularjs/angular",
+        "jquery" : "../lib/jquery/jquery-3.2.1.min",
+        "angular" : "../lib/angularjs/angular.min",
+        'ngRoute': "../lib/angularjs/angular-route.min",
+        "uiRoute" : "../lib/angularjs/angular-ui-route.min",
     },
     shim: {
-        "angular": {
-            exports: "angular"
-        }
-    },
-    urlArgs: "bust=" +  (new Date()).getTime()
+        "angular" : {
+            deps : ["jquery"],
+            exports : "angular"
+        },
+        "jquery" : {
+            exports : "jquery"
+        },
+        "uiRoute" : {
+            deps : ["angular"]
+        },
+    }
 });
+
 
 requirejs([
     'angular',
-    'service/userService',
+    'uiRoute',
+    'app/mainApp',
+    'controller/mainController',
+    'controller/find/navController',
+    'controller/find/menuController',
+    'controller/find/contentController'
 ], function () {
     console.log("load over");
 });
