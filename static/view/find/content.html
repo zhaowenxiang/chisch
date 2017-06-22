@@ -22,24 +22,24 @@
     <section id="content1"></section>
     <div class="content-div">
         <table class="content-table" width="100%">
-            <tr ng-repeat="re in res" ng-if="($index+1)%5 == 1">
-                <td ng-repeat="re in res.slice($index, $index+5)">
+            <tr ng-repeat="row in results.rows" ng-if="($index+1)%5 == 1">
+                <td ng-repeat="row in results.rows.slice($index, $index+5)">
                     <div class="curriculum-wrap">
                         <div class="image-div">
-                            <img ng-src="{{ re.cover_url }}">
+                            <img ng-src="{{ row.cover_url }}">
                             <span>完结：（103节）</span>
                         </div>
                         <div class="title-div">
-                            <span class="curriculum-title">{{ re.title }}</span>
+                            <span class="curriculum-title">{{ row.title }}</span>
                         </div>
 
                         <div class="curriculum-info-div">
-                            <span class="watch-time">浏览: {{ re.watch_person_time }}(人/次)</span>
+                            <span class="watch-time">浏览: {{ row.watch_person_time }}(人/次)</span>
                             <span class="lecturer-name">作者：赵文祥</span>
                             <br>
                             <span class="price" id="price">
                                 <span><i class="fa fa-star fa gray"></i></span>
-                                <span>{{ re.star }}</span>
+                                <span>{{ row.star }}</span>
                             </span>
                         </div>
                     </div>
@@ -47,11 +47,52 @@
             </tr>
         </table>
     </div>
-    <div class="pagination">
-        <form>
-            <button ng-repeat="page_num in page_num_array" ng-click="query(page_num)">
-                {{ page_num }}
-            </button>
-        </form>
+    <div class="pagination" ng-show="results.pageCount>0">
+        <ul>
+            <li ng-click="query(1)">
+                <span>
+                    <<
+                </span>
+            </li>
+            <li ng-click="query(results.currentPage - 1)" ng-show="results.currentPage>1">
+                <span>
+                    <--
+                </span>
+            </li>
+            <li ng-show="results.currentPage<=1">
+                <span>
+                    <--
+                </span>
+            </li>
+            <li ng-repeat="pageBtn in results.pageBtnArray" ng-click="query(pageBtn.page)">
+                <span ng-class="{'page-num-select': pageBtn.is_active}">
+                    {{ pageBtn.page }}
+                </span>
+            </li>
+            <li ng-click="query(results.currentPage + 1)" ng-show="results.currentPage<results.pageCount">
+                <span>
+                    -->
+                </span>
+            </li>
+            <li ng-show="results.currentPage>=results.pageCount">
+                <span>
+                    -->
+                </span>
+            </li>
+            <li ng-click="query(results.pageCount)">
+                <span>
+                    >>
+                </span>
+            </li>
+            <li>
+                <input type="text" placeholder="1"
+                       ng-model="inputPageNum"
+                       onkeyup="this.value=this.value.replace(/\D/g,'')">
+                <label ng-click="query(inputPageNum)">跳转</label>
+            </li>
+            <li>
+                共{{ results.pageCount }}页
+            </li>
+        </ul>
     </div>
 </div>

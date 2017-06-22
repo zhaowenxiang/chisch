@@ -63,18 +63,18 @@ class CurriculumListView(ListView):
 
     def page_list(self, request, *args, **kwargs):
         page_size = kwargs['page_size']
-        page_number = kwargs['page_number']
-        offset = (page_number-1) * page_size
+        page_num = kwargs['page_num']
+        offset = (page_num-1) * page_size
         limit = offset + page_size
         try:
             curriculums = self.curriculum_manager.all()[offset: limit]
-            curriculums_count = self.curriculum_manager.annotate(Count('authors'))
+            curriculums_count = self.curriculum_manager.aggregate(Count("id"))
         except Exception, e:
             return RetWrapper.wrap_and_return(e)
         result = {}
         result['rows'] = _s(curriculums, own=True)
         result['pagination'] = {
-            'total': curriculums_count,
+            'total': curriculums_count['id__count'],
         }
         return RetWrapper.wrap_and_return(result)
 
