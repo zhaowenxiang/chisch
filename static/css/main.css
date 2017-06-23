@@ -10,10 +10,19 @@ html {
     margin: 0;
     padding: 0
 }
+
+.wrapper {
+    width: 100%;
+}
 .header {
     height: 60px;
     background: url("../image/headerBackGround.png") repeat-x;
     color: #ddd;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    z-index: 10000;
 }
 
 .header > div {
@@ -103,16 +112,6 @@ html {
     width:15%;
 }
 
-
-/*固定头部导航栏*/
-.fixed {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    left: 0;
-    z-index: 10000;
-}
-
 .find-nav {
     margin-top: 62px;
     height: 40px;
@@ -142,10 +141,19 @@ html {
     color: #02f3dc !important;
 }
 
-.contents {
-    height: 800px;
+.content {
+    height: 2000px;
     width: 100%;
     margin-top: 62px;
 }
 
+.footer {
+    background-color: #888;
+    height: 100px;
+    float: left;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+}
 
