@@ -1,0 +1,12 @@
+<div class="find-wrapper" ng-controller="findMenuController">
+    <div class="find-menu">
+		<ul class="menu-ul">
+            <li ng-repeat="menu in menuList" ui-sref-active="active" ui-sref-opts="{reload:'{{menu.state}}'}">
+                <a ui-sref="{{ menu.state }}">
+                    {{ menu.title }}
+                </a>
+            </li>
+		</ul>
+	</div>
+    <div ui-view></div>
+</div>

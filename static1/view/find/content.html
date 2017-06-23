@@ -1,0 +1,98 @@
+<div class="specific-content" ng-controller="findContentController">
+    <h2 ng-bind="language"></h2>
+
+    <input class="orderRule" id="tab1" type="radio" name="tabs" value="comprehensive"
+           ng-click=query(1) ng-model="queryCriteria.orderBy">
+    <label for="tab1">综合排序</label>
+
+    <input class="orderRule" id="tab2" type="radio" name="tabs" value="popularity"
+           ng-click=query(1) ng-model="queryCriteria.orderBy">
+    <label for="tab2">人气榜</label>
+
+    <input class="orderRule" id="tab3" type="radio" name="tabs" value="new"
+           ng-click=query(1) ng-model="queryCriteria.orderBy">
+    <label for="tab3">最新上传</label>
+
+    <input class="orderRule" id="tab4" type="radio" name="tabs" value="freeOfCharge"
+           ng-click=query(1) ng-model="queryCriteria.orderBy">
+    <label for="tab4">免费专区</label>
+
+    <input type="checkbox" ng-true-value="true" ng-false-value="false"
+           ng-click=query(1) ng-model="queryCriteria.isLookAt" />允许试看
+    <section id="content1"></section>
+    <div class="content-div">
+        <table class="content-table" width="100%">
+            <tr ng-repeat="row in results.rows" ng-if="($index+1)%5 == 1">
+                <td ng-repeat="row in results.rows.slice($index, $index+5)">
+                    <div class="curriculum-wrap">
+                        <div class="image-div">
+                            <img ng-src="{{ row.cover_url }}">
+                            <span>完结：（103节）</span>
+                        </div>
+                        <div class="title-div">
+                            <span class="curriculum-title">{{ row.title }}</span>
+                        </div>
+
+                        <div class="curriculum-info-div">
+                            <span class="watch-time">浏览: {{ row.watch_person_time }}(人/次)</span>
+                            <span class="lecturer-name">作者：赵文祥</span>
+                            <br>
+                            <span class="price" id="price">
+                                <span><i class="fa fa-star fa gray"></i></span>
+                                <span>{{ row.star }}</span>
+                            </span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="pagination" ng-show="results.pageCount>0">
+        <ul>
+            <li ng-click="query(1)">
+                <span>
+                    <<
+                </span>
+            </li>
+            <li ng-click="query(results.currentPage - 1)" ng-show="results.currentPage>1">
+                <span>
+                    <--
+                </span>
+            </li>
+            <li ng-show="results.currentPage<=1">
+                <span>
+                    <--
+                </span>
+            </li>
+            <li ng-repeat="pageBtn in results.pageBtnArray" ng-click="query(pageBtn.page)">
+                <span ng-class="{'page-num-select': pageBtn.is_active}">
+                    {{ pageBtn.page }}
+                </span>
+            </li>
+            <li ng-click="query(results.currentPage + 1)" ng-show="results.currentPage<results.pageCount">
+                <span>
+                    -->
+                </span>
+            </li>
+            <li ng-show="results.currentPage>=results.pageCount">
+                <span>
+                    -->
+                </span>
+            </li>
+            <li ng-click="query(results.pageCount)">
+                <span>
+                    >>
+                </span>
+            </li>
+            <li>
+                <input type="text" placeholder="1"
+                       ng-model="inputPageNum"
+                       onkeyup="this.value=this.value.replace(/\D/g,'')">
+                <label ng-click="query(inputPageNum)">跳转</label>
+            </li>
+            <li>
+                共{{ results.pageCount }}页
+            </li>
+        </ul>
+    </div>
+</div>

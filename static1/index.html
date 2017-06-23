@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>千寻</title>
+	<title>千寻互联</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/leftnav.css">
@@ -9,11 +9,19 @@
 </head>
 <body>
 	<div class="wrapper"  ng-controller="mainController">
-        <div class="header fixed">
+        <div class="header">
             <div class="brand">
-                <span>传视播客</span>
+                <span>千寻互联</span>
             </div>
             <div class="nav">
+                <li>111</li>
+                <li>222</li>
+                <li>333</li>
+                <li>444</li>
+                <li>555</li>
+                <li>666</li>
+            </div>
+            <!--<div class="nav">
                 <table id="nav-table">
                     <tr>
                         <td ng-repeat="nav in headerNavList" ui-sref="{{ nav.state }}"
@@ -23,7 +31,7 @@
                         </td>
                     </tr>
                 </table>
-            </div>
+            </div>-->
             <div class="search">
                 <input type="text" class="search_input" placeholder="根据用户名或者课程名查询...">
                 <img src="image/icon-search.png" class="search_button">
@@ -31,6 +39,7 @@
             <div class="info">11</div>
         </div>
         <div class="contents" ui-view></div>
+        <div class="footer"></div>
 	</div>
 <script data-main="script/main" src="lib/require/require.js"></script>
 </body>

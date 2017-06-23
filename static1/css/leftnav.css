@@ -1,0 +1,337 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
+@import url("http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
+
+.find-menu {
+	width:10%
+}
+
+.specific-content {
+	width: 70%;
+	margin: 0 20px ;
+	float: left;
+	/*background-color: #1b6d85;*/
+}
+
+.menu-ul a{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	width:100%;
+}
+
+.find-menu,.find-menu * {
+	font-family: 'Open Sans',sans-serif;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	outline: 0
+}
+
+.find-menu {
+	float: left;
+	position: relative;
+	box-shadow: 0 20px 50px #333
+}
+
+.find-menu ul {
+	margin: 0;
+	padding: 0;
+	list-style: none
+}
+
+.find-menu ul li {
+	width: 100%;
+	display: block;
+	float: left;
+	position: relative
+}
+
+.find-menu ul li a {
+	width: 100%;
+	padding: 14px 22px;
+	float: left;
+	text-decoration: none;
+	color: #bbb;
+	font-size: 13px;
+	background: #444;
+	white-space: nowrap;
+	position: relative;
+	overflow: hidden;
+	-o-transition: color .2s linear,background .2s linear;
+	-moz-transition: color .2s linear,background .2s linear;
+	-webkit-transition: color .2s linear,background .2s linear;
+	transition: color .2s linear,background .2s linear
+}
+
+.find-menu>ul>li.active>a,.find-menu>ul>li:hover>a {
+	color: #02f3dc;
+	background: #3b424d
+}
+
+.find-menu>ul>li>a {
+	border-bottom: solid 1px #3b424d
+}
+
+.find-menu ul li a i {
+	width: 34px;
+	float: left;
+	line-height: 18px;
+	font-size: 16px;
+	text-align: left
+}
+
+.find-menu .submenu-indicator {
+	float: right;
+	right: 22px;
+	position: absolute;
+	line-height: 19px;
+	font-size: 20px;
+	-o-transition: transform .3s linear;
+	-moz-transition: transform .3s linear;
+	-webkit-transition: transform .3s linear;
+	-ms-transition: transform .3s linear
+}
+
+.find-menu ul ul.submenu .submenu-indicator {
+	line-height: 16px
+}
+
+.find-menu .submenu-indicator-minus>.submenu-indicator {
+	-ms-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg)
+}
+
+.find-menu ul ul.submenu,.find-menu ul ul.submenu li ul.submenu {
+	width: 100%;
+	display: block;
+	position: static
+}
+
+.find-menu ul ul.submenu li {
+	clear: both;
+	width: 100%
+}
+
+.find-menu ul ul.submenu li a {
+	width: 100%;
+	float: left;
+	font-size: 11px;
+	background: #383838;
+	border-top: none;
+	position: relative;
+	border-left: solid 6px transparent;
+	-o-transition: border .2s linear;
+	-moz-transition: border .2s linear;
+	-webkit-transition: border .2s linear;
+	transition: border .2s linear
+}
+
+.find-menu ul ul.submenu li:hover>a {
+	border-left-color: #414956
+}
+
+.find-menu ul ul.submenu>li>a {
+	padding-left: 30px
+}
+
+.find-menu ul ul.submenu>li>ul.submenu>li>a {
+	padding-left: 45px
+}
+
+.find-menu ul li a {
+	background: #333
+}
+
+section {
+  display: none;
+  padding: 20px 0 0;
+  border-top: 1px solid #ddd;
+}
+
+.orderRule {
+  display: none;
+}
+
+label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 15px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
+}
+
+label:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+label[for*='1']:before {
+  content: '\f1cb';
+}
+
+label[for*='2']:before {
+  content: '\f17d';
+}
+
+label[for*='3']:before {
+  content: '\f16b';
+}
+
+label[for*='4']:before {
+  content: '\f1a9';
+}
+
+label:hover {
+  color: #888;
+  cursor: pointer;
+}
+
+.orderRule:checked + label {
+  color: #555;
+  border: 1px solid #ddd;
+  border-top: 2px solid orange;
+  border-bottom: 1px solid #fff;
+}
+
+section {
+  display: block;
+}
+
+@media screen and (max-width: 650px) {
+  label {
+    font-size: 0;
+  }
+
+  label:before {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 400px) {
+  label {
+    padding: 15px;
+  }
+}
+
+.content-div {
+	width: 100%;
+}
+
+.content-div .content-table {
+	width: 100%;
+	margin-top: -40px;
+	border-collapse: separate;
+	border-spacing: 0px 40px;
+	table-layout: fixed
+}
+
+.content-table .content-table tr{
+	width: 100%;
+}
+
+.content-div .content-table td {
+	width: 20px !important;
+	border: 1px solid #fff;
+	padding: 1%;
+}
+
+.content-div .content-table td:hover {
+	-webkit-box-shadow: 2px 2px 10px #888 ;
+	-moz-box-shadow:  0px 0px 10px #888;
+}
+
+.content-div .content-table .title-div {
+	margin-top: -12px;
+}
+
+.content-div .content-table .curriculum-info-div {
+	margin-top: 20px;
+}
+
+.content-table img {
+	width: 100%;
+}
+
+.content-table .curriculum-title {
+	font-family: 'Open Sans',sans-serif;
+	font-size: 13px;
+	height: 30px;
+}
+
+.content-table .watch-time, .content-table .lecturer-name{
+	font-size: 12px;
+	color: #999;
+}
+
+.content-table .lecturer-name {
+	float: right;
+}
+
+.gray {
+	color: #5e5e5e;
+}
+
+.image-div span, image-div img {
+	position: relative;
+	bottom: 22px;
+}
+
+.image-div span {
+	color: #fff;
+	font-size: small;
+	display: block;
+	width: 100%;
+	background: rgba(80, 80, 80, 0.8);
+	opacity:.7;
+	filter:alpha(opacity=70);
+	-moz-opacity:.7;
+}
+
+.pagination {
+	width: 100%;
+	/*background-color: #2b542c;*/
+	text-align:center
+}
+
+.pagination ul {
+	/*background-color: #2b542c;*/
+	list-style: none;
+}
+
+.pagination ul li{
+	display:inline;
+}
+
+.pagination ul li span{
+	font-size: large;
+	text-align:center;
+	line-height: 40px;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	color: #333;
+	background-color: #888;
+}
+
+.pagination ul li span:hover{
+	cursor: pointer;
+	-webkit-box-shadow: 2px 2px 10px #888 ;
+	-moz-box-shadow:  0px 0px 10px #888;
+}
+
+.pagination ul li input{
+	margin-left: 50px;
+	line-height: 40px;
+	width: 40px;
+	height: 20px;
+}
+
+.page-num-select {
+	background-color: #2aabd2 !important;
+}
