@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS+RequireJS</title>
+    <script type="text/javascript" src="../lib/require/require.js" data-main="script/main.js"></script>
+</head>
+<body>
+    <div ng-controller="ctrlLogin">
+        <label>
+            <input type="text" ng-model="name"/>
+        </label>
+        <span ng-bind="name"></span>
+    </div>
+</body>
+</html>

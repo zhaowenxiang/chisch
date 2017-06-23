@@ -1,8 +1,11 @@
-requirejs.config({
+/**
+* Created by Charles on 2014/11/14.
+*/
+
+require.config({
     paths: {
         "jquery" : "../lib/jquery/jquery-3.2.1.min",
         "angular" : "../lib/angularjs/angular.min",
-        'ngRoute': "../lib/angularjs/angular-route.min",
         "uiRoute" : "../lib/angularjs/angular-ui-route.min",
     },
     shim: {
@@ -20,14 +23,15 @@ requirejs.config({
 });
 
 
-requirejs([
-    'angular',
-    'uiRoute',
-    'app/mainApp',
+require([
+    "angular",
+    "jquery",
+    "uiRoute",
+    "app",
     'controller/mainController',
     'controller/find/navController',
     'controller/find/menuController',
     'controller/find/contentController'
-], function () {
-    console.log("load over");
+], function (angular, app) {
+    angular.bootstrap(document,['mainApp']);
 });

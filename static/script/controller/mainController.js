@@ -1,5 +1,5 @@
-app.controller('mainController', function ($rootScope, $scope, $location, $state) {
-    console.log("index mainController");
+define(['app'], function (app) {
+    app.controller('mainController', function ($rootScope, $scope, $location, $state) {
     var headerNavList = $scope.headerNavList = [
         {
             'id': 'find',
@@ -27,21 +27,5 @@ app.controller('mainController', function ($rootScope, $scope, $location, $state
             'state': 'download'
         }
     ];
-    //console.log($state);
-    //$state.transition('find');
-    // console.log($location.url());
-    // var activeLinkView = "";
-    // if ($location.url() == '/' || $location.url() == '') {
-    //     activeLinkView = 'find';
-    // }else {
-    //     angular.forEach(headerNavList, function (data) {
-    //         if ($location.url() == '/' + data.state) {
-    //             activeLinkView = data.state;
-    //             return false;
-    //         }
-    //     });
-    // }
-    // if (activeLinkView != "") {
-    //     $state.go(activeLinkView)
-    // }
+});
 });

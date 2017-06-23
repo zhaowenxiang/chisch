@@ -1,4 +1,4 @@
-define([angular], function (angular) {
+define(['angular'], function (angular) {
     var app = angular.module('mainApp', ['ui.router']);
     app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.when(
@@ -150,4 +150,5 @@ define([angular], function (angular) {
         $urlRouterProvider.otherwise('/404');
         $locationProvider.hashPrefix("");
     });
+    return app;
 });
