@@ -1,5 +1,6 @@
 define(['app'], function (app) {
     app.controller('mainController', function ($rootScope, $scope, $location, $state) {
+        $scope.option_show = true;
         $scope.headerNavList = [
             {
                 'title': '发现',
