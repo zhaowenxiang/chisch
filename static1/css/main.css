@@ -109,12 +109,10 @@ html {
     width: 20%;
 }
 
-.wrapper .header .user .user-login, .wrapper .header .user .user-not-login{
-    margin-top: 15px;
-}
-
 .wrapper .header .user .user-login .avatar-and-drop-down {
-    /*margin-top: ;*/
+    margin-top: 15px;
+    width: 60px;
+    /*background-color: #2b542c;*/
 }
 
 .wrapper .header .user .user-login .avatar-and-drop-down .avatar{
@@ -133,25 +131,23 @@ html {
     transform: rotate(-180deg);
 }
 
+.wrapper .header .user .user-login .drop-down-option {
+    width: 40%;
+    /*background-color: #2aabd2;*/
+    padding-top: 1px;
+    margin-left: -40px;
+}
+
 .wrapper .header .user .user-login ul{
-    background-color: #2b542c;
+    background: #555
 }
 
 .wrapper .header .user .user-login ul li{
     list-style: none;
+    width: 100%;
+    padding: 14px 0px;
+    color: #bbb;
 }
-
-/*.wrapper .header .user .user-login img{*/
-    /*!*margin-top: 2px;*!*/
-    /*margin-top: 2px;*/
-    /*margin-left: 2px;*/
-    /*cursor: pointer;*/
-/*}*/
-
-/*.wrapper .header .user .user-login img:hover{*/
-    /*transform: rotate(-180deg);*/
-    /*cursor: pointer;*/
-/*}*/
 
 .find-nav {
     margin-top: 62px;
