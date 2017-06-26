@@ -110,7 +110,27 @@ html {
 }
 
 .wrapper .header .user .user-login, .wrapper .header .user .user-not-login{
-    margin-top: 18px;
+    margin-top: 15px;
+}
+
+.wrapper .header .user .user-login .avatar-and-drop-down {
+    /*margin-top: ;*/
+}
+
+.wrapper .header .user .user-login .avatar-and-drop-down .avatar{
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+
+.wrapper .header .user .user-login .avatar-and-drop-down .drop-down{
+    margin-top: 8px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.wrapper .header .user .user-login .avatar-and-drop-down .drop-down:hover{
+    transform: rotate(-180deg);
 }
 
 .wrapper .header .user .user-login ul{
@@ -121,9 +141,17 @@ html {
     list-style: none;
 }
 
-.wrapper .header .user .user-login img{
-    cursor: pointer;
-}
+/*.wrapper .header .user .user-login img{*/
+    /*!*margin-top: 2px;*!*/
+    /*margin-top: 2px;*/
+    /*margin-left: 2px;*/
+    /*cursor: pointer;*/
+/*}*/
+
+/*.wrapper .header .user .user-login img:hover{*/
+    /*transform: rotate(-180deg);*/
+    /*cursor: pointer;*/
+/*}*/
 
 .find-nav {
     margin-top: 62px;

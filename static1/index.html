@@ -37,19 +37,21 @@
 
                 </div>
                 <div class="user-login">
-                    <span>我的</span>
-                    <img src="image/xiala.jpg"
-                         ng-mouseover="option_show=true"
-                         ng-mouseleave="option_show=false">
-                    <ul
-                        ng-show="option_show"
-                        ng-mouseover="option_show=true"
-                        ng-mouseleave="option_show=false">
-                        <li>我的主页</li>
-                        <li>我的等级</li>
-                        <li>个人设置</li>
-                        <li>退出</li>
-                    </ul>
+                    <div class="avatar-and-drop-down" ng-mouseover="option_show=true" ng-mouseleave="option_show=false">
+                        <img class="avatar" src="image/avatar.png">
+                        <img class="drop-down" src="image/xiala.jpg">
+                    </div>
+                    <div>
+                        <ul ng-show="option_show"
+                            ng-mouseover="option_show=true"
+                            ng-mouseleave="option_show=false">
+                            <li>我的主页</li>
+                            <li>我的等级</li>
+                            <li>个人设置</li>
+                            <li>退出</li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>
